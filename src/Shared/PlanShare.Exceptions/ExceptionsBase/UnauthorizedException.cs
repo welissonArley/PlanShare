@@ -1,0 +1,9 @@
+﻿using System.Net;
+
+namespace PlanShare.Exceptions.ExceptionsBase;
+public class UnauthorizedException(string mensagem) : PlanShareException(mensagem)
+{
+    public override IList<string> GetErrorMessages() => [Message];
+
+    public override HttpStatusCode GetStatusCode() => HttpStatusCode.Unauthorized;
+}
