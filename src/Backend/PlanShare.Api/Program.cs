@@ -88,7 +88,8 @@ async Task MigrateDatabase()
 {
     await using var scope = app.Services.CreateAsyncScope();
 
+    var databaseType = builder.Configuration.GetDatabaseType();
     var stringConnection = builder.Configuration.ConnectionString();
 
-    DataBaseMigration.Migrate(stringConnection, scope.ServiceProvider);
+    DataBaseMigration.Migrate(databaseType, stringConnection, scope.ServiceProvider);
 }
