@@ -38,7 +38,12 @@ public static class DependencyInjectionExtension
 
         services.AddDbContext<PlanShareDbContext>(dbContextOptions =>
         {
-            dbContextOptions.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            var databaseType = configuration.GetDatabaseType();
+
+            if(databaseType is DatabaseType.MySQL)
+                dbContextOptions.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            else
+                dbContextOptions.UseSqlServer(connectionString);
         });
     }
 
