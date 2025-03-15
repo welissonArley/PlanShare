@@ -9,17 +9,20 @@
         <Image Source="hero_image.png" />
 
         <Label
+            FontFamily="RalewayBlack"
             FontSize="18"
             HorizontalOptions="Center"
             Text="Tarefas pequenas, grandes resultados." />
 
-
         <Label FontSize="18" HorizontalOptions="Center">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="Não tem uma conta?" />
+                    <Span FontFamily="WorkSansRegular" Text="Não tem uma conta?" />
                     <Span Text=" " />
-                    <Span Text="Crie a sua conta!" TextColor="#0065f2" />
+                    <Span
+                        FontFamily="WorkSansBlack"
+                        Text="Crie a sua conta!"
+                        TextColor="#0065f2" />
                 </FormattedString>
             </Label.FormattedText>
         </Label>
