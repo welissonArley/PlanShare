@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Style TargetType="Button">
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HeightRequest" Value="60" />
+        <Setter Property="FontFamily" Value="RalewayBlack" />
+        <Setter Property="BackgroundColor" Value="Black" />
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+
+    <Style x:Key="ButtonGoogleLogin" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#F6F6FB" />
+        <Setter Property="TextColor" Value="Black" />
+    </Style>
+</ResourceDictionary>
