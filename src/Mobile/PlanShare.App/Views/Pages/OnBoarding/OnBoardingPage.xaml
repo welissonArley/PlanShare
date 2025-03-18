@@ -2,6 +2,7 @@
 <ContentPage
     x:Class="PlanShare.App.Views.Pages.OnBoarding.OnBoardingPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
@@ -9,7 +10,7 @@
 
         <Label
             Margin="0,30,0,40"
-            FontFamily="RalewayBlack"
+            FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
             FontSize="18"
             HorizontalOptions="Center"
             Text="Tarefas pequenas, grandes resultados." />
@@ -24,10 +25,10 @@
         <Label FontSize="18" HorizontalOptions="Center">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span FontFamily="WorkSansRegular" Text="Não tem uma conta?" />
+                    <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="Não tem uma conta?" />
                     <Span Text=" " />
                     <Span
-                        FontFamily="WorkSansBlack"
+                        FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
                         Text="Crie a sua conta!"
                         TextColor="#0065f2" />
                 </FormattedString>
