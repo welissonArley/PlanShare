@@ -6,4 +6,14 @@ public partial class OnBoardingPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void ButtonGoogle_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void ButtonLogin_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }
