@@ -1,17 +1,17 @@
-﻿using System.Windows.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 
 namespace PlanShare.App.ViewModels.Pages.OnBording;
 
-public class OnBoardingViewModel
+public partial class OnBoardingViewModel
 {
-    public ICommand LoginWithEmailAndPasswordCommand { get; set; }
-
-    public OnBoardingViewModel()
+    [RelayCommand]
+    public void LoginWithEmailAndPassword()
     {
-        LoginWithEmailAndPasswordCommand = new Command(LoginWithEmailAndPassword);
+
     }
 
-    public void LoginWithEmailAndPassword()
+    [RelayCommand]
+    public void LoginWithGoogle()
     {
 
     }

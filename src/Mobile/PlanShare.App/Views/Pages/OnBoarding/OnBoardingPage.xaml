@@ -18,6 +18,7 @@
             Text="Tarefas pequenas, grandes resultados." />
 
         <Button
+            Command="{Binding LoginWithGoogleCommand}"
             ImageSource="google_logo.png"
             Style="{StaticResource ButtonGoogleLogin}"
             Text="Continuar com o Google" />
