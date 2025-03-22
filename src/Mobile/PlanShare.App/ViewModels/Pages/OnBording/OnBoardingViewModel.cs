@@ -5,9 +5,9 @@ namespace PlanShare.App.ViewModels.Pages.OnBording;
 public partial class OnBoardingViewModel
 {
     [RelayCommand]
-    public void LoginWithEmailAndPassword()
+    public async Task LoginWithEmailAndPassword()
     {
-
+        await Shell.Current.GoToAsync("DoLoginPage");
     }
 
     [RelayCommand]

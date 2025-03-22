@@ -1,4 +1,5 @@
 ﻿using PlanShare.App.Constants;
+using PlanShare.App.Views.Pages.Login.DoLogin;
 
 namespace PlanShare.App;
 
@@ -9,6 +10,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.AddPages()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
@@ -19,5 +21,12 @@ public static class MauiProgram
 			});
 
 		return builder.Build();
+	}
+
+	private static MauiAppBuilder AddPages(this MauiAppBuilder appBuilder)
+	{
+		Routing.RegisterRoute("DoLoginPage", typeof(DoLoginPage));
+
+		return appBuilder;
 	}
 }
