@@ -28,18 +28,24 @@
             Command="{Binding LoginWithEmailAndPasswordCommand}"
             Text="Login com Email e Senha" />
 
-        <Label FontSize="18" HorizontalOptions="Center">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="Não tem uma conta?" />
-                    <Span Text=" " />
-                    <Span
-                        FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
-                        Text="Crie a sua conta!"
-                        TextColor="#0065f2" />
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <VerticalStackLayout Padding="0,7,0,0" HeightRequest="40">
+            <VerticalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding RegisterUserAccountCommand}" />
+            </VerticalStackLayout.GestureRecognizers>
+
+            <Label FontSize="18" HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="Não tem uma conta?" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
+                            Text="Crie a sua conta!"
+                            TextColor="#0065f2" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 
 </ContentPage>

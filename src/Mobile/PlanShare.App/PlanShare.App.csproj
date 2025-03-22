@@ -79,6 +79,9 @@
 	  <MauiXaml Update="Views\Pages\OnBoarding\OnBoardingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Pages\User\Register\RegisterUserAccountPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
