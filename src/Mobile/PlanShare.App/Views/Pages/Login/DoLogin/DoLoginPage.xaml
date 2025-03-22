@@ -18,5 +18,7 @@
                 TextDecorations="Underline" />
         </VerticalStackLayout>
 
+        <Button Text="Login" />
+
     </VerticalStackLayout>
 </ContentPage>
