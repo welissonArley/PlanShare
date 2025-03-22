@@ -2,8 +2,26 @@
 <ContentPage
     x:Class="PlanShare.App.Views.Pages.User.Register.RegisterUserAccountPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants">
     <VerticalStackLayout>
-        <Label Text="Criar minha Conta" />
+        <Label Style="{StaticResource PageTitle}" Text="Criar minha Conta" />
+
+        <Label Margin="0,20,0,0" Text="Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!" />
+
+        <VerticalStackLayout Padding="0,7,0,0" HeightRequest="40">
+            <Label FontSize="18" HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="Já possui uma conta?" />
+                        <Span Text=" " />
+                        <Span
+                            FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
+                            Text="Faça login!"
+                            TextColor="#0065f2" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

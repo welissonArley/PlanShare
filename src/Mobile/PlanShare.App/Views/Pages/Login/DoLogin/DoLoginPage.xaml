@@ -2,8 +2,21 @@
 <ContentPage
     x:Class="PlanShare.App.Views.Pages.Login.DoLogin.DoLoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants">
     <VerticalStackLayout>
-        <Label Text="Welisson" />
+        <Label Style="{StaticResource PageTitle}" Text="Login" />
+
+        <VerticalStackLayout
+            Margin="0,40,0,0"
+            Padding="0,7,0,0"
+            HeightRequest="40">
+            <Label
+                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                HorizontalOptions="End"
+                Text="Esqueceu sua Senha?"
+                TextDecorations="Underline" />
+        </VerticalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>
