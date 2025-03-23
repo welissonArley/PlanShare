@@ -15,4 +15,9 @@
         <Setter Property="FontFamily" Value="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}" />
     </Style>
 
+    <Style x:Key="TitleForEntry" TargetType="Label">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontFamily" Value="{Static fontFamily:FontFamily.MAIN_FONT_THIN}" />
+    </Style>
+
 </ResourceDictionary>
