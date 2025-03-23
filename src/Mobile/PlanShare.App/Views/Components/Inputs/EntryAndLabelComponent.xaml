@@ -8,6 +8,7 @@
 
         <Entry
             Placeholder="Bruce Wayne"
+            Keyboard="Email"
             PlaceholderColor="#808080"
             TextColor="Black" />
     </VerticalStackLayout>

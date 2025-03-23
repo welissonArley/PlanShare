@@ -10,7 +10,12 @@
 
         <Label Margin="0,20,0,50" Text="Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!" />
 
-        <component:EntryAndLabelComponent />
+        <component:EntryAndLabelComponent Title="Nome" Placeholder="Bruce Wayne" />
+
+        <component:EntryAndLabelComponent
+            Title="Email"
+            Keyboard="Email"
+            Placeholder="bruce@waynetech.com" />
 
         <Button
             Margin="0,70,0,70"
