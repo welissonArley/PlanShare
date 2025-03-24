@@ -17,6 +17,8 @@
             Keyboard="Email"
             Placeholder="bruce@waynetech.com" />
 
+        <component:EntryAndLabelPasswordComponent Title="Senha" />
+
         <Button
             Margin="0,70,0,70"
             BackgroundColor="#0065f2"
