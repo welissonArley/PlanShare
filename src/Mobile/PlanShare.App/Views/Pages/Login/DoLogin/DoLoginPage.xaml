@@ -3,12 +3,23 @@
     x:Class="PlanShare.App.Views.Pages.Login.DoLogin.DoLoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:PlanShare.App.Views.Components.Inputs"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants">
-    <VerticalStackLayout>
-        <Label Style="{StaticResource PageTitle}" Text="Login" />
+    <VerticalStackLayout Spacing="30">
+        <Label
+            Margin="0,0,0,10"
+            Style="{StaticResource PageTitle}"
+            Text="Login" />
+
+        <components:EntryAndLabelComponent
+            Title="Email"
+            Keyboard="Email"
+            Placeholder="bruce@waynetech.com" />
+
+        <components:EntryAndLabelPasswordComponent Title="Senha" />
 
         <VerticalStackLayout
-            Margin="0,40,0,0"
+            Margin="0,10,0,40"
             Padding="0,7,0,0"
             HeightRequest="40">
             <Label

@@ -5,10 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:component="clr-namespace:PlanShare.App.Views.Components.Inputs"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants">
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="30">
         <Label Style="{StaticResource PageTitle}" Text="Criar minha Conta" />
 
-        <Label Margin="0,20,0,50" Text="Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!" />
+        <Label Margin="0,-10,0,10" Text="Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!" />
 
         <component:EntryAndLabelComponent Title="Nome" Placeholder="Bruce Wayne" />
 
@@ -20,7 +20,7 @@
         <component:EntryAndLabelPasswordComponent Title="Senha" />
 
         <Button
-            Margin="0,70,0,70"
+            Margin="0,40,0,40"
             BackgroundColor="#0065f2"
             CornerRadius="20"
             HeightRequest="60"
