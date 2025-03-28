@@ -4,19 +4,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:PlanShare.App.Views.Components.Inputs"
-    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants">
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
+    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources">
     <VerticalStackLayout Spacing="30">
         <Label
             Margin="0,0,0,10"
             Style="{StaticResource PageTitle}"
-            Text="Login" />
+            Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
 
         <components:EntryAndLabelComponent
-            Title="Email"
+            Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
             Keyboard="Email"
             Placeholder="bruce@waynetech.com" />
 
-        <components:EntryAndLabelPasswordComponent Title="Senha" />
+        <components:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" />
 
         <VerticalStackLayout
             Margin="0,10,0,40"
@@ -25,11 +26,11 @@
             <Label
                 FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
                 HorizontalOptions="End"
-                Text="Esqueceu sua Senha?"
+                Text="{Static resourceFile:ResourceTexts.PHRASE_FORGOT_YOUR_PASSWORD}"
                 TextDecorations="Underline" />
         </VerticalStackLayout>
 
-        <Button Text="Login" />
+        <Button Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
 
     </VerticalStackLayout>
 </ContentPage>

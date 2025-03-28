@@ -4,37 +4,38 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:component="clr-namespace:PlanShare.App.Views.Components.Inputs"
-    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants">
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
+    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources">
     <VerticalStackLayout Spacing="30">
-        <Label Style="{StaticResource PageTitle}" Text="Criar minha Conta" />
+        <Label Style="{StaticResource PageTitle}" Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
 
-        <Label Margin="0,-10,0,10" Text="Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!" />
+        <Label Margin="0,-10,0,10" Text="{Static resourceFile:ResourceTexts.SUBTITLE_REGISTER_ACCOUNT}" />
 
-        <component:EntryAndLabelComponent Title="Nome" Placeholder="Bruce Wayne" />
+        <component:EntryAndLabelComponent Title="{Static resourceFile:ResourceTexts.TITLE_NAME}" Placeholder="Bruce Wayne" />
 
         <component:EntryAndLabelComponent
-            Title="Email"
+            Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
             Keyboard="Email"
             Placeholder="bruce@waynetech.com" />
 
-        <component:EntryAndLabelPasswordComponent Title="Senha" />
+        <component:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" />
 
         <Button
             Margin="0,40,0,40"
             BackgroundColor="#0065f2"
             CornerRadius="20"
             HeightRequest="60"
-            Text="Criar minha conta" />
+            Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
 
         <VerticalStackLayout Padding="0,7,0,0" HeightRequest="40">
             <Label FontSize="18" HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="Já possui uma conta?" />
+                        <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="{Static resourceFile:ResourceTexts.PHRASE_ALREADY_HAS_ACCOUNT}" />
                         <Span Text=" " />
                         <Span
                             FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
-                            Text="Faça login!"
+                            Text="{Static resourceFile:ResourceTexts.PHRASE_DO_LOGIN}"
                             TextColor="#0065f2" />
                     </FormattedString>
                 </Label.FormattedText>

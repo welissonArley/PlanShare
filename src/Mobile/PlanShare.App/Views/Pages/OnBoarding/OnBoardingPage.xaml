@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
+    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.OnBording"
     x:DataType="viewModel:OnBoardingViewModel"
     Shell.NavBarIsVisible="False">
@@ -15,7 +16,7 @@
             FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
             FontSize="18"
             HorizontalOptions="Center"
-            Text="Tarefas pequenas, grandes resultados." />
+            Text="{Static resourceFile:ResourceTexts.PHRASE_SMALL_TASKS_BIG_RESULTS}" />
 
         <Button
             BackgroundColor="#F6F6FB"
@@ -23,7 +24,7 @@
             CornerRadius="20"
             HeightRequest="60"
             ImageSource="google_logo.png"
-            Text="Continuar com o Google"
+            Text="{Static resourceFile:ResourceTexts.PHRASE_CONTINUE_WITH_GOOGLE}"
             TextColor="Black" />
 
         <Button
@@ -31,7 +32,7 @@
             Command="{Binding LoginWithEmailAndPasswordCommand}"
             CornerRadius="20"
             HeightRequest="60"
-            Text="Login com Email e Senha" />
+            Text="{Static resourceFile:ResourceTexts.LOGIN_WITH_EMAIL_PASSWORD}" />
 
         <VerticalStackLayout Padding="0,7,0,0" HeightRequest="40">
             <VerticalStackLayout.GestureRecognizers>
@@ -41,11 +42,11 @@
             <Label FontSize="18" HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="Não tem uma conta?" />
+                        <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="{Static resourceFile:ResourceTexts.PHRASE_DONT_HAVE_ACCOUNT}" />
                         <Span Text=" " />
                         <Span
                             FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
-                            Text="Crie a sua conta!"
+                            Text="{Static resourceFile:ResourceTexts.PHRASE_REGISTER_YOUR_ACCOUNT}"
                             TextColor="#0065f2" />
                     </FormattedString>
                 </Label.FormattedText>
