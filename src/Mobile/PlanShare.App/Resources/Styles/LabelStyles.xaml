@@ -17,8 +17,8 @@
 
     <Style x:Key="TitleForEntry" TargetType="Label">
         <Setter Property="FontSize" Value="11" />
-        <Setter Property="FontFamily" Value="{Static fontFamily:FontFamily.MAIN_FONT_THIN}" />
-        <Setter Property="Margin" Value="4,0,0,0" />
+        <Setter Property="FontFamily" Value="{Static fontFamily:FontFamily.MAIN_FONT_LIGHT}" />
+        <Setter Property="Margin" Value="{OnPlatform Android='4,0,0,0', iOS='0,0,0,4'}" />
     </Style>
 
 </ResourceDictionary>
