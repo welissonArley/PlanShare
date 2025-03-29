@@ -8,7 +8,6 @@
     Title="PlanShare.App">
 
     <ShellContent
-        Title="Home"
         ContentTemplate="{DataTemplate onBoarding:OnBoardingPage}"
         Route="{Static navigation:RoutePages.ONBOARDING_PAGE}" />
 
