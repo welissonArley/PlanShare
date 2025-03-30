@@ -22,7 +22,8 @@
 
         <Button
             Margin="0,40,0,40"
-            BackgroundColor="#0065f2"
+            BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                              Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
             CornerRadius="20"
             HeightRequest="60"
             Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
@@ -36,7 +37,8 @@
                         <Span
                             FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
                             Text="{Static resourceFile:ResourceTexts.PHRASE_DO_LOGIN}"
-                            TextColor="#0065f2" />
+                            TextColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                        Dark={StaticResource HIGHLIGHT_COLOR_DARK}}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

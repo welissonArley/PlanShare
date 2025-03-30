@@ -47,7 +47,8 @@
                         <Span
                             FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
                             Text="{Static resourceFile:ResourceTexts.PHRASE_REGISTER_YOUR_ACCOUNT}"
-                            TextColor="#0065f2" />
+                            TextColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                        Dark={StaticResource HIGHLIGHT_COLOR_DARK}}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

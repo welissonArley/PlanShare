@@ -7,8 +7,6 @@
     xmlns:onBoarding="clr-namespace:PlanShare.App.Views.Pages.OnBoarding"
     Title="PlanShare.App">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate onBoarding:OnBoardingPage}"
-        Route="{Static navigation:RoutePages.ONBOARDING_PAGE}" />
+    <ShellContent ContentTemplate="{DataTemplate onBoarding:OnBoardingPage}" Route="{Static navigation:RoutePages.ONBOARDING_PAGE}" />
 
 </Shell>

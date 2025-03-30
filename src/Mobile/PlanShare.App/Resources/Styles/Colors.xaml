@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="AVATAR_COLOR_LIGHT">#663399</Color>
+    <Color x:Key="AVATAR_COLOR_DARK">#AEA8D3</Color>
+
+    <Color x:Key="DANGER_ACTION_COLOR_LIGHT">#DF340C</Color>
+    <Color x:Key="DANGER_ACTION_COLOR_DARK">#F64747</Color>
+
+    <Color x:Key="HIGHLIGHT_COLOR_LIGHT">#0065F2</Color>
+    <Color x:Key="HIGHLIGHT_COLOR_DARK">#19B5FE</Color>
+
+    <Color x:Key="PAGE_BACKGROUND_COLOR_LIGHT">#FFFFFF</Color>
+    <Color x:Key="PAGE_BACKGROUND_COLOR_DARK">#3D3C40</Color>
+
+    <Color x:Key="PRIMARY_COLOR_LIGHT">#000000</Color>
+    <Color x:Key="PRIMARY_COLOR_DARK">#FFFFFF</Color>
+
+    <Color x:Key="SECONDARY_COLOR_LIGHT">#FFFFFF</Color>
+    <Color x:Key="SECONDARY_COLOR_DARK">#000000</Color>
+
+    <Color x:Key="SKELETON_LOADING_COLOR_LIGHT">#E0E0E0</Color>
+    <Color x:Key="SKELETON_LOADING_COLOR_DARK">#494949</Color>
+
+    <Color x:Key="UPLOADFILE_COLOR_LIGHT">#F6F8FA</Color>
+    <Color x:Key="UPLOADFILE_COLOR_DARK">#555459</Color>
+
+    <Color x:Key="LINES_COLOR_LIGHT">#33000000</Color>
+    <Color x:Key="LINES_COLOR_DARK">#33FFFFFF</Color>
+
+    <Color x:Key="PLACEHOLDER_COLOR_LIGHT">#80000000</Color>
+    <Color x:Key="PLACEHOLDER_COLOR_DARK">#33FFFFFF</Color>
+
+    <Color x:Key="KEYBOARD_COLOR_LIGHT">#BEBEBE</Color>
+    <Color x:Key="KEYBOARD_COLOR_DARK">#AEA8D3</Color>
+
+</ResourceDictionary>

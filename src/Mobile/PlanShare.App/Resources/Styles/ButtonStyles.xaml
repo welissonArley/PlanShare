@@ -9,7 +9,7 @@
         <Setter Property="HeightRequest" Value="50" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontFamily" Value="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}" />
-        <Setter Property="BackgroundColor" Value="Black" />
-        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT}, Dark={StaticResource SECONDARY_COLOR_DARK}}" />
     </Style>
 </ResourceDictionary>
