@@ -7,10 +7,6 @@
     <VerticalStackLayout BindingContext="{x:Reference this}">
         <Label Style="{StaticResource TitleForEntry}" Text="{Binding Title}" />
 
-        <Entry
-            Keyboard="{Binding Keyboard}"
-            Placeholder="{Binding Placeholder}"
-            PlaceholderColor="#808080"
-            TextColor="Black" />
+        <Entry Keyboard="{Binding Keyboard}" Placeholder="{Binding Placeholder}" />
     </VerticalStackLayout>
 </ContentView>
