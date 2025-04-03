@@ -13,14 +13,14 @@ public class CustomEntryHandler
             var lineColor = Application.Current!.GetLineColor();
 
 #if ANDROID
-            if(handler is not null
-            && handler.PlatformView is not null
-            && handler.PlatformView.TextCursorDrawable is not null
-            && handler.PlatformView.Background is not null)
-            {
-                handler.PlatformView.TextCursorDrawable.SetTint(cursorColor.ToPlatform());
-                handler.PlatformView.Background.SetTint(lineColor.ToPlatform());
-            }
+            handler?.PlatformView?.TextCursorDrawable?.SetTint(cursorColor.ToPlatform());
+            handler?.PlatformView?.Background?.SetTint(lineColor.ToPlatform());
+#elif IOS || MACCATALYST
+            handler.PlatformView.Layer.BorderColor = lineColor.ToCGColor();
+            handler.PlatformView.Layer.BorderWidth = 0.7f;
+            handler.PlatformView.Layer.CornerRadius = 5;
+            handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
+            handler.PlatformView.TintColor = cursorColor.ToPlatform();
 #endif
         });
     }
