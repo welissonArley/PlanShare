@@ -5,7 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:navigation="clr-namespace:PlanShare.App.Navigation"
     xmlns:onBoarding="clr-namespace:PlanShare.App.Views.Pages.OnBoarding"
-    Title="PlanShare.App">
+    Shell.BackgroundColor="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT},
+                                            Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}"
+    Shell.ForegroundColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
+                                            Dark={StaticResource PRIMARY_COLOR_DARK}}"
+    Shell.NavBarHasShadow="False">
 
     <ShellContent ContentTemplate="{DataTemplate onBoarding:OnBoardingPage}" Route="{Static navigation:RoutePages.ONBOARDING_PAGE}" />
 
