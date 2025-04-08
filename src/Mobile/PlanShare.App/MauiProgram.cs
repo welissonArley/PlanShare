@@ -19,6 +19,7 @@ public static class MauiProgram
 			.UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .AddPages()
+			.AddNavigationService()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
@@ -42,6 +43,13 @@ public static class MauiProgram
 		appBuilder.Services.AddTransientWithShellRoute<DoLoginPage, DoLoginViewModel>(RoutePages.LOGIN_PAGE);
 		appBuilder.Services.AddTransientWithShellRoute<RegisterUserAccountPage, RegisterUserAccountViewModel>(RoutePages.USER_REGISTER_ACCOUNT_PAGE);
 		
+		return appBuilder;
+	}
+
+	private static MauiAppBuilder AddNavigationService(this MauiAppBuilder appBuilder)
+	{
+		appBuilder.Services.AddSingleton<INavigationService, NavigationService>();
+
 		return appBuilder;
 	}
 }
