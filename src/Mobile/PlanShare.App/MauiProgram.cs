@@ -2,6 +2,7 @@
 using PlanShare.App.Constants;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
+using PlanShare.App.ViewModels.Pages.Login.DoLogin;
 using PlanShare.App.Views.Pages.Login.DoLogin;
 using PlanShare.App.Views.Pages.User.Register;
 
@@ -34,8 +35,9 @@ public static class MauiProgram
 
 	private static MauiAppBuilder AddPages(this MauiAppBuilder appBuilder)
 	{
-		Routing.RegisterRoute(RoutePages.LOGIN_PAGE, typeof(DoLoginPage));
 		Routing.RegisterRoute(RoutePages.USER_REGISTER_ACCOUNT_PAGE, typeof(RegisterUserAccountPage));
+
+		appBuilder.Services.AddTransientWithShellRoute<DoLoginPage, DoLoginViewModel>(RoutePages.LOGIN_PAGE);
 
 		return appBuilder;
 	}
