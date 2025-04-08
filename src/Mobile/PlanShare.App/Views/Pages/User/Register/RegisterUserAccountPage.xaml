@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:component="clr-namespace:PlanShare.App.Views.Components.Inputs"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
-    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources">
+    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
+    xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Register"
+    x:DataType="viewModel:RegisterUserAccountViewModel">
     <VerticalStackLayout Spacing="30">
         <Label Style="{StaticResource PageTitle}" Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
 

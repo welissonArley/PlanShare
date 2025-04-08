@@ -3,7 +3,7 @@ using PlanShare.App.Navigation;
 
 namespace PlanShare.App.ViewModels.Pages.OnBording;
 
-public partial class OnBoardingViewModel
+public partial class OnBoardingViewModel : ViewModelBase
 {
     [RelayCommand]
     public async Task LoginWithEmailAndPassword() => await Shell.Current.GoToAsync(RoutePages.LOGIN_PAGE);

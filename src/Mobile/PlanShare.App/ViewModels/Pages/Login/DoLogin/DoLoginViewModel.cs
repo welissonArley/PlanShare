@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace PlanShare.App.ViewModels.Pages.Login.DoLogin;
 
-public partial class DoLoginViewModel : ObservableObject
+public partial class DoLoginViewModel : ViewModelBase
 {
     [ObservableProperty]
     public string texto;
