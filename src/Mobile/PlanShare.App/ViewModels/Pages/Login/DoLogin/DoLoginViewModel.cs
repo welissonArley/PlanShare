@@ -6,13 +6,18 @@ namespace PlanShare.App.ViewModels.Pages.Login.DoLogin;
 public partial class DoLoginViewModel : ViewModelBase
 {
     [ObservableProperty]
-    public string texto;
+    public Models.Login model;
+
+    public DoLoginViewModel()
+    {
+        Model = new Models.Login();
+    }
 
     [RelayCommand]
     public async Task DoLogin()
     {
-        var textoDigitado = Texto;
+        var textoDigitado = Model;
 
-        Texto = "Welisson Arley";
+        Model.Email = "bruce@tech.com";
     }
 }
