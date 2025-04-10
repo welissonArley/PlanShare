@@ -7,6 +7,9 @@
     <VerticalStackLayout BindingContext="{x:Reference this}">
         <Label Style="{StaticResource TitleForEntry}" Text="{Binding Title}" />
 
-        <Entry Keyboard="{Binding Keyboard}" Placeholder="{Binding Placeholder}" />
+        <Entry
+            Keyboard="{Binding Keyboard}"
+            Placeholder="{Binding Placeholder}"
+            Text="{Binding TextValue}" />
     </VerticalStackLayout>
 </ContentView>

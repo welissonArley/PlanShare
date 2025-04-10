@@ -16,8 +16,6 @@ public partial class DoLoginViewModel : ViewModelBase
     [RelayCommand]
     public async Task DoLogin()
     {
-        var textoDigitado = Model;
 
-        Model.Email = "bruce@tech.com";
     }
 }

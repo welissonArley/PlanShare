@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:PlanShare.App.Views.Components.Inputs"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
-    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources">
+    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
+    xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.Login.DoLogin"
+    x:DataType="viewModel:DoLoginViewModel">
     <VerticalStackLayout Spacing="30">
         <Label
             Margin="0,0,0,10"
@@ -15,9 +17,10 @@
         <components:EntryAndLabelComponent
             Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
             Keyboard="Email"
-            Placeholder="bruce@waynetech.com" />
+            Placeholder="bruce@waynetech.com"
+            TextValue="{Binding Model.Email}" />
 
-        <components:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" />
+        <components:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" TextValue="{Binding Model.Password}" />
 
         <VerticalStackLayout
             Margin="0,10,0,40"
@@ -30,7 +33,7 @@
                 TextDecorations="Underline" />
         </VerticalStackLayout>
 
-        <Button Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
+        <Button Command="{Binding DoLoginCommand}" Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
 
     </VerticalStackLayout>
 </ContentPage>
