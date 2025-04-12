@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using PlanShare.Api.Converters;
 using PlanShare.Api.Filters;
 using PlanShare.Api.Middleware;
 using PlanShare.Api.Token;
@@ -10,7 +11,7 @@ using PlanShare.Infrastructure.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new StringConverter()));
 
 builder.Services.AddOpenApi();
 
