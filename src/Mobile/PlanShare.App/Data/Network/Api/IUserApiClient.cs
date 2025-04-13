@@ -1,9 +1,11 @@
 ﻿using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
+using Refit;
 
 namespace PlanShare.App.Data.Network.Api;
 
 public interface IUserApiClient
 {
-    Task<ResponseRegisteredUserJson> Register(RequestRegisterUserJson request);
+    [Post("/users")]
+    Task<ResponseRegisteredUserJson> Register([Body] RequestRegisterUserJson request);
 }

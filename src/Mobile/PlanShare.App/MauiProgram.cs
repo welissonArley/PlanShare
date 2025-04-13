@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
 using PlanShare.App.Constants;
+using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
 using PlanShare.App.ViewModels.Pages.Login.DoLogin;
@@ -8,6 +9,7 @@ using PlanShare.App.ViewModels.Pages.OnBording;
 using PlanShare.App.ViewModels.Pages.User.Register;
 using PlanShare.App.Views.Pages.Login.DoLogin;
 using PlanShare.App.Views.Pages.User.Register;
+using Refit;
 using System.Reflection;
 
 namespace PlanShare.App;
@@ -70,7 +72,10 @@ public static class MauiProgram
 
     private static MauiAppBuilder AddHttpClients(this MauiAppBuilder appBuilder)
     {
+		var apiUrl = appBuilder.Configuration.GetValue<string>("ApiUrl")!;
 
+        appBuilder.Services.AddRefitClient<IUserApiClient>()
+			.ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl));
 
         return appBuilder;
     }
