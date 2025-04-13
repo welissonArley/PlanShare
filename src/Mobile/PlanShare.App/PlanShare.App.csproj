@@ -77,6 +77,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\Shared\PlanShare.Communication\PlanShare.Communication.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Resources\ResourceTexts.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>

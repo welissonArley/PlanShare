@@ -23,6 +23,7 @@ public static class MauiProgram
             .AddPages()
 			.AddNavigationService()
 			.AddAppSettings()
+			.AddHttpClients()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
@@ -63,6 +64,13 @@ public static class MauiProgram
 		var config = new ConfigurationBuilder().AddJsonStream(fileStream!).Build();
 
 		appBuilder.Configuration.AddConfiguration(config);
+
+        return appBuilder;
+    }
+
+    private static MauiAppBuilder AddHttpClients(this MauiAppBuilder appBuilder)
+    {
+
 
         return appBuilder;
     }
