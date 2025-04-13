@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Configuration;
 using PlanShare.App.Constants;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
@@ -7,6 +8,7 @@ using PlanShare.App.ViewModels.Pages.OnBording;
 using PlanShare.App.ViewModels.Pages.User.Register;
 using PlanShare.App.Views.Pages.Login.DoLogin;
 using PlanShare.App.Views.Pages.User.Register;
+using System.Reflection;
 
 namespace PlanShare.App;
 
@@ -20,7 +22,8 @@ public static class MauiProgram
             .UseMauiCommunityToolkit()
             .AddPages()
 			.AddNavigationService()
-			.ConfigureFonts(fonts =>
+			.AddAppSettings()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
 				fonts.AddFont("Raleway-Regular.ttf", FontFamily.MAIN_FONT_REGULAR);
@@ -52,4 +55,15 @@ public static class MauiProgram
 
 		return appBuilder;
 	}
+
+	private static MauiAppBuilder AddAppSettings(this MauiAppBuilder appBuilder)
+    {
+		using var fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream("PlanShare.App.appsettings.json");
+
+		var config = new ConfigurationBuilder().AddJsonStream(fileStream!).Build();
+
+		appBuilder.Configuration.AddConfiguration(config);
+
+        return appBuilder;
+    }
 }
