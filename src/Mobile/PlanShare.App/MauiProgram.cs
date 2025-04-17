@@ -4,6 +4,7 @@ using PlanShare.App.Constants;
 using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
+using PlanShare.App.UseCases.User.Register;
 using PlanShare.App.ViewModels.Pages.Login.DoLogin;
 using PlanShare.App.ViewModels.Pages.OnBording;
 using PlanShare.App.ViewModels.Pages.User.Register;
@@ -26,6 +27,7 @@ public static class MauiProgram
 			.AddNavigationService()
 			.AddAppSettings()
 			.AddHttpClients()
+			.AddUseCases()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
@@ -74,8 +76,15 @@ public static class MauiProgram
     {
 		var apiUrl = appBuilder.Configuration.GetValue<string>("ApiUrl")!;
 
-        appBuilder.Services.AddRefitClient<IUserApiClient>()
+        appBuilder.Services.AddRefitClient<IUserApi>()
 			.ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl));
+
+        return appBuilder;
+    }
+
+    private static MauiAppBuilder AddUseCases(this MauiAppBuilder appBuilder)
+    {
+		appBuilder.Services.AddTransient<IRegisterUserUseCase, RegisterUserUseCase>();
 
         return appBuilder;
     }
