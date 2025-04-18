@@ -3,56 +3,61 @@
     x:Class="PlanShare.App.Views.Pages.User.Register.RegisterUserAccountPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:component="clr-namespace:PlanShare.App.Views.Components.Inputs"
+    xmlns:animationComponent="clr-namespace:PlanShare.App.Views.Components.StatusPage"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
+    xmlns:inputsComponent="clr-namespace:PlanShare.App.Views.Components.Inputs"
     xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Register"
     x:DataType="viewModel:RegisterUserAccountViewModel">
-    <VerticalStackLayout Spacing="30">
-        <Label Style="{StaticResource PageTitle}" Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
+    <VerticalStackLayout>
+        <VerticalStackLayout IsVisible="False" Spacing="30">
+            <Label Style="{StaticResource PageTitle}" Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
 
-        <Label Margin="0,-10,0,10" Text="{Static resourceFile:ResourceTexts.SUBTITLE_REGISTER_ACCOUNT}" />
+            <Label Margin="0,-10,0,10" Text="{Static resourceFile:ResourceTexts.SUBTITLE_REGISTER_ACCOUNT}" />
 
-        <component:EntryAndLabelComponent
-            Title="{Static resourceFile:ResourceTexts.TITLE_NAME}"
-            Placeholder="Bruce Wayne"
-            TextValue="{Binding Model.Name}" />
+            <inputsComponent:EntryAndLabelComponent
+                Title="{Static resourceFile:ResourceTexts.TITLE_NAME}"
+                Placeholder="Bruce Wayne"
+                TextValue="{Binding Model.Name}" />
 
-        <component:EntryAndLabelComponent
-            Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
-            Keyboard="Email"
-            Placeholder="bruce@waynetech.com"
-            TextValue="{Binding Model.Email}" />
+            <inputsComponent:EntryAndLabelComponent
+                Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
+                Keyboard="Email"
+                Placeholder="bruce@waynetech.com"
+                TextValue="{Binding Model.Email}" />
 
-        <component:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" TextValue="{Binding Model.Password}" />
+            <inputsComponent:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" TextValue="{Binding Model.Password}" />
 
-        <Button
-            Margin="0,40,0,40"
-            BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
-                                              Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
-            Command="{Binding RegisterAccountCommand}"
-            CornerRadius="20"
-            HeightRequest="60"
-            Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
+            <Button
+                Margin="0,40,0,40"
+                BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                  Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
+                Command="{Binding RegisterAccountCommand}"
+                CornerRadius="20"
+                HeightRequest="60"
+                Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
 
-        <VerticalStackLayout Padding="0,7,0,0" HeightRequest="40">
-            <VerticalStackLayout.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding GoToLoginCommand}" />
-            </VerticalStackLayout.GestureRecognizers>
+            <VerticalStackLayout Padding="0,7,0,0" HeightRequest="40">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToLoginCommand}" />
+                </VerticalStackLayout.GestureRecognizers>
 
-            <Label FontSize="18" HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="{Static resourceFile:ResourceTexts.PHRASE_ALREADY_HAS_ACCOUNT}" />
-                        <Span Text=" " />
-                        <Span
-                            FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
-                            Text="{Static resourceFile:ResourceTexts.PHRASE_DO_LOGIN}"
-                            TextColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
-                                                        Dark={StaticResource HIGHLIGHT_COLOR_DARK}}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                <Label FontSize="18" HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}" Text="{Static resourceFile:ResourceTexts.PHRASE_ALREADY_HAS_ACCOUNT}" />
+                            <Span Text=" " />
+                            <Span
+                                FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
+                                Text="{Static resourceFile:ResourceTexts.PHRASE_DO_LOGIN}"
+                                TextColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                            Dark={StaticResource HIGHLIGHT_COLOR_DARK}}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
         </VerticalStackLayout>
+
+        <animationComponent:AnimationSendingInformationComponent IsVisible="True" />
     </VerticalStackLayout>
 </ContentPage>

@@ -25,7 +25,11 @@ public partial class RegisterUserAccountViewModel : ViewModelBase
     [RelayCommand]
     public async Task RegisterAccount()
     {
+        StatusPage = StatusPage.Sending;
+
         await _registerUserUseCase.Execute(Model);
+
+        StatusPage = StatusPage.Default;
     }
 
     [RelayCommand]
