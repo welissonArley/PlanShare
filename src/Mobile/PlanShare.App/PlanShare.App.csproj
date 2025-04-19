@@ -76,6 +76,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Data\Storage\SecureStorage\Tokens\" />
 	  <Folder Include="Resources\Raw\" />
 	</ItemGroup>
 
