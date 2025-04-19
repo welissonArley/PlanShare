@@ -3,37 +3,61 @@
     x:Class="PlanShare.App.Views.Pages.Login.DoLogin.DoLoginPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animationComponent="clr-namespace:PlanShare.App.Views.Components.StatusPage"
     xmlns:components="clr-namespace:PlanShare.App.Views.Components.Inputs"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
+    xmlns:models="clr-namespace:PlanShare.App.Models"
     xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.Login.DoLogin"
     x:DataType="viewModel:DoLoginViewModel">
-    <VerticalStackLayout Spacing="30">
-        <Label
-            Margin="0,0,0,10"
-            Style="{StaticResource PageTitle}"
-            Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
+    <VerticalStackLayout>
+        <VerticalStackLayout IsVisible="False" Spacing="30">
+            <VerticalStackLayout.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="VerticalStackLayout"
+                    Value="{Static models:StatusPage.Default}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </VerticalStackLayout.Triggers>
 
-        <components:EntryAndLabelComponent
-            Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
-            Keyboard="Email"
-            Placeholder="bruce@waynetech.com"
-            TextValue="{Binding Model.Email}" />
-
-        <components:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" TextValue="{Binding Model.Password}" />
-
-        <VerticalStackLayout
-            Margin="0,10,0,40"
-            Padding="0,7,0,0"
-            HeightRequest="40">
             <Label
-                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
-                HorizontalOptions="End"
-                Text="{Static resourceFile:ResourceTexts.PHRASE_FORGOT_YOUR_PASSWORD}"
-                TextDecorations="Underline" />
+                Margin="0,0,0,10"
+                Style="{StaticResource PageTitle}"
+                Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
+
+            <components:EntryAndLabelComponent
+                Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
+                Keyboard="Email"
+                Placeholder="bruce@waynetech.com"
+                TextValue="{Binding Model.Email}" />
+
+            <components:EntryAndLabelPasswordComponent Title="{Static resourceFile:ResourceTexts.TITLE_PASSWORD}" TextValue="{Binding Model.Password}" />
+
+            <VerticalStackLayout
+                Margin="0,10,0,40"
+                Padding="0,7,0,0"
+                HeightRequest="40">
+                <Label
+                    FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                    HorizontalOptions="End"
+                    Text="{Static resourceFile:ResourceTexts.PHRASE_FORGOT_YOUR_PASSWORD}"
+                    TextDecorations="Underline" />
+            </VerticalStackLayout>
+
+            <Button Command="{Binding DoLoginCommand}" Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
+
         </VerticalStackLayout>
 
-        <Button Command="{Binding DoLoginCommand}" Text="{Static resourceFile:ResourceTexts.PHRASE_LOGIN}" />
-
+        <animationComponent:AnimationSendingInformationComponent IsVisible="False">
+            <animationComponent:AnimationSendingInformationComponent.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="animationComponent:AnimationSendingInformationComponent"
+                    Value="{Static models:StatusPage.Sending}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </animationComponent:AnimationSendingInformationComponent.Triggers>
+        </animationComponent:AnimationSendingInformationComponent>
     </VerticalStackLayout>
 </ContentPage>
