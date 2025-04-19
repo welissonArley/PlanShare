@@ -6,11 +6,21 @@
     xmlns:animationComponent="clr-namespace:PlanShare.App.Views.Components.StatusPage"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
     xmlns:inputsComponent="clr-namespace:PlanShare.App.Views.Components.Inputs"
+    xmlns:models="clr-namespace:PlanShare.App.Models"
     xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Register"
     x:DataType="viewModel:RegisterUserAccountViewModel">
     <VerticalStackLayout>
         <VerticalStackLayout IsVisible="False" Spacing="30">
+            <VerticalStackLayout.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="VerticalStackLayout"
+                    Value="{Static models:StatusPage.Default}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </VerticalStackLayout.Triggers>
+
             <Label Style="{StaticResource PageTitle}" Text="{Static resourceFile:ResourceTexts.TITLE_REGISTER_MY_ACCOUNT}" />
 
             <Label Margin="0,-10,0,10" Text="{Static resourceFile:ResourceTexts.SUBTITLE_REGISTER_ACCOUNT}" />
@@ -58,6 +68,15 @@
             </VerticalStackLayout>
         </VerticalStackLayout>
 
-        <animationComponent:AnimationSendingInformationComponent IsVisible="True" />
+        <animationComponent:AnimationSendingInformationComponent IsVisible="False">
+            <animationComponent:AnimationSendingInformationComponent.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="animationComponent:AnimationSendingInformationComponent"
+                    Value="{Static models:StatusPage.Sending}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </animationComponent:AnimationSendingInformationComponent.Triggers>
+        </animationComponent:AnimationSendingInformationComponent>
     </VerticalStackLayout>
 </ContentPage>
