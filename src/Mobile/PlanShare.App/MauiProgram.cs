@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using PlanShare.App.Constants;
 using PlanShare.App.Data.Network.Api;
+using PlanShare.App.Data.Storage.Preferences.User;
+using PlanShare.App.Data.Storage.SecureStorage.Tokens;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
 using PlanShare.App.UseCases.Login.DoLogin;
@@ -31,6 +33,7 @@ public static class MauiProgram
 			.AddAppSettings()
 			.AddHttpClients()
 			.AddUseCases()
+			.AddStorage()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
@@ -92,6 +95,14 @@ public static class MauiProgram
     {
 		appBuilder.Services.AddTransient<IRegisterUserUseCase, RegisterUserUseCase>();
 		appBuilder.Services.AddTransient<IDoLoginUseCase, DoLoginUseCase>();
+
+        return appBuilder;
+    }
+
+    private static MauiAppBuilder AddStorage(this MauiAppBuilder appBuilder)
+    {
+        appBuilder.Services.AddSingleton<IUserStorage, UserStorage>();
+        appBuilder.Services.AddSingleton<ITokensStorage, TokensStorage>();
 
         return appBuilder;
     }

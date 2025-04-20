@@ -2,5 +2,5 @@
 
 public interface IDoLoginUseCase
 {
-    Task Execute(Models.Login login);
+    Task Execute(Models.Login model);
 }
