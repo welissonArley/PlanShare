@@ -2,6 +2,8 @@
 using PlanShare.App.Data.Storage.Preferences.User;
 using PlanShare.App.Data.Storage.SecureStorage.Tokens;
 using PlanShare.Communication.Requests;
+using PlanShare.Communication.Responses;
+using System.Text.Json;
 
 namespace PlanShare.App.UseCases.Login.DoLogin;
 
@@ -35,6 +37,10 @@ public class DoLoginUseCase : IDoLoginUseCase
 
             _userStorage.Save(user);
             await _tokensStorage.Save(tokens);
+        }
+        else
+        {
+            var errors = await response.Error.GetContentAsAsync<ResponseErrorJson>();
         }
     }
 }
