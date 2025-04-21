@@ -7,5 +7,5 @@ namespace PlanShare.App.Data.Network.Api;
 public interface ILoginApi
 {
     [Post("/login")]
-    Task<ResponseRegisteredUserJson> Login([Body] RequestLoginJson request);
+    Task<ApiResponse<ResponseRegisteredUserJson>> Login([Body] RequestLoginJson request);
 }

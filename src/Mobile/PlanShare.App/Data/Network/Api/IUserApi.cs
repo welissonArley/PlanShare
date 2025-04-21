@@ -7,5 +7,5 @@ namespace PlanShare.App.Data.Network.Api;
 public interface IUserApi
 {
     [Post("/users")]
-    Task<ResponseRegisteredUserJson> Register([Body] RequestRegisterUserJson request);
+    Task<ApiResponse<ResponseRegisteredUserJson>> Register([Body] RequestRegisterUserJson request);
 }

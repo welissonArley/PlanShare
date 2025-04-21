@@ -29,10 +29,13 @@ public class RegisterUserUseCase : IRegisterUserUseCase
 
         var response = await _userApi.Register(request);
 
-        var user = new Models.ValueObjects.User(response.Id, response.Name);
-        var tokens = new Models.ValueObjects.Tokens(response.Tokens.AccessToken, response.Tokens.RefreshToken);
+        if (response.IsSuccessful)
+        {
+            var user = new Models.ValueObjects.User(response.Content.Id, response.Content.Name);
+            var tokens = new Models.ValueObjects.Tokens(response.Content.Tokens.AccessToken, response.Content.Tokens.RefreshToken);
 
-        _userStorage.Save(user);
-        await _tokensStorage.Save(tokens);
+            _userStorage.Save(user);
+            await _tokensStorage.Save(tokens);
+        }
     }
 }
