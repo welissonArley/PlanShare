@@ -1,6 +1,7 @@
 ﻿using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Data.Storage.Preferences.User;
 using PlanShare.App.Data.Storage.SecureStorage.Tokens;
+using PlanShare.App.Extensions;
 using PlanShare.App.Models;
 using PlanShare.Communication.Requests;
 
@@ -36,6 +37,10 @@ public class RegisterUserUseCase : IRegisterUserUseCase
 
             _userStorage.Save(user);
             await _tokensStorage.Save(tokens);
+        }
+        else
+        {
+            var errorResponse = await response.Error.GetResponseError();
         }
     }
 }

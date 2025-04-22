@@ -1,9 +1,8 @@
 ﻿using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Data.Storage.Preferences.User;
 using PlanShare.App.Data.Storage.SecureStorage.Tokens;
+using PlanShare.App.Extensions;
 using PlanShare.Communication.Requests;
-using PlanShare.Communication.Responses;
-using System.Text.Json;
 
 namespace PlanShare.App.UseCases.Login.DoLogin;
 
@@ -40,7 +39,7 @@ public class DoLoginUseCase : IDoLoginUseCase
         }
         else
         {
-            var errors = await response.Error.GetContentAsAsync<ResponseErrorJson>();
+            var errorResponse = await response.Error.GetResponseError();
         }
     }
 }

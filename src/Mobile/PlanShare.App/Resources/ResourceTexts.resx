@@ -147,6 +147,9 @@
   <data name="PHRASE_SMALL_TASKS_BIG_RESULTS" xml:space="preserve">
     <value>Small tasks, big results</value>
   </data>
+  <data name="SERVER_COMMUNICATION_ERROR" xml:space="preserve">
+    <value>An error occurred while communicating with the server. Please try again later.</value>
+  </data>
   <data name="SUBTITLE_REGISTER_ACCOUNT" xml:space="preserve">
     <value>Control your routine with ease - because you deserve more time for what you love!</value>
   </data>

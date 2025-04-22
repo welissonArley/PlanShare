@@ -151,6 +151,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while communicating with the server. Please try again later..
+        /// </summary>
+        public static string SERVER_COMMUNICATION_ERROR {
+            get {
+                return ResourceManager.GetString("SERVER_COMMUNICATION_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Control your routine with ease - because you deserve more time for what you love!.
         /// </summary>
         public static string SUBTITLE_REGISTER_ACCOUNT {
