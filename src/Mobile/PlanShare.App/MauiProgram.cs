@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
 using PlanShare.App.Constants;
+using PlanShare.App.Data.Network;
 using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Data.Storage.Preferences.User;
 using PlanShare.App.Data.Storage.SecureStorage.Tokens;
@@ -80,13 +81,17 @@ public static class MauiProgram
 
     private static MauiAppBuilder AddHttpClients(this MauiAppBuilder appBuilder)
     {
+		appBuilder.Services.AddSingleton<PlanShareHandler>();
+
 		var apiUrl = appBuilder.Configuration.GetValue<string>("ApiUrl")!;
 
         appBuilder.Services.AddRefitClient<IUserApi>()
-			.ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl));
+			.ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl))
+			.AddHttpMessageHandler<PlanShareHandler>();
 
 		appBuilder.Services.AddRefitClient<ILoginApi>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl));
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl))
+            .AddHttpMessageHandler<PlanShareHandler>();
 
         return appBuilder;
     }
