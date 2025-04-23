@@ -23,7 +23,7 @@ public partial class DoLoginViewModel : ViewModelBase
     {
         StatusPage = Models.StatusPage.Sending;
 
-        await _loginUseCase.Execute(Model);
+        var result = await _loginUseCase.Execute(Model);
 
         StatusPage = Models.StatusPage.Default;
     }

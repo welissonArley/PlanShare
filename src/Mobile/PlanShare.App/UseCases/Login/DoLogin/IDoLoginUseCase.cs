@@ -1,6 +1,8 @@
-﻿namespace PlanShare.App.UseCases.Login.DoLogin;
+﻿using PlanShare.App.Models.ValueObjects;
+
+namespace PlanShare.App.UseCases.Login.DoLogin;
 
 public interface IDoLoginUseCase
 {
-    Task Execute(Models.Login model);
+    Task<Result> Execute(Models.Login model);
 }

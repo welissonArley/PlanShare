@@ -27,7 +27,7 @@ public partial class RegisterUserAccountViewModel : ViewModelBase
     {
         StatusPage = StatusPage.Sending;
 
-        await _registerUserUseCase.Execute(Model);
+        var result = await _registerUserUseCase.Execute(Model);
 
         StatusPage = StatusPage.Default;
     }

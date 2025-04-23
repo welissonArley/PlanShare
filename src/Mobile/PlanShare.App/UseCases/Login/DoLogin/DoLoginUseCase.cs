@@ -2,6 +2,7 @@
 using PlanShare.App.Data.Storage.Preferences.User;
 using PlanShare.App.Data.Storage.SecureStorage.Tokens;
 using PlanShare.App.Extensions;
+using PlanShare.App.Models.ValueObjects;
 using PlanShare.Communication.Requests;
 
 namespace PlanShare.App.UseCases.Login.DoLogin;
@@ -19,7 +20,7 @@ public class DoLoginUseCase : IDoLoginUseCase
         _userStorage = userStorage;
     }
 
-    public async Task Execute(Models.Login model)
+    public async Task<Result> Execute(Models.Login model)
     {
         var request = new RequestLoginJson
         {
@@ -36,10 +37,12 @@ public class DoLoginUseCase : IDoLoginUseCase
 
             _userStorage.Save(user);
             await _tokensStorage.Save(tokens);
+
+            return Result.Success();
         }
-        else
-        {
-            var errorResponse = await response.Error.GetResponseError();
-        }
+
+        var errorResponse = await response.Error.GetResponseError();
+
+        return Result.Failure(errorResponse.Errors);
     }
 }
