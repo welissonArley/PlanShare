@@ -28,6 +28,8 @@ public partial class RegisterUserAccountViewModel : ViewModelBase
         StatusPage = StatusPage.Sending;
 
         var result = await _registerUserUseCase.Execute(Model);
+        if (result.IsSuccess == false)
+            await _navigationService.GoToAsync(RoutePages.ERROR_PAGE);
 
         StatusPage = StatusPage.Default;
     }

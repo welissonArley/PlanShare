@@ -61,6 +61,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following errors were found.
+        /// </summary>
+        public static string FOLLOWING_ERRORS_WERE_FOUND {
+            get {
+                return ResourceManager.GetString("FOLLOWING_ERRORS_WERE_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login with Email and Password.
         /// </summary>
         public static string LOGIN_WITH_EMAIL_PASSWORD {
@@ -201,6 +210,15 @@ namespace PlanShare.App.Resources {
         public static string TITLE_REGISTER_MY_ACCOUNT {
             get {
                 return ResourceManager.GetString("TITLE_REGISTER_MY_ACCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try it again.
+        /// </summary>
+        public static string TRY_IT_AGAIN {
+            get {
+                return ResourceManager.GetString("TRY_IT_AGAIN", resourceCulture);
             }
         }
     }

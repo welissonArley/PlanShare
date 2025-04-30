@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FOLLOWING_ERRORS_WERE_FOUND" xml:space="preserve">
+    <value>Os seguintes erros foram encontrados</value>
+  </data>
   <data name="LOGIN_WITH_EMAIL_PASSWORD" xml:space="preserve">
     <value>Login com Email e Senha</value>
   </data>
@@ -164,5 +167,8 @@
   </data>
   <data name="TITLE_REGISTER_MY_ACCOUNT" xml:space="preserve">
     <value>Criar minha conta</value>
+  </data>
+  <data name="TRY_IT_AGAIN" xml:space="preserve">
+    <value>Tentar novamente</value>
   </data>
 </root>

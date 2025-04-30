@@ -2,6 +2,8 @@
 
 public class RoutePages
 {
+    public const string ERROR_PAGE = "ErrorPage";
+
     public const string ONBOARDING_PAGE = "OnboardingPage";
 
     public const string LOGIN_PAGE = "DoLoginPage";
