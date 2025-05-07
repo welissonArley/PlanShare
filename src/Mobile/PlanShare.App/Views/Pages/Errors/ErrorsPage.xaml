@@ -40,7 +40,24 @@
             HorizontalOptions="Center"
             Text="{Static resources:ResourceTexts.FOLLOWING_ERRORS_WERE_FOUND}" />
 
+        <CollectionView ItemsSource="{Binding ErrorsList}" VerticalScrollBarVisibility="Never">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <HorizontalStackLayout Margin="0,0,0,20" Spacing="20">
+                        <Image Source="icon_arrow.png">
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+                            </Image.Behaviors>
+                        </Image>
+
+                        <Label Text="{Binding .}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
         <Button
+            Margin="0,70,0,0"
             Command="{Binding CloseCommand}"
             CornerRadius="20"
             HeightRequest="60"
