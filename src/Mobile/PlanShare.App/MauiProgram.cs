@@ -9,6 +9,7 @@ using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
 using PlanShare.App.UseCases.Login.DoLogin;
 using PlanShare.App.UseCases.User.Register;
+using PlanShare.App.ViewModels.Pages.Dashboard;
 using PlanShare.App.ViewModels.Pages.Errors;
 using PlanShare.App.ViewModels.Pages.Login.DoLogin;
 using PlanShare.App.ViewModels.Pages.OnBording;
@@ -56,6 +57,7 @@ public static class MauiProgram
 	private static MauiAppBuilder AddPages(this MauiAppBuilder appBuilder)
 	{
 		appBuilder.Services.AddTransient<OnBoardingViewModel>();
+		appBuilder.Services.AddTransient<DashboardViewModel>();
 
 		appBuilder.Services.AddTransientWithShellRoute<ErrorsPage, ErrorsViewModel>(RoutePages.ERROR_PAGE);
 

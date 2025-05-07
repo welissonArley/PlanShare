@@ -3,6 +3,7 @@
     x:Class="PlanShare.App.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dashboard="clr-namespace:PlanShare.App.Views.Pages.Dashboard"
     xmlns:navigation="clr-namespace:PlanShare.App.Navigation"
     xmlns:onBoarding="clr-namespace:PlanShare.App.Views.Pages.OnBoarding"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT},
@@ -12,5 +13,7 @@
     Shell.NavBarHasShadow="False">
 
     <ShellContent ContentTemplate="{DataTemplate onBoarding:OnBoardingPage}" Route="{Static navigation:RoutePages.ONBOARDING_PAGE}" />
+
+    <ShellContent ContentTemplate="{DataTemplate dashboard:DashboardPage}" Route="{Static navigation:RoutePages.DASHBOARD_PAGE}" />
 
 </Shell>

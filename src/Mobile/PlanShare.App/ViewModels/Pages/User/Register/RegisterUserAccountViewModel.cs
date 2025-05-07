@@ -37,6 +37,8 @@ public partial class RegisterUserAccountViewModel : ViewModelBase
 
             await _navigationService.GoToAsync(RoutePages.ERROR_PAGE, parameters);
         }
+        else
+            await _navigationService.GoToAsync($"//{RoutePages.DASHBOARD_PAGE}");
 
         StatusPage = StatusPage.Default;
     }
