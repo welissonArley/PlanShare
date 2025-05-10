@@ -168,6 +168,9 @@
   <data name="TITLE_REGISTER_MY_ACCOUNT" xml:space="preserve">
     <value>Create my account</value>
   </data>
+  <data name="TITLE_WELCOME" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
   <data name="TRY_IT_AGAIN" xml:space="preserve">
     <value>Try it again</value>
   </data>

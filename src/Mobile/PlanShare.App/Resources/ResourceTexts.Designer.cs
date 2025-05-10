@@ -214,6 +214,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string TITLE_WELCOME {
+            get {
+                return ResourceManager.GetString("TITLE_WELCOME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Try it again.
         /// </summary>
         public static string TRY_IT_AGAIN {
