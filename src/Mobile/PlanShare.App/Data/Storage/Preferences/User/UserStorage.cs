@@ -21,4 +21,6 @@ public class UserStorage : IUserStorage
         Microsoft.Maui.Storage.Preferences.Default.Set(ID_KEY, user.Id.ToString());
         Microsoft.Maui.Storage.Preferences.Default.Set(NAME_KEY, user.Name);
     }
+
+    public bool IsLoggedIn() => Microsoft.Maui.Storage.Preferences.Default.ContainsKey(ID_KEY);
 }
