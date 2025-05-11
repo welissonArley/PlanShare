@@ -9,10 +9,23 @@
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.Dashboard"
     x:DataType="viewModel:DashboardViewModel"
     Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
-        <Grid ColumnDefinitions="62, *, 40, 40">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT}, Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}" StatusBarStyle="{AppThemeBinding Light=DarkContent, Dark=LightContent}" />
+    </ContentPage.Behaviors>
 
-            <VerticalStackLayout Grid.Column="1">
+    <VerticalStackLayout>
+        <Grid Margin="0,40,0,0" ColumnDefinitions="62, *, 40, 40">
+            <toolkit:AvatarView
+                BackgroundColor="{AppThemeBinding Light={StaticResource AVATAR_COLOR_LIGHT},
+                                                  Dark={StaticResource AVATAR_COLOR_DARK}}"
+                BorderWidth="0"
+                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                FontSize="18"
+                Text=""
+                TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
+                                            Dark={StaticResource SECONDARY_COLOR_DARK}}" />
+
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
                 <Label
                     FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
                     FontSize="10"
