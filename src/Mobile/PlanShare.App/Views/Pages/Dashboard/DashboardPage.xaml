@@ -3,6 +3,7 @@
     x:Class="PlanShare.App.Views.Pages.Dashboard.DashboardPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:PlanShare.App.Converters"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
     xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -13,6 +14,10 @@
         <toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT}, Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}" StatusBarStyle="{AppThemeBinding Light=DarkContent, Dark=LightContent}" />
     </ContentPage.Behaviors>
 
+    <ContentPage.Resources>
+        <converters:NameToAvatarNameConverter x:Key="nameToAvatarName" />
+    </ContentPage.Resources>
+
     <VerticalStackLayout>
         <Grid Margin="0,40,0,0" ColumnDefinitions="62, *, 40, 40">
             <toolkit:AvatarView
@@ -21,11 +26,14 @@
                 BorderWidth="0"
                 FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
                 FontSize="18"
-                Text="{Binding UserName, Converter={}}"
+                Text="{Binding UserName, Converter={StaticResource nameToAvatarName}}"
                 TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
                                             Dark={StaticResource SECONDARY_COLOR_DARK}}" />
 
-            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+            <VerticalStackLayout
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                VerticalOptions="Center">
                 <Label
                     FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
                     FontSize="10"
