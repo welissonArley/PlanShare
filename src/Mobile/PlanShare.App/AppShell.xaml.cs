@@ -8,7 +8,7 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        if(userStorage.IsLoggedIn())
+        if (userStorage.IsLoggedIn())
             ShellPlanShareApp.CurrentItem = DashboardSection;
         else
             ShellPlanShareApp.CurrentItem = OnboardingSection;

@@ -21,7 +21,7 @@
                 BorderWidth="0"
                 FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
                 FontSize="18"
-                Text=""
+                Text="{Binding UserName, Converter={}}"
                 TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
                                             Dark={StaticResource SECONDARY_COLOR_DARK}}" />
 
