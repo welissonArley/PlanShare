@@ -28,12 +28,20 @@
                 FontSize="18"
                 Text="{Binding UserName, Converter={StaticResource nameToAvatarName}}"
                 TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
-                                            Dark={StaticResource SECONDARY_COLOR_DARK}}" />
+                                            Dark={StaticResource SECONDARY_COLOR_DARK}}">
+                <toolkit:AvatarView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SeeProfileCommand}" />
+                </toolkit:AvatarView.GestureRecognizers>
+            </toolkit:AvatarView>
 
             <VerticalStackLayout
                 Grid.Column="1"
                 Margin="10,0,0,0"
                 VerticalOptions="Center">
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SeeProfileCommand}" />
+                </VerticalStackLayout.GestureRecognizers>
+
                 <Label
                     FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
                     FontSize="10"
