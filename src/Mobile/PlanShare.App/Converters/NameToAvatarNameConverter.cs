@@ -11,6 +11,9 @@ public class NameToAvatarNameConverter : IValueConverter
 
         var name = value.ToString()!.Trim();
 
+        if(string.IsNullOrWhiteSpace(name))
+            return string.Empty;
+
         var names = name.Split(' ');
 
         if (names.Length == 1)

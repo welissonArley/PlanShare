@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using PlanShare.App.Data.Storage.Preferences.User;
 using PlanShare.App.Navigation;
 
 namespace PlanShare.App.ViewModels.Pages.User.Profile;
@@ -7,13 +6,17 @@ namespace PlanShare.App.ViewModels.Pages.User.Profile;
 public partial class UserProfileViewModel : ViewModelBase
 {
     [ObservableProperty]
-    public string userName;
+    public Models.User model;
 
     private readonly INavigationService _navigationService;
 
-    public UserProfileViewModel(IUserStorage userStorage, INavigationService navigationService)
+    public UserProfileViewModel(INavigationService navigationService)
     {
-        UserName = userStorage.Get().Name;
+        Model = new Models.User
+        {
+            Name = "Welisson Arley",
+            Email = "welisson@gmail.com"
+        };
 
         _navigationService = navigationService;
     }
