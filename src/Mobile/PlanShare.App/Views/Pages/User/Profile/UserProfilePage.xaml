@@ -59,5 +59,18 @@
             Keyboard="Email"
             Placeholder="bruce@waynetech.com"
             TextValue="{Binding Model.Email}" />
+
+        <Grid
+            Margin="0,70,0,25"
+            ColumnDefinitions="*, *"
+            ColumnSpacing="20">
+            <Button
+                Grid.Column="0"
+                Style="{StaticResource SecondaryButtonStyle}"
+                Text="{Static resourceFile:ResourceTexts.CHANGE_PASSWORD}" />
+            <Button Grid.Column="1" Text="{Static resourceFile:ResourceTexts.UPDATE_PROFILE}" />
+        </Grid>
+
+        <Button Style="{StaticResource DangerousButtonStyle}" Text="{Static resourceFile:ResourceTexts.DELETE_ACCOUNT}" />
     </VerticalStackLayout>
 </ContentPage>

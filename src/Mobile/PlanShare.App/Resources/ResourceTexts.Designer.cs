@@ -61,6 +61,24 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change password.
+        /// </summary>
+        public static string CHANGE_PASSWORD {
+            get {
+                return ResourceManager.GetString("CHANGE_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete my account.
+        /// </summary>
+        public static string DELETE_ACCOUNT {
+            get {
+                return ResourceManager.GetString("DELETE_ACCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following errors were found.
         /// </summary>
         public static string FOLLOWING_ERRORS_WERE_FOUND {
@@ -228,6 +246,15 @@ namespace PlanShare.App.Resources {
         public static string TRY_IT_AGAIN {
             get {
                 return ResourceManager.GetString("TRY_IT_AGAIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update profile.
+        /// </summary>
+        public static string UPDATE_PROFILE {
+            get {
+                return ResourceManager.GetString("UPDATE_PROFILE", resourceCulture);
             }
         }
     }

@@ -7,9 +7,21 @@
     <Style TargetType="Button">
         <Setter Property="CornerRadius" Value="15" />
         <Setter Property="HeightRequest" Value="50" />
-        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="FontFamily" Value="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT}, Dark={StaticResource SECONDARY_COLOR_DARK}}" />
+    </Style>
+
+    <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+        <Setter Property="BorderWidth" Value="2" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+    </Style>
+
+    <Style x:Key="DangerousButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DANGER_ACTION_COLOR_LIGHT}, Dark={StaticResource DANGER_ACTION_COLOR_DARK}}" />
     </Style>
 </ResourceDictionary>
