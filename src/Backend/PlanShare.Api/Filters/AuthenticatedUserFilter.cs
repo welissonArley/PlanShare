@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.IdentityModel.Tokens;
 using PlanShare.Communication.Responses;
 using PlanShare.Domain.Repositories.User;
 using PlanShare.Domain.Security.Tokens;
@@ -35,9 +36,18 @@ public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
                 throw new UnauthorizedException(ResourceMessagesException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE);
             }
         }
-        catch (UnauthorizedException ex)
+        catch (SecurityTokenExpiredException)
         {
-            context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(ex.GetErrorMessages()));
+            var response = new ResponseErrorJson("TokenExpired")
+            {
+                TokenIsExpired = true
+            };
+
+            context.Result = new UnauthorizedObjectResult(response);
+        }
+        catch (UnauthorizedException unathorizedException)
+        {
+            context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(unathorizedException.GetErrorMessages()));
         }
         catch
         {

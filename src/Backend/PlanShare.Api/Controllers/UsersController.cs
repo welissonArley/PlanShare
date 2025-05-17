@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlanShare.Api.Attributes;
 using PlanShare.Application.UseCases.User.ChangePassword;
 using PlanShare.Application.UseCases.User.Profile;
 using PlanShare.Application.UseCases.User.Register;
@@ -25,6 +26,7 @@ public class UsersController : ControllerBase
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [AuthenticatedUser]
     public async Task<IActionResult> UpdateProfile([FromServices] IUpdateUserUseCase useCase, [FromBody] RequestUpdateUserJson request)
     {
         await useCase.Execute(request);
@@ -34,6 +36,7 @@ public class UsersController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status200OK)]
+    [AuthenticatedUser]
     public async Task<IActionResult> GetProfile([FromServices] IGetUserProfileUseCase useCase)
     {
         var response = await useCase.Execute();
@@ -44,6 +47,7 @@ public class UsersController : ControllerBase
     [HttpPut("change-password")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [AuthenticatedUser]
     public async Task<IActionResult> ChangePassword(
         [FromServices] IChangePasswordUseCase useCase,
         [FromBody] RequestChangePasswordJson request)
