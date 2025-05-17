@@ -141,6 +141,9 @@
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>O nome não pode ser vazio.</value>
   </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>A solicitação não tem token.</value>
+  </data>
   <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
     <value>A senha atual informada não corresponde à registrada no sistema.</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Erro desconhecido.</value>
+  </data>
+  <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
+    <value>Você não tem permissão para acessar esse recurso.</value>
   </data>
   <data name="WORK_ITEM_NOT_FOUND" xml:space="preserve">
     <value>A tarefa não foi encontrada.</value>

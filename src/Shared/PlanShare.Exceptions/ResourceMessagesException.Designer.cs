@@ -133,6 +133,15 @@ namespace PlanShare.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Request don&apos;t have token..
+        /// </summary>
+        public static string NO_TOKEN {
+            get {
+                return ResourceManager.GetString("NO_TOKEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The current password entered does not match the one registered in the system..
         /// </summary>
         public static string PASSWORD_DIFFERENT_CURRENT_PASSWORD {
@@ -156,6 +165,15 @@ namespace PlanShare.Exceptions {
         public static string UNKNOWN_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t access this resource..
+        /// </summary>
+        public static string USER_WITHOUT_PERMISSION_ACCESS_RESOURCE {
+            get {
+                return ResourceManager.GetString("USER_WITHOUT_PERMISSION_ACCESS_RESOURCE", resourceCulture);
             }
         }
         

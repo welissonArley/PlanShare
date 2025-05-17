@@ -19,7 +19,7 @@ internal sealed class JwtTokenGenerator : JwtTokenHandler, IAccessTokenGenerator
 
     public (string token, Guid accessTokenIdentifier) Generate(User user)
     {
-        var accessTokenIdentifier = Guid.NewGuid();
+        var accessTokenIdentifier = Guid.CreateVersion7();
 
         var claims = new List<Claim>
         {

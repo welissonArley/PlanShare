@@ -141,6 +141,9 @@
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>The name cannot be empty.</value>
   </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>Request don't have token.</value>
+  </data>
   <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
     <value>The current password entered does not match the one registered in the system.</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown error.</value>
+  </data>
+  <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
+    <value>You can't access this resource.</value>
   </data>
   <data name="WORK_ITEM_NOT_FOUND" xml:space="preserve">
     <value>The task was not found.</value>
