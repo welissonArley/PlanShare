@@ -13,11 +13,19 @@ internal sealed class UserRepository : IUserWriteOnlyRepository, IUserReadOnlyRe
 
     public async Task<bool> ExistActiveUserWithEmail(string email) => await _dbContext.Users.AnyAsync(user => user.Email.Equals(email) && user.Active);
 
-    public async Task<User> GetById(Guid id)
+    async Task<User> IUserUpdateOnlyRepository.GetById(Guid id)
     {
         return await _dbContext
             .Users
             .SingleAsync(user => user.Active && user.Id == id);
+    }
+
+    async Task<User?> IUserReadOnlyRepository.GetById(Guid id)
+    {
+        return await _dbContext
+            .Users
+            .AsNoTracking()
+            .SingleOrDefaultAsync(user => user.Active && user.Id == id);
     }
 
     public async Task<User?> GetUserByEmail(string email)
