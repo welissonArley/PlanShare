@@ -12,17 +12,23 @@ public class GetProfileUseCase : IGetProfileUseCase
         _userApi = userApi;
     }
 
-    public async Task<Result> Execute()
+    public async Task<Result<Models.User>> Execute()
     {
         var response = await _userApi.GetProfile();
 
         if (response.IsSuccessful)
         {
-            return Result.Success();
+            var model = new Models.User
+            {
+                Name = response.Content.Name,
+                Email = response.Content.Email,
+            };
+
+            return Result<Models.User>.Success(model);
         }
 
         var errorResponse = await response.Error.GetResponseError();
 
-        return Result.Failure(errorResponse.Errors);
+        return Result<Models.User>.Failure(errorResponse.Errors);
     }
 }

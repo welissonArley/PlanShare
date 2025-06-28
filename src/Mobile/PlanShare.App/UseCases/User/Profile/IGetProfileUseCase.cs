@@ -3,5 +3,5 @@
 namespace PlanShare.App.UseCases.User.Profile;
 public interface IGetProfileUseCase
 {
-    public Task<Result> Execute();
+    Task<Result<Models.User>> Execute();
 }
