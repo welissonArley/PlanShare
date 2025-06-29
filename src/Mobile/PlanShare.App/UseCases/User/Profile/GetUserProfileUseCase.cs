@@ -3,11 +3,11 @@ using PlanShare.App.Extensions;
 using PlanShare.App.Models.ValueObjects;
 
 namespace PlanShare.App.UseCases.User.Profile;
-public class GetProfileUseCase : IGetProfileUseCase
+public class GetUserProfileUseCase : IGetUserProfileUseCase
 {
     private readonly IUserApi _userApi;
 
-    public GetProfileUseCase(IUserApi userApi)
+    public GetUserProfileUseCase(IUserApi userApi)
     {
         _userApi = userApi;
     }

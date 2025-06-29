@@ -10,17 +10,27 @@ public partial class UserProfileViewModel : ViewModelBase
     public Models.User model;
 
     private readonly INavigationService _navigationService;
-    private readonly IGetProfileUseCase _getProfileUseCase;
+    private readonly IGetUserProfileUseCase _getUserProfileUseCase;
 
-    public UserProfileViewModel(INavigationService navigationService, IGetProfileUseCase getProfileUseCase)
+    public UserProfileViewModel(INavigationService navigationService, IGetUserProfileUseCase getUserProfileUseCase)
     {
-        Model = new Models.User
-        {
-            Name = "Welisson Arley",
-            Email = "welisson@gmail.com"
-        };
-
         _navigationService = navigationService;
-        _getProfileUseCase = getProfileUseCase;
+        _getUserProfileUseCase = getUserProfileUseCase;
+    }
+
+    public async Task Initialize()
+    {
+        var result = await _getUserProfileUseCase.Execute();
+        if (result.IsSuccess == false)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                { "errors", result.ErrorMessages! }
+            };
+
+            await _navigationService.GoToAsync(RoutePages.ERROR_PAGE, parameters);
+        }
+        else
+            Model = result.Response!;
     }
 }
