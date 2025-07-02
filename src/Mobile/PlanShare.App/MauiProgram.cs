@@ -91,7 +91,7 @@ public static class MauiProgram
 
     private static MauiAppBuilder AddHttpClients(this MauiAppBuilder appBuilder)
     {
-		appBuilder.Services.AddSingleton<PlanShareHandler>();
+		appBuilder.Services.AddTransient<PlanShareHandler>();
 
 		var apiUrl = appBuilder.Configuration.GetValue<string>("ApiUrl")!;
 

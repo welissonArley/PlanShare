@@ -4,7 +4,7 @@ namespace PlanShare.App.Views.Pages.User.Profile;
 
 public partial class UserProfilePage : ContentPage
 {
-	public UserProfilePage(UserProfileViewModel viewModel)
+    public UserProfilePage(UserProfileViewModel viewModel)
 	{
 		InitializeComponent();
 

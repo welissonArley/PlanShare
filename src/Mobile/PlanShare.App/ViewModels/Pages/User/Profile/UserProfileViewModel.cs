@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using PlanShare.App.Navigation;
 using PlanShare.App.UseCases.User.Profile;
 
@@ -18,6 +19,7 @@ public partial class UserProfileViewModel : ViewModelBase
         _getUserProfileUseCase = getUserProfileUseCase;
     }
 
+    [RelayCommand]
     public async Task Initialize()
     {
         var result = await _getUserProfileUseCase.Execute();
