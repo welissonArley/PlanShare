@@ -9,13 +9,14 @@
     xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Profile"
+    x:Name="PageUserProfile"
     x:DataType="viewModel:UserProfileViewModel">
     <ContentPage.Resources>
         <converters:NameToAvatarNameConverter x:Key="nameToAvatarName" />
     </ContentPage.Resources>
 
     <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding InitializeCommand}" EventName="Appearing" />
+        <toolkit:EventToCommandBehavior Command="{Binding Path=BindingContext.InitializeCommand, Source={Reference PageUserProfile}}" EventName="Appearing" />
     </ContentPage.Behaviors>
 
     <VerticalStackLayout>
