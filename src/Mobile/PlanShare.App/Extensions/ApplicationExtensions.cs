@@ -21,4 +21,13 @@ public static class ApplicationExtensions
 
         return (Color)application!.Resources[key];
     }
+
+    public static Color GetSkeletonViewColor(this Application application)
+    {
+        var isLightMode = application.IsLightMode();
+
+        var key = isLightMode ? "SKELETON_LOADING_COLOR_LIGHT" : "SKELETON_LOADING_COLOR_DARK";
+
+        return (Color)application!.Resources[key];
+    }
 }
