@@ -89,6 +89,9 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>ResourceTexts.resx</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Components\Skeletons\EntryAndLabelComponent.xaml.cs">
+	    <DependentUpon>EntryAndLabelComponent.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -118,6 +121,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\Inputs\EntryAndLabelPasswordComponent.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Components\Skeletons\EntryAndLabelComponent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\StatusPage\AnimationSendingInformationComponent.xaml">

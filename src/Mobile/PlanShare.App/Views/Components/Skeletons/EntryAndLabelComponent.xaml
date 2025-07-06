@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="PlanShare.App.Views.Components.Skeletons.EntryAndLabelComponent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:skeleton="clr-namespace:PlanShare.App.Views.Components.Skeletons"
+    x:Name="this">
+    <VerticalStackLayout BindingContext="{x:Reference this}">
+        <Label Style="{StaticResource TitleForEntry}" Text="{Binding Title}" />
+
+        <skeleton:SkeletonView
+            Margin="0,5,0,0"
+            CornerRadius="3"
+            HeightRequest="38" />
+    </VerticalStackLayout>
+</ContentView>

@@ -126,6 +126,29 @@
                 </Image>
             </Border>
 
+            <skeleton:EntryAndLabelComponent Title="{Static resourceFile:ResourceTexts.TITLE_NAME}" Margin="0,35,0,30" />
+
+            <skeleton:EntryAndLabelComponent Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}" />
+
+            <Grid
+                Margin="0,70,0,25"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="20">
+                <Button
+                    Grid.Column="0"
+                    IsEnabled="False"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Text="{Static resourceFile:ResourceTexts.CHANGE_PASSWORD}" />
+                <Button
+                    Grid.Column="1"
+                    IsEnabled="False"
+                    Text="{Static resourceFile:ResourceTexts.UPDATE_PROFILE}" />
+            </Grid>
+
+            <Button
+                IsEnabled="False"
+                Style="{StaticResource DangerousButtonStyle}"
+                Text="{Static resourceFile:ResourceTexts.DELETE_ACCOUNT}" />
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
