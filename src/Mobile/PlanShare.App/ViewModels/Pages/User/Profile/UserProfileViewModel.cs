@@ -22,6 +22,8 @@ public partial class UserProfileViewModel : ViewModelBase
     [RelayCommand]
     public async Task Initialize()
     {
+        StatusPage = Models.StatusPage.Loading;
+
         var result = await _getUserProfileUseCase.Execute();
         if (result.IsSuccess == false)
         {
@@ -34,5 +36,7 @@ public partial class UserProfileViewModel : ViewModelBase
         }
         else
             Model = result.Response!;
+
+        StatusPage = Models.StatusPage.Default;
     }
 }

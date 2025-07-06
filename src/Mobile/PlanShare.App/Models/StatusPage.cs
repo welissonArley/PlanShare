@@ -2,5 +2,6 @@
 public enum StatusPage
 {
     Default = 0,
-    Sending = 1
+    Sending = 1,
+    Loading = 2,
 }

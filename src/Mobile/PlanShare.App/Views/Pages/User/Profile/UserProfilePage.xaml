@@ -6,7 +6,9 @@
     xmlns:converters="clr-namespace:PlanShare.App.Converters"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
     xmlns:inputsComponent="clr-namespace:PlanShare.App.Views.Components.Inputs"
+    xmlns:models="clr-namespace:PlanShare.App.Models"
     xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
+    xmlns:skeleton="clr-namespace:PlanShare.App.Views.Components.Skeletons"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Profile"
     x:Name="PageUserProfile"
@@ -20,62 +22,110 @@
     </ContentPage.Behaviors>
 
     <VerticalStackLayout>
-        <toolkit:AvatarView
-            BackgroundColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
-                                              Dark={StaticResource PRIMARY_COLOR_DARK}}"
-            BorderWidth="0"
-            CornerRadius="50"
-            FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
-            FontSize="32"
-            HeightRequest="100"
-            Text="{Binding Model.Name, Converter={StaticResource nameToAvatarName}}"
-            TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
-                                        Dark={StaticResource SECONDARY_COLOR_DARK}}"
-            WidthRequest="100" />
+        <VerticalStackLayout IsVisible="False">
+            <VerticalStackLayout.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="VerticalStackLayout"
+                    Value="{Static models:StatusPage.Default}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </VerticalStackLayout.Triggers>
 
-        <Border
-            Margin="0,-20,0,0"
-            BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
-                                              Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
-            HeightRequest="35"
-            Stroke="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
-                                     Dark={StaticResource SECONDARY_COLOR_DARK}}"
-            StrokeShape="RoundRectangle 35"
-            StrokeThickness="3"
-            WidthRequest="35">
-            <Image
-                HeightRequest="15"
-                Source="icon_pen.png"
-                WidthRequest="15">
-                <Image.Behaviors>
-                    <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT}, Dark={StaticResource SECONDARY_COLOR_DARK}}" />
-                </Image.Behaviors>
-            </Image>
-        </Border>
+            <toolkit:AvatarView
+                BackgroundColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
+                                                  Dark={StaticResource PRIMARY_COLOR_DARK}}"
+                BorderWidth="0"
+                CornerRadius="50"
+                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                FontSize="32"
+                HeightRequest="100"
+                Text="{Binding Model.Name, Converter={StaticResource nameToAvatarName}}"
+                TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
+                                            Dark={StaticResource SECONDARY_COLOR_DARK}}"
+                WidthRequest="100" />
 
-        <inputsComponent:EntryAndLabelComponent
-            Title="{Static resourceFile:ResourceTexts.TITLE_NAME}"
-            Margin="0,35,0,30"
-            Placeholder="Bruce Wayne"
-            TextValue="{Binding Model.Name}" />
+            <Border
+                Margin="0,-20,0,0"
+                BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                  Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
+                HeightRequest="35"
+                Stroke="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
+                                         Dark={StaticResource SECONDARY_COLOR_DARK}}"
+                StrokeShape="RoundRectangle 35"
+                StrokeThickness="3"
+                WidthRequest="35">
+                <Image
+                    HeightRequest="15"
+                    Source="icon_pen.png"
+                    WidthRequest="15">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT}, Dark={StaticResource SECONDARY_COLOR_DARK}}" />
+                    </Image.Behaviors>
+                </Image>
+            </Border>
 
-        <inputsComponent:EntryAndLabelComponent
-            Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
-            Keyboard="Email"
-            Placeholder="bruce@waynetech.com"
-            TextValue="{Binding Model.Email}" />
+            <inputsComponent:EntryAndLabelComponent
+                Title="{Static resourceFile:ResourceTexts.TITLE_NAME}"
+                Margin="0,35,0,30"
+                Placeholder="Bruce Wayne"
+                TextValue="{Binding Model.Name}" />
 
-        <Grid
-            Margin="0,70,0,25"
-            ColumnDefinitions="*, *"
-            ColumnSpacing="20">
-            <Button
-                Grid.Column="0"
-                Style="{StaticResource SecondaryButtonStyle}"
-                Text="{Static resourceFile:ResourceTexts.CHANGE_PASSWORD}" />
-            <Button Grid.Column="1" Text="{Static resourceFile:ResourceTexts.UPDATE_PROFILE}" />
-        </Grid>
+            <inputsComponent:EntryAndLabelComponent
+                Title="{Static resourceFile:ResourceTexts.TITLE_EMAIL}"
+                Keyboard="Email"
+                Placeholder="bruce@waynetech.com"
+                TextValue="{Binding Model.Email}" />
 
-        <Button Style="{StaticResource DangerousButtonStyle}" Text="{Static resourceFile:ResourceTexts.DELETE_ACCOUNT}" />
+            <Grid
+                Margin="0,70,0,25"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="20">
+                <Button
+                    Grid.Column="0"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Text="{Static resourceFile:ResourceTexts.CHANGE_PASSWORD}" />
+                <Button Grid.Column="1" Text="{Static resourceFile:ResourceTexts.UPDATE_PROFILE}" />
+            </Grid>
+
+            <Button Style="{StaticResource DangerousButtonStyle}" Text="{Static resourceFile:ResourceTexts.DELETE_ACCOUNT}" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout IsVisible="False">
+            <VerticalStackLayout.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="VerticalStackLayout"
+                    Value="{Static models:StatusPage.Loading}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </VerticalStackLayout.Triggers>
+
+            <skeleton:SkeletonView
+                CornerRadius="50"
+                HeightRequest="100"
+                WidthRequest="100" />
+
+            <Border
+                Margin="0,-20,0,0"
+                BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                  Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
+                HeightRequest="35"
+                Stroke="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
+                                         Dark={StaticResource SECONDARY_COLOR_DARK}}"
+                StrokeShape="RoundRectangle 35"
+                StrokeThickness="3"
+                WidthRequest="35">
+                <Image
+                    HeightRequest="15"
+                    Source="icon_pen.png"
+                    WidthRequest="15">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT}, Dark={StaticResource SECONDARY_COLOR_DARK}}" />
+                    </Image.Behaviors>
+                </Image>
+            </Border>
+
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
