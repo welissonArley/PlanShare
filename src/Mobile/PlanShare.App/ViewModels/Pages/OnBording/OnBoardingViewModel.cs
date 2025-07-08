@@ -5,11 +5,8 @@ namespace PlanShare.App.ViewModels.Pages.OnBording;
 
 public partial class OnBoardingViewModel : ViewModelBase
 {
-    private readonly INavigationService _navigationService;
-
-    public OnBoardingViewModel(INavigationService navigationService)
+    public OnBoardingViewModel(INavigationService navigationService) : base(navigationService)
     {
-        _navigationService = navigationService;
     }
 
     [RelayCommand]

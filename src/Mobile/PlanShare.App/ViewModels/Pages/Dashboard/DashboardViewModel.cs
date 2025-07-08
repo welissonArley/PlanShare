@@ -9,13 +9,9 @@ public partial class DashboardViewModel : ViewModelBase
     [ObservableProperty]
     public string userName;
 
-    private readonly INavigationService _navigationService;
-
-    public DashboardViewModel(IUserStorage userStorage, INavigationService navigationService)
+    public DashboardViewModel(IUserStorage userStorage, INavigationService navigationService) : base(navigationService)
     {
         UserName = userStorage.Get().Name;
-
-        _navigationService = navigationService;
     }
 
     [RelayCommand]
