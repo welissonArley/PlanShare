@@ -10,6 +10,7 @@ using PlanShare.App.Resources.Styles.Handlers;
 using PlanShare.App.UseCases.Login.DoLogin;
 using PlanShare.App.UseCases.User.Profile;
 using PlanShare.App.UseCases.User.Register;
+using PlanShare.App.UseCases.User.Update;
 using PlanShare.App.ViewModels.Pages.Dashboard;
 using PlanShare.App.ViewModels.Pages.Errors;
 using PlanShare.App.ViewModels.Pages.Login.DoLogin;
@@ -111,6 +112,7 @@ public static class MauiProgram
 		appBuilder.Services.AddTransient<IRegisterUserUseCase, RegisterUserUseCase>();
 		appBuilder.Services.AddTransient<IDoLoginUseCase, DoLoginUseCase>();
 		appBuilder.Services.AddTransient<IGetUserProfileUseCase, GetUserProfileUseCase>();
+		appBuilder.Services.AddTransient<IUpdateUserUseCase, UpdateUserUseCase>();
 
         return appBuilder;
     }

@@ -7,7 +7,11 @@ namespace PlanShare.App.Data.Network.Api;
 public interface IUserApi
 {
     [Post("/users")]
-    Task<ApiResponse<ResponseRegisteredUserJson>> Register([Body] RequestRegisterUserJson request);
+    Task<IApiResponse<ResponseRegisteredUserJson>> Register([Body] RequestRegisterUserJson request);
+
     [Get("/users")]
-    Task<ApiResponse<ResponseUserProfileJson>> GetProfile();
+    Task<IApiResponse<ResponseUserProfileJson>> GetProfile();
+
+    [Put("/users")]
+    Task<IApiResponse> UpdateProfile([Body] RequestUpdateUserJson request);
 }
