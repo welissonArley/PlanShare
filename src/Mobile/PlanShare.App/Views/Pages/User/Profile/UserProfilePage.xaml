@@ -3,6 +3,7 @@
     x:Class="PlanShare.App.Views.Pages.User.Profile.UserProfilePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animationComponent="clr-namespace:PlanShare.App.Views.Components.StatusPage"
     xmlns:converters="clr-namespace:PlanShare.App.Converters"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
     xmlns:inputsComponent="clr-namespace:PlanShare.App.Views.Components.Inputs"
@@ -85,7 +86,11 @@
                     Grid.Column="0"
                     Style="{StaticResource SecondaryButtonStyle}"
                     Text="{Static resourceFile:ResourceTexts.CHANGE_PASSWORD}" />
-                <Button Grid.Column="1" Text="{Static resourceFile:ResourceTexts.UPDATE_PROFILE}" />
+
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding UpdateProfileCommand}"
+                    Text="{Static resourceFile:ResourceTexts.UPDATE_PROFILE}" />
             </Grid>
 
             <Button Style="{StaticResource DangerousButtonStyle}" Text="{Static resourceFile:ResourceTexts.DELETE_ACCOUNT}" />
@@ -150,5 +155,16 @@
                 Style="{StaticResource DangerousButtonStyle}"
                 Text="{Static resourceFile:ResourceTexts.DELETE_ACCOUNT}" />
         </VerticalStackLayout>
+
+        <animationComponent:AnimationSendingInformationComponent IsVisible="False">
+            <animationComponent:AnimationSendingInformationComponent.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="animationComponent:AnimationSendingInformationComponent"
+                    Value="{Static models:StatusPage.Sending}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </animationComponent:AnimationSendingInformationComponent.Triggers>
+        </animationComponent:AnimationSendingInformationComponent>
     </VerticalStackLayout>
 </ContentPage>
