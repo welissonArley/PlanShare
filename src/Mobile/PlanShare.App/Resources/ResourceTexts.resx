@@ -162,11 +162,17 @@
   <data name="SUBTITLE_REGISTER_ACCOUNT" xml:space="preserve">
     <value>Control your routine with ease - because you deserve more time for what you love!</value>
   </data>
+  <data name="TITLE_CURRENT_PASSWORD" xml:space="preserve">
+    <value>Current password</value>
+  </data>
   <data name="TITLE_EMAIL" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="TITLE_NAME" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="TITLE_NEW_PASSWORD" xml:space="preserve">
+    <value>New password</value>
   </data>
   <data name="TITLE_PASSWORD" xml:space="preserve">
     <value>Password</value>

@@ -162,11 +162,17 @@
   <data name="SUBTITLE_REGISTER_ACCOUNT" xml:space="preserve">
     <value>Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!</value>
   </data>
+  <data name="TITLE_CURRENT_PASSWORD" xml:space="preserve">
+    <value>Senha atual</value>
+  </data>
   <data name="TITLE_EMAIL" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="TITLE_NAME" xml:space="preserve">
     <value>Nome</value>
+  </data>
+  <data name="TITLE_NEW_PASSWORD" xml:space="preserve">
+    <value>Nova senha</value>
   </data>
   <data name="TITLE_PASSWORD" xml:space="preserve">
     <value>Senha</value>

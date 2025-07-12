@@ -52,4 +52,7 @@ public partial class UserProfileViewModel : ViewModelBase
 
         StatusPage = Models.StatusPage.Default;
     }
+
+    [RelayCommand]
+    public async Task ChangePassword() => await _navigationService.GoToAsync(RoutePages.USER_CHANGE_PASSWORD_PAGE);
 }

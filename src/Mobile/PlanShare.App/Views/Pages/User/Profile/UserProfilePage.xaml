@@ -84,6 +84,7 @@
                 ColumnSpacing="20">
                 <Button
                     Grid.Column="0"
+                    Command="{Binding ChangePasswordCommand}"
                     Style="{StaticResource SecondaryButtonStyle}"
                     Text="{Static resourceFile:ResourceTexts.CHANGE_PASSWORD}" />
 

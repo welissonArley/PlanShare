@@ -196,6 +196,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current password.
+        /// </summary>
+        public static string TITLE_CURRENT_PASSWORD {
+            get {
+                return ResourceManager.GetString("TITLE_CURRENT_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string TITLE_EMAIL {
@@ -210,6 +219,15 @@ namespace PlanShare.App.Resources {
         public static string TITLE_NAME {
             get {
                 return ResourceManager.GetString("TITLE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password.
+        /// </summary>
+        public static string TITLE_NEW_PASSWORD {
+            get {
+                return ResourceManager.GetString("TITLE_NEW_PASSWORD", resourceCulture);
             }
         }
         
