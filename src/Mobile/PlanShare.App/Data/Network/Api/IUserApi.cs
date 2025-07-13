@@ -14,4 +14,7 @@ public interface IUserApi
 
     [Put("/users")]
     Task<IApiResponse> UpdateProfile([Body] RequestUpdateUserJson request);
+
+    [Put("/users/change-password")]
+    Task<IApiResponse> ChangePassword([Body] RequestChangePasswordJson request);
 }
