@@ -97,6 +97,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your password has been successfully changed..
+        /// </summary>
+        public static string PASSWORD_SUCCESSFULLY_CHANGED {
+            get {
+                return ResourceManager.GetString("PASSWORD_SUCCESSFULLY_CHANGED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Already have an account?.
         /// </summary>
         public static string PHRASE_ALREADY_HAS_ACCOUNT {
@@ -178,6 +187,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your profile information has been successfully updated..
+        /// </summary>
+        public static string PROFILE_INFORMATION_SUCCESSFULLY_UPDATED {
+            get {
+                return ResourceManager.GetString("PROFILE_INFORMATION_SUCCESSFULLY_UPDATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while communicating with the server. Please try again later..
         /// </summary>
         public static string SERVER_COMMUNICATION_ERROR {
@@ -192,6 +210,15 @@ namespace PlanShare.App.Resources {
         public static string SUBTITLE_REGISTER_ACCOUNT {
             get {
                 return ResourceManager.GetString("SUBTITLE_REGISTER_ACCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string TITLE_CLOSE {
+            get {
+                return ResourceManager.GetString("TITLE_CLOSE", resourceCulture);
             }
         }
         

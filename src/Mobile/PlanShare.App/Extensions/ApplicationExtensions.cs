@@ -13,6 +13,15 @@ public static class ApplicationExtensions
         return (Color)application!.Resources[key];
     }
 
+    public static Color GetSecondaryColor(this Application application)
+    {
+        var isLightMode = application.IsLightMode();
+
+        var key = isLightMode ? "SECONDARY_COLOR_LIGHT" : "SECONDARY_COLOR_DARK";
+
+        return (Color)application!.Resources[key];
+    }
+
     public static Color GetLineColor(this Application application)
     {
         var isLightMode = application.IsLightMode();
@@ -27,6 +36,15 @@ public static class ApplicationExtensions
         var isLightMode = application.IsLightMode();
 
         var key = isLightMode ? "SKELETON_LOADING_COLOR_LIGHT" : "SKELETON_LOADING_COLOR_DARK";
+
+        return (Color)application!.Resources[key];
+    }
+
+    public static Color GetHighlightColor(this Application application)
+    {
+        var isLightMode = application.IsLightMode();
+
+        var key = isLightMode ? "HIGHLIGHT_COLOR_LIGHT" : "HIGHLIGHT_COLOR_DARK";
 
         return (Color)application!.Resources[key];
     }

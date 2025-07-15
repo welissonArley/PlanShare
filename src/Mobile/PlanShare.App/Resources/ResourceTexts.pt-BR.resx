@@ -129,6 +129,9 @@
   <data name="LOGIN_WITH_EMAIL_PASSWORD" xml:space="preserve">
     <value>Login com Email e Senha</value>
   </data>
+  <data name="PASSWORD_SUCCESSFULLY_CHANGED" xml:space="preserve">
+    <value>Sua senha foi alterada com sucesso.</value>
+  </data>
   <data name="PHRASE_ALREADY_HAS_ACCOUNT" xml:space="preserve">
     <value>Já possui uma conta?</value>
   </data>
@@ -156,11 +159,17 @@
   <data name="PHRASE_SMALL_TASKS_BIG_RESULTS" xml:space="preserve">
     <value>Tarefas pequenas, grandes resultados</value>
   </data>
+  <data name="PROFILE_INFORMATION_SUCCESSFULLY_UPDATED" xml:space="preserve">
+    <value>As informações do seu perfil foram atualizadas com sucesso.</value>
+  </data>
   <data name="SERVER_COMMUNICATION_ERROR" xml:space="preserve">
     <value>Ocorreu um erro na comunicação com o servidor. Por favor, tente novamente mais tarde.</value>
   </data>
   <data name="SUBTITLE_REGISTER_ACCOUNT" xml:space="preserve">
     <value>Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!</value>
+  </data>
+  <data name="TITLE_CLOSE" xml:space="preserve">
+    <value>Fechar</value>
   </data>
   <data name="TITLE_CURRENT_PASSWORD" xml:space="preserve">
     <value>Senha atual</value>
