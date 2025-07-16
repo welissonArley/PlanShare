@@ -150,6 +150,9 @@
 	  <MauiXaml Update="Views\Pages\User\Register\RegisterUserAccountPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\Files\OptionsForProfilePhotoPopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
