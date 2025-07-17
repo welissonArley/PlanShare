@@ -123,6 +123,9 @@
   <data name="DELETE_ACCOUNT" xml:space="preserve">
     <value>Deletar minha conta</value>
   </data>
+  <data name="DELETE_PROFILE_PICTURE" xml:space="preserve">
+    <value>Deletar foto de perfil</value>
+  </data>
   <data name="FOLLOWING_ERRORS_WERE_FOUND" xml:space="preserve">
     <value>Os seguintes erros foram encontrados</value>
   </data>
@@ -168,6 +171,12 @@
   <data name="SUBTITLE_REGISTER_ACCOUNT" xml:space="preserve">
     <value>Comande sua rotina com facilidade—porque você merece mais tempo para o que ama!</value>
   </data>
+  <data name="TAKE_PHOTO_UPLOAD" xml:space="preserve">
+    <value>Tirar foto e fazer upload</value>
+  </data>
+  <data name="TITLE_CANCEL" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="TITLE_CLOSE" xml:space="preserve">
     <value>Fechar</value>
   </data>
@@ -197,5 +206,8 @@
   </data>
   <data name="UPDATE_PROFILE" xml:space="preserve">
     <value>Atualizar perfil</value>
+  </data>
+  <data name="UPLOAD_PHOTO" xml:space="preserve">
+    <value>Fazer upload de uma foto</value>
   </data>
 </root>

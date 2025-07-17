@@ -79,6 +79,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete profile picture.
+        /// </summary>
+        public static string DELETE_PROFILE_PICTURE {
+            get {
+                return ResourceManager.GetString("DELETE_PROFILE_PICTURE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following errors were found.
         /// </summary>
         public static string FOLLOWING_ERRORS_WERE_FOUND {
@@ -214,6 +223,24 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Take a photo and upload it.
+        /// </summary>
+        public static string TAKE_PHOTO_UPLOAD {
+            get {
+                return ResourceManager.GetString("TAKE_PHOTO_UPLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string TITLE_CANCEL {
+            get {
+                return ResourceManager.GetString("TITLE_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string TITLE_CLOSE {
@@ -300,6 +327,15 @@ namespace PlanShare.App.Resources {
         public static string UPDATE_PROFILE {
             get {
                 return ResourceManager.GetString("UPDATE_PROFILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload a photo.
+        /// </summary>
+        public static string UPLOAD_PHOTO {
+            get {
+                return ResourceManager.GetString("UPLOAD_PHOTO", resourceCulture);
             }
         }
     }
