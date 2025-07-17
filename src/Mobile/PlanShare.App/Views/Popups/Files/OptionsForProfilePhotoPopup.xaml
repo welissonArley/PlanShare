@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Popups.Files"
-    x:DataType="viewModel:OptionsForProfilePhotoViewModel">
+    x:DataType="viewModel:OptionsForProfilePhotoViewModel"
+    VerticalOptions="End">
     <VerticalStackLayout>
         <Label
             HorizontalOptions="Center"

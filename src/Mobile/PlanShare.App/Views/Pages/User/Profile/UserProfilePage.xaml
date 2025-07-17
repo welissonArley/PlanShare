@@ -33,38 +33,44 @@
                 </DataTrigger>
             </VerticalStackLayout.Triggers>
 
-            <toolkit:AvatarView
-                BackgroundColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
-                                                  Dark={StaticResource PRIMARY_COLOR_DARK}}"
-                BorderWidth="0"
-                CornerRadius="50"
-                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
-                FontSize="32"
-                HeightRequest="100"
-                Text="{Binding Model.Name, Converter={StaticResource nameToAvatarName}}"
-                TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
-                                            Dark={StaticResource SECONDARY_COLOR_DARK}}"
-                WidthRequest="100" />
+            <VerticalStackLayout>
+                <VerticalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeProfilePhotoCommand}" />
+                </VerticalStackLayout.GestureRecognizers>
 
-            <Border
-                Margin="0,-20,0,0"
-                BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
-                                                  Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
-                HeightRequest="35"
-                Stroke="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
-                                         Dark={StaticResource SECONDARY_COLOR_DARK}}"
-                StrokeShape="RoundRectangle 35"
-                StrokeThickness="3"
-                WidthRequest="35">
-                <Image
-                    HeightRequest="15"
-                    Source="icon_pen.png"
-                    WidthRequest="15">
-                    <Image.Behaviors>
-                        <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT}, Dark={StaticResource SECONDARY_COLOR_DARK}}" />
-                    </Image.Behaviors>
-                </Image>
-            </Border>
+                <toolkit:AvatarView
+                    BackgroundColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
+                                                      Dark={StaticResource PRIMARY_COLOR_DARK}}"
+                    BorderWidth="0"
+                    CornerRadius="50"
+                    FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                    FontSize="32"
+                    HeightRequest="100"
+                    Text="{Binding Model.Name, Converter={StaticResource nameToAvatarName}}"
+                    TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
+                                                Dark={StaticResource SECONDARY_COLOR_DARK}}"
+                    WidthRequest="100" />
+
+                <Border
+                    Margin="0,-20,0,0"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                      Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
+                    HeightRequest="35"
+                    Stroke="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
+                                             Dark={StaticResource SECONDARY_COLOR_DARK}}"
+                    StrokeShape="RoundRectangle 35"
+                    StrokeThickness="3"
+                    WidthRequest="35">
+                    <Image
+                        HeightRequest="15"
+                        Source="icon_pen.png"
+                        WidthRequest="15">
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT}, Dark={StaticResource SECONDARY_COLOR_DARK}}" />
+                        </Image.Behaviors>
+                    </Image>
+                </Border>
+            </VerticalStackLayout>
 
             <inputsComponent:EntryAndLabelComponent
                 Title="{Static resourceFile:ResourceTexts.TITLE_NAME}"
