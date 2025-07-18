@@ -10,5 +10,9 @@ public partial class OptionsForProfilePhotoPopup : Popup
 		InitializeComponent();
 
 		BindingContext = viewModel;
+
+		var scheenWidth = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density;
+
+		WidthRequest = scheenWidth * 0.8;
     }
 }
