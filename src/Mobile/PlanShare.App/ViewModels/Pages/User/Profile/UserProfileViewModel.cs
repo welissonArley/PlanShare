@@ -1,7 +1,5 @@
-﻿using CommunityToolkit.Maui;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls.Shapes;
 using PlanShare.App.Models.Enums;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources;
@@ -19,18 +17,13 @@ public partial class UserProfileViewModel : ViewModelBase
     private readonly IGetUserProfileUseCase _getUserProfileUseCase;
     private readonly IUpdateUserUseCase _updateUserUseCase;
 
-    private readonly IPopupService _popupService;
-
     public UserProfileViewModel(
         INavigationService navigationService,
         IGetUserProfileUseCase getUserProfileUseCase,
-        IUpdateUserUseCase updateUserUseCase,
-        IPopupService popupService) : base(navigationService)
+        IUpdateUserUseCase updateUserUseCase) : base(navigationService)
     {
         _getUserProfileUseCase = getUserProfileUseCase;
         _updateUserUseCase = updateUserUseCase;
-
-        _popupService = popupService;
     }
 
     [RelayCommand]
@@ -67,18 +60,6 @@ public partial class UserProfileViewModel : ViewModelBase
     [RelayCommand]
     public async Task ChangeProfilePhoto()
     {
-        var popupOptions = new PopupOptions
-        {
-            Shadow = null,
-            Shape = new RoundRectangle
-            {
-                CornerRadius = new CornerRadius(10),
-                StrokeThickness = 0
-            }
-        };
-
-        var result = await _popupService.ShowPopupAsync<OptionsForProfilePhotoViewModel, ChooseFileOption>(Shell.Current, popupOptions);
-
-        var fileOption = result.Result;
+        var optionSelected = await _navigationService.ShowPopup<OptionsForProfilePhotoViewModel, ChooseFileOption>();
     }
 }

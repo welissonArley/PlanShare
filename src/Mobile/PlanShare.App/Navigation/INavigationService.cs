@@ -1,4 +1,6 @@
-﻿namespace PlanShare.App.Navigation;
+﻿using PlanShare.App.ViewModels.Popups;
+
+namespace PlanShare.App.Navigation;
 
 public interface INavigationService
 {
@@ -7,4 +9,7 @@ public interface INavigationService
     Task ClosePage();
     Task GoToDashboardPage();
     Task ShowSuccessFeedback(string message);
+    Task<TResult> ShowPopup<TViewModel, TResult>()
+        where TViewModel : ViewModelBaseForPopups
+        where TResult : notnull;
 }
