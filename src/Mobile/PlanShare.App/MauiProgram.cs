@@ -48,6 +48,7 @@ public static class MauiProgram
 			.AddHttpClients()
 			.AddUseCases()
 			.AddStorage()
+			.AddDeviceInfo()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("Raleway-Black.ttf", FontFamily.MAIN_FONT_BLACK);
@@ -142,5 +143,12 @@ public static class MauiProgram
             appBuilder.Services.AddSingleton<ITokensStorage, TokensStorage>();
 
         return appBuilder;
+    }
+
+	private static MauiAppBuilder AddDeviceInfo(this MauiAppBuilder appBuilder)
+	{
+		appBuilder.Services.AddSingleton(DeviceDisplay.Current);
+
+		return appBuilder;
     }
 }
