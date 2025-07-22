@@ -148,6 +148,7 @@ public static class MauiProgram
 	private static MauiAppBuilder AddDeviceInfo(this MauiAppBuilder appBuilder)
 	{
 		appBuilder.Services.AddSingleton(DeviceDisplay.Current);
+		appBuilder.Services.AddSingleton(MediaPicker.Default);
 
 		return appBuilder;
     }

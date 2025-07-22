@@ -14,22 +14,29 @@ public partial class UserProfileViewModel : ViewModelBase
     [ObservableProperty]
     public Models.User model;
 
+    [ObservableProperty]
+    public string? photoPath;
+
     private readonly IGetUserProfileUseCase _getUserProfileUseCase;
     private readonly IUpdateUserUseCase _updateUserUseCase;
+
+    private readonly IMediaPicker _mediaPicker;
 
     public UserProfileViewModel(
         INavigationService navigationService,
         IGetUserProfileUseCase getUserProfileUseCase,
-        IUpdateUserUseCase updateUserUseCase) : base(navigationService)
+        IUpdateUserUseCase updateUserUseCase,
+        IMediaPicker mediaPicker) : base(navigationService)
     {
         _getUserProfileUseCase = getUserProfileUseCase;
         _updateUserUseCase = updateUserUseCase;
+        _mediaPicker = mediaPicker;
     }
 
     [RelayCommand]
     public async Task Initialize()
     {
-        StatusPage = Models.StatusPage.Loading;
+        /*StatusPage = Models.StatusPage.Loading;
 
         var result = await _getUserProfileUseCase.Execute();
         if (result.IsSuccess)
@@ -37,7 +44,7 @@ public partial class UserProfileViewModel : ViewModelBase
         else
             await GoToPageWithErrors(result);
 
-        StatusPage = Models.StatusPage.Default;
+        StatusPage = Models.StatusPage.Default;*/
     }
 
     [RelayCommand]
@@ -61,5 +68,31 @@ public partial class UserProfileViewModel : ViewModelBase
     public async Task ChangeProfilePhoto()
     {
         var optionSelected = await _navigationService.ShowPopup<OptionsForProfilePhotoViewModel, ChooseFileOption>();
+        switch (optionSelected)
+        {
+            case ChooseFileOption.TakePicture:
+                {
+                    var photo = await _mediaPicker.CapturePhotoAsync();
+                    UpdatePhotoProcess(photo);
+                }
+                break;
+            case ChooseFileOption.UploadFromGallery:
+                {
+                    var photo = await _mediaPicker.PickPhotoAsync();
+                    UpdatePhotoProcess(photo);
+                }
+                break;
+            case ChooseFileOption.DeleteCurrentPicture:
+                {
+                    PhotoPath = null;
+                }
+                break;
+        }
+    }
+
+    private void UpdatePhotoProcess(FileResult? photo)
+    {
+        if(photo is not null)
+            PhotoPath = photo.FullPath;
     }
 }

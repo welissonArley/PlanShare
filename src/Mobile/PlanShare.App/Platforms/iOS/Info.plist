@@ -28,5 +28,9 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
+	<key>NSCameraUsageDescription</key>
+	<string>A camera é necessaria para alterar a foto de perfil</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Acesso solicitado para alterar foto de perfil</string>
 </dict>
 </plist>

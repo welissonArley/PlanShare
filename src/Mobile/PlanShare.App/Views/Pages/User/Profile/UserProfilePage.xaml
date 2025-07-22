@@ -46,6 +46,7 @@
                     FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
                     FontSize="32"
                     HeightRequest="100"
+                    ImageSource="{Binding PhotoPath}"
                     Text="{Binding Model.Name, Converter={StaticResource nameToAvatarName}}"
                     TextColor="{AppThemeBinding Light={StaticResource SECONDARY_COLOR_LIGHT},
                                                 Dark={StaticResource SECONDARY_COLOR_DARK}}"
