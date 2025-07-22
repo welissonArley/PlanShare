@@ -55,6 +55,7 @@ public class NavigationService : INavigationService
     {
         var popupOptions = new PopupOptions
         {
+            CanBeDismissedByTappingOutsideOfPopup = false,
             Shadow = null,
             Shape = new RoundRectangle
             {
