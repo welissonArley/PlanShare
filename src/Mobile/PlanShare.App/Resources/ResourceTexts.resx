@@ -165,6 +165,9 @@
   <data name="PROFILE_INFORMATION_SUCCESSFULLY_UPDATED" xml:space="preserve">
     <value>Your profile information has been successfully updated.</value>
   </data>
+  <data name="PROFILE_PHOTO_SUCCESSFULLY_UPDATED" xml:space="preserve">
+    <value>Your profile photo has been successfully updated.</value>
+  </data>
   <data name="SERVER_COMMUNICATION_ERROR" xml:space="preserve">
     <value>An error occurred while communicating with the server. Please try again later.</value>
   </data>

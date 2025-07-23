@@ -17,4 +17,8 @@ public interface IUserApi
 
     [Put("/users/change-password")]
     Task<IApiResponse> ChangePassword([Body] RequestChangePasswordJson request);
+
+    [Multipart]
+    [Put("/users/change-photo")]
+    Task<IApiResponse> ChangeProfilePhoto(StreamPart file);
 }

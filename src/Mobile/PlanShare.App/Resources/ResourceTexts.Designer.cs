@@ -205,6 +205,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your profile photo has been successfully updated..
+        /// </summary>
+        public static string PROFILE_PHOTO_SUCCESSFULLY_UPDATED {
+            get {
+                return ResourceManager.GetString("PROFILE_PHOTO_SUCCESSFULLY_UPDATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while communicating with the server. Please try again later..
         /// </summary>
         public static string SERVER_COMMUNICATION_ERROR {
