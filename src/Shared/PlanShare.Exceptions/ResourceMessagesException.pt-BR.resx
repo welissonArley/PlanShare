@@ -144,6 +144,9 @@
   <data name="NO_TOKEN" xml:space="preserve">
     <value>A solicitação não tem token.</value>
   </data>
+  <data name="ONLY_IMAGES_ACCEPTED" xml:space="preserve">
+    <value>Somente imagens (PNG, JPG, JPEG) são aceitas.</value>
+  </data>
   <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
     <value>A senha atual informada não corresponde à registrada no sistema.</value>
   </data>

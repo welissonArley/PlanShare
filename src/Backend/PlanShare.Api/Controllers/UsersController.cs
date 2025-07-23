@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PlanShare.Api.Attributes;
 using PlanShare.Application.UseCases.User.ChangePassword;
+using PlanShare.Application.UseCases.User.Photo;
 using PlanShare.Application.UseCases.User.Profile;
 using PlanShare.Application.UseCases.User.Register;
 using PlanShare.Application.UseCases.User.Update;
@@ -53,6 +54,18 @@ public class UsersController : ControllerBase
         [FromBody] RequestChangePasswordJson request)
     {
         await useCase.Execute(request);
+
+        return NoContent();
+    }
+
+    [HttpPut("change-photo")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    [AuthenticatedUser]
+    public async Task<IActionResult> ChangePhotoProfile(IFormFile file,
+        [FromServices] IChangeUserPhotoUseCase useCase)
+    {
+        await useCase.Execute(file);
 
         return NoContent();
     }
