@@ -1,9 +1,8 @@
-﻿using AutoMapper;
-using PlanShare.Communication.Requests;
+﻿using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
 
 namespace PlanShare.Application.Services.AutoMapper;
-public class AutoMapping : Profile
+/*public class AutoMapping : Profile
 {
     public AutoMapping()
     {
@@ -35,4 +34,4 @@ public class AutoMapping : Profile
 
         CreateMap<Domain.Entities.WorkItem, ResponseShortWorkItemJson>();
     }
-}
+}*/

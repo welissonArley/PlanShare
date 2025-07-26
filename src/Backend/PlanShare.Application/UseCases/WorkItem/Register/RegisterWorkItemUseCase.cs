@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Mapster;
 using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
 using PlanShare.Domain.Extensions;
@@ -9,13 +9,11 @@ using PlanShare.Exceptions.ExceptionsBase;
 namespace PlanShare.Application.UseCases.WorkItem.Register;
 public class RegisterWorkItemUseCase : IRegisterWorkItemUseCase
 {
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IWorkItemWriteOnlyRepository _repository;
 
-    public RegisterWorkItemUseCase(IMapper mapper, IUnitOfWork unitOfWork, IWorkItemWriteOnlyRepository repository)
+    public RegisterWorkItemUseCase(IUnitOfWork unitOfWork, IWorkItemWriteOnlyRepository repository)
     {
-        _mapper = mapper;
         _unitOfWork = unitOfWork;
         _repository = repository;
     }
@@ -24,7 +22,7 @@ public class RegisterWorkItemUseCase : IRegisterWorkItemUseCase
     {
         await Validate(request);
 
-        var entity = _mapper.Map<Domain.Entities.WorkItem>(request);
+        var entity = request.Adapt<Domain.Entities.WorkItem>();
 
         await _repository.Add(entity);
 

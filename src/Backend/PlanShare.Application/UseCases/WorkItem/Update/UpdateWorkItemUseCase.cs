@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Mapster;
 using PlanShare.Communication.Requests;
 using PlanShare.Domain.Extensions;
 using PlanShare.Domain.Repositories;
@@ -11,17 +11,14 @@ namespace PlanShare.Application.UseCases.WorkItem.Update;
 public class UpdateWorkItemUseCase : IUpdateWorkItemUseCase
 {
     private readonly ILoggedUser _loggedUser;
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IWorkItemUpdateOnlyRepository _repository;
 
     public UpdateWorkItemUseCase(
         ILoggedUser loggedUser,
-        IMapper mapper,
         IUnitOfWork unitOfWork,
         IWorkItemUpdateOnlyRepository repository)
     {
-        _mapper = mapper;
         _unitOfWork = unitOfWork;
         _repository = repository;
         _loggedUser = loggedUser;
@@ -37,7 +34,7 @@ public class UpdateWorkItemUseCase : IUpdateWorkItemUseCase
         if (workItem is null)
             throw new NotFoundException(ResourceMessagesException.WORK_ITEM_NOT_FOUND);
 
-        _mapper.Map(request, workItem);
+        request.Adapt(workItem);
 
         _repository.Update(workItem);
 

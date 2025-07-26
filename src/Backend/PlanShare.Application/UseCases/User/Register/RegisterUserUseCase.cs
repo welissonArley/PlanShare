@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
+using MapsterMapper;
 using PlanShare.Application.Services.Authentication;
 using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;

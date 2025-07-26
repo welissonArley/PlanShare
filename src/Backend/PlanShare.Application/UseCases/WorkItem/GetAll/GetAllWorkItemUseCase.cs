@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Mapster;
 using PlanShare.Communication.Responses;
 using PlanShare.Domain.Repositories.WorkItem;
 using PlanShare.Domain.Services.LoggedUser;
@@ -7,15 +7,12 @@ namespace PlanShare.Application.UseCases.WorkItem.GetAll;
 public class GetAllWorkItemUseCase : IGetAllWorkItemUseCase
 {
     private readonly ILoggedUser _loggedUser;
-    private readonly IMapper _mapper;
     private readonly IWorkItemReadOnlyRepository _repository;
 
     public GetAllWorkItemUseCase(
         ILoggedUser loggedUser,
-        IMapper mapper,
         IWorkItemReadOnlyRepository repository)
     {
-        _mapper = mapper;
         _repository = repository;
         _loggedUser = loggedUser;
     }
@@ -28,7 +25,7 @@ public class GetAllWorkItemUseCase : IGetAllWorkItemUseCase
 
         return new ResponseWorkItemsJson
         {
-            WorkItems = _mapper.Map<List<ResponseShortWorkItemJson>>(workItem)
+            WorkItems = workItem.Adapt<List<ResponseShortWorkItemJson>>()
         };
     }
 }

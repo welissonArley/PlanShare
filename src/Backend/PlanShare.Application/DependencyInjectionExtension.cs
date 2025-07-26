@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Mapster;
+using Microsoft.Extensions.DependencyInjection;
 using PlanShare.Application.Services.Authentication;
-using PlanShare.Application.Services.AutoMapper;
 using PlanShare.Application.UseCases.Dashboard;
 using PlanShare.Application.UseCases.Login.DoLogin;
 using PlanShare.Application.UseCases.User.ChangePassword;
@@ -26,7 +26,8 @@ public static class DependencyInjectionExtension
 
     private static void AddAutoMapper(IServiceCollection services)
     {
-        services.AddAutoMapper(typeof(AutoMapping));
+        services.AddMapster();
+        //services.AddAutoMapper(typeof(AutoMapping));
     }
 
     private static void AddUseCases(IServiceCollection services)
