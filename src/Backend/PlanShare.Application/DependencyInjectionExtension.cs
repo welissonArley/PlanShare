@@ -1,6 +1,6 @@
-﻿using Mapster;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using PlanShare.Application.Services.Authentication;
+using PlanShare.Application.Services.Mappings;
 using PlanShare.Application.UseCases.Dashboard;
 using PlanShare.Application.UseCases.Login.DoLogin;
 using PlanShare.Application.UseCases.User.ChangePassword;
@@ -19,15 +19,14 @@ public static class DependencyInjectionExtension
 {
     public static void AddApplication(this IServiceCollection services)
     {
-        AddAutoMapper(services);
+        AddMapperConfigurations();
         AddUseCases(services);
         AddTokenService(services);
     }
 
-    private static void AddAutoMapper(IServiceCollection services)
+    private static void AddMapperConfigurations()
     {
-        services.AddMapster();
-        //services.AddAutoMapper(typeof(AutoMapping));
+        MapConfigurations.Configure();
     }
 
     private static void AddUseCases(IServiceCollection services)

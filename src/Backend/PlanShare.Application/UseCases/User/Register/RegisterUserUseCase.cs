@@ -1,5 +1,5 @@
 ﻿using FluentValidation.Results;
-using MapsterMapper;
+using Mapster;
 using PlanShare.Application.Services.Authentication;
 using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
@@ -13,7 +13,6 @@ using PlanShare.Exceptions.ExceptionsBase;
 namespace PlanShare.Application.UseCases.User.Register;
 public class RegisterUserUseCase : IRegisterUserUseCase
 {
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IUserWriteOnlyRepository _repository;
@@ -21,7 +20,6 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     private readonly ITokenService _tokenService;
 
     public RegisterUserUseCase(
-        IMapper mapper,
         IUnitOfWork unitOfWork,
         IUserWriteOnlyRepository repository,
         IUserReadOnlyRepository userReadOnlyRepository,
@@ -29,7 +27,6 @@ public class RegisterUserUseCase : IRegisterUserUseCase
         ITokenService tokenService)
     {
         _unitOfWork = unitOfWork;
-        _mapper = mapper;
         _userReadOnlyRepository = userReadOnlyRepository;
         _repository = repository;
         _passwordEncripter = passwordEncripter;
@@ -40,7 +37,7 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     {
         await Validate(request);
 
-        var user = _mapper.Map<Domain.Entities.User>(request);
+        var user = request.Adapt<Domain.Entities.User>();
         user.Password = _passwordEncripter.Encrypt(request.Password);
 
         await _repository.Add(user);
