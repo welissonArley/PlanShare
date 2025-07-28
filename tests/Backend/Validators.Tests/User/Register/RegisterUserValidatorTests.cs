@@ -96,11 +96,11 @@ public class RegisterUserValidatorTests
     [InlineData(3)]
     [InlineData(4)]
     [InlineData(5)]
-    public void Error_Password_Invalid(int amountPasswordCharacters)
+    public void Error_Password_Invalid(int passwordLength)
     {
         var validator = new RegisterUserValidator();
 
-        var request = RequestRegisterUserBuilder.Build(amountPasswordCharacters);
+        var request = RequestRegisterUserBuilder.Build(passwordLength);
 
         var result = validator.Validate(request);
 
