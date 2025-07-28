@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using PlanShare.Communication.Requests;
+using PlanShare.Domain.Extensions;
 using PlanShare.Exceptions;
 
 namespace PlanShare.Application.UseCases.User.Update;
@@ -12,7 +13,7 @@ public class UpdateUserValidator : AbstractValidator<RequestUpdateUserJson>
             .NotEmpty()
             .WithMessage(ResourceMessagesException.EMAIL_EMPTY)
             .EmailAddress()
-            .When(user => string.IsNullOrWhiteSpace(user.Email) == false, ApplyConditionTo.CurrentValidator)
+            .When(user => user.Email.NotEmpty(), ApplyConditionTo.CurrentValidator)
             .WithMessage(ResourceMessagesException.EMAIL_INVALID);
     }
 }
