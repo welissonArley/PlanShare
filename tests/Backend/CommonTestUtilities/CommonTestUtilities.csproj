@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Backend\PlanShare.Application\PlanShare.Application.csproj" />
     <ProjectReference Include="..\..\..\src\Backend\PlanShare.Domain\PlanShare.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\Backend\PlanShare.Infrastructure\PlanShare.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\src\Shared\PlanShare.Communication\PlanShare.Communication.csproj" />
   </ItemGroup>
 

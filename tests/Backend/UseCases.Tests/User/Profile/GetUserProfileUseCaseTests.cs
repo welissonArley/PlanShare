@@ -9,7 +9,7 @@ public class GetUserProfileUseCaseTests
     [Fact]
     public async Task Success()
     {
-        var user = UserBuilder.Build();
+        (var user, _) = UserBuilder.Build();
 
         var useCase = CreateUseCase(user);
 
