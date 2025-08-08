@@ -1,6 +1,7 @@
 ﻿using PlanShare.Application.Services.Authentication;
 using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
+using PlanShare.Domain.Extensions;
 using PlanShare.Domain.Repositories.User;
 using PlanShare.Domain.Security.Cryptography;
 using PlanShare.Exceptions.ExceptionsBase;
@@ -30,8 +31,7 @@ public class DoLoginUseCase : IDoLoginUseCase
             throw new InvalidLoginException();
 
         var passwordMatch = _passwordEncripter.IsValid(request.Password, user.Password);
-
-        if (passwordMatch == false)
+        if (passwordMatch.IsFalse())
             throw new InvalidLoginException();
 
         var tokens = await _tokenService.GenerateTokens(user);
