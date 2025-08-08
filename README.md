@@ -14,13 +14,35 @@ A integração em tempo real, um dos diferenciais do aplicativo, é garantida pe
 
 ![hero-image]
 
-### Features
+# **Curso na Rocketseat**:
+### [Curso Completo: Construindo um App com .NET MAUI + API Backend][curso-rocketseat]
 
-- **Domain-Driven Design (DDD)**: Estrutura modular que facilita o entendimento e a manutenção do domínio da aplicação.
-- **Criação e Gerenciamento de Tarefas**: Criação de tarefas com campos personalizados como título, descrição, prazo e anexo de arquivos. Edição e exclusão de tarefas diretamente no aplicativo.
-- **Compartilhamento de Tarefas**: Convidar pessoas para colaborar em tarefas.
-- **Login com Google**: Autenticação rápida e segura por meio de Google. Experiência simplificada para novos usuários sem a necessidade de criar uma conta do zero e velocidade para o Login.
-- **Integração com Azure**: Para armazenamento seguro e escalável de arquivos e para a implementação de filas de mensagens no Azure, possibilitando a comunicação assíncrona e o processamento de tarefas em segundo plano.
+Este repositório faz parte de um curso completo onde ensino, do zero, como criar um aplicativo utilizando .NET MAUI, a tecnologia multiplataforma da Microsoft para desenvolvimento mobile (Android e iOS) e desktop (Windows e MAC).
+
+Além da construção do app, o curso também traz dicas avançadas de backend, com foco em boas práticas para criar uma API robusta que se comunica com o app através de requisições HTTP e WebSocket.
+
+Se você ainda não tem experiência com C#, não se preocupe! O curso também inclui uma trilha exclusiva de C# para iniciantes, onde você aprenderá os fundamentos da linguagem de forma clara e prática, antes de partir para o desenvolvimento do app e da API.
+
+Este projeto foi pensado tanto para quem está começando agora quanto para desenvolvedores mais experientes que querem se aprofundar com exemplos práticos e atuais.
+
+Durante o curso, você aprenderá:
+
+- Como criar um app do zero com .NET MAUI.
+- Navegação entre páginas, bindings e integração com serviços.
+- Comunicação com APIs via HttpClient.
+- Uso de WebSocket para atualizações em tempo real.
+- Login com Google: Integração para autenticação via conta Google.
+- Mensageria: Utilização de mensageria para gerenciar a exclusão de contas.
+- Segurança: Implementação de JWT e Refresh Token para segurança de autenticação.
+- Banco de Dados: Configuração e uso de MySQL ou SQLServer.
+- Arquitetura: Princípios de Domain-Driven Design (DDD) e SOLID.
+- Validação: Utilização de FluentValidation para validação de dados.
+- Testes: Implementação de testes de unidade e de integração para garantir a qualidade do código tanto na API quanto pro APP.
+- Injeção de Dependências: Uso de injeção de dependências para melhor modularidade e testabilidade do código.
+
+## 🎁 Cupom de Desconto
+
+Você pode accessar o curso [neste link][curso-rocketseat] que o cupom **WELISSON** já vai ser aplicado e você irá garantir um desconto exclusivo na inscrição do curso!
 
 ### Construído com
 
@@ -60,3 +82,5 @@ A integração em tempo real, um dos diferenciais do aplicativo, é garantida pe
 [badge-rider]: https://img.shields.io/badge/Rider-000000?style=for-the-badge&logo=Rider&logoColor=white
 
 [badge-figma]: https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white
+
+[curso-rocketseat]: https://www.rocketseat.com.br/oferta/influencer/v2/welisson
