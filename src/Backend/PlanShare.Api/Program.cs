@@ -94,3 +94,8 @@ async Task MigrateDatabase()
 
     DataBaseMigration.Migrate(databaseType, stringConnection, scope.ServiceProvider);
 }
+
+public partial class Program
+{
+
+}
