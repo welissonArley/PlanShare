@@ -2,6 +2,7 @@
 using Shouldly;
 using System.Net;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace WebApi.Tests.User.Register;
 public class RegisterUserTests : IClassFixture<CustomWebApplicationFactory>
@@ -21,5 +22,13 @@ public class RegisterUserTests : IClassFixture<CustomWebApplicationFactory>
         var response = await _httpClient.PostAsJsonAsync("/users", request);
 
         response.StatusCode.ShouldBe(HttpStatusCode.Created);
+
+        using var responseBody = await response.Content.ReadAsStreamAsync();
+
+        var document = await JsonDocument.ParseAsync(responseBody);
+
+        document.RootElement.GetProperty("id").GetGuid().ShouldNotBe(Guid.Empty);
+        document.RootElement.GetProperty("name").GetString().ShouldBe(request.Name);
+        document.RootElement.GetProperty("tokens").GetProperty("accessToken").GetString().ShouldNotBeNullOrEmpty();
     }
 }
