@@ -1,5 +1,4 @@
 ﻿using CommonTestUtilities.Requests;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Shouldly;
 using System.Net;
 using System.Net.Http.Json;
@@ -9,7 +8,7 @@ public class RegisterUserTests : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly HttpClient _httpClient;
 
-    public RegisterUserTests(WebApplicationFactory<Program> factory)
+    public RegisterUserTests(CustomWebApplicationFactory factory)
     {
         _httpClient = factory.CreateClient();
     }

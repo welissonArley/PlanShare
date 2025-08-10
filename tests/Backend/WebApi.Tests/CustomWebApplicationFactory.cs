@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PlanShare.Infrastructure.DataAccess;
 
 namespace WebApi.Tests;
-internal class CustomWebApplicationFactory : WebApplicationFactory<Program>
+public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

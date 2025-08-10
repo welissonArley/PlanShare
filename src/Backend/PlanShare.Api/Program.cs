@@ -4,6 +4,7 @@ using PlanShare.Api.Filters;
 using PlanShare.Api.Middleware;
 using PlanShare.Api.Token;
 using PlanShare.Application;
+using PlanShare.Domain.Extensions;
 using PlanShare.Domain.Security.Tokens;
 using PlanShare.Infrastructure;
 using PlanShare.Infrastructure.Extensions;
@@ -50,7 +51,7 @@ builder.Services.AddSwaggerGen(config =>
 });
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
@@ -78,7 +79,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-if (builder.Configuration.IsUnitTestEnviroment() == false)
+if (builder.Environment.IsTests().IsFalse())
 {
     await MigrateDatabase();
 }

@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="FluentMigrator" Version="7.1.0" />
     <PackageReference Include="FluentMigrator.Runner" Version="7.1.0" />
