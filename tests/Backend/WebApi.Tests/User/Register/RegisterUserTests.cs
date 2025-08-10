@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http.Json;
 
 namespace WebApi.Tests.User.Register;
-public class RegisterUserTests : IClassFixture<WebApplicationFactory<Program>>
+public class RegisterUserTests : IClassFixture<CustomWebApplicationFactory>
 {
     private readonly HttpClient _httpClient;
 
