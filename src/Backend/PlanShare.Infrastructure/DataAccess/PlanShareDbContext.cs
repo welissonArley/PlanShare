@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PlanShare.Domain.Entities;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("WebApi.Tests")]
 namespace PlanShare.Infrastructure.DataAccess;
-public sealed class PlanShareDbContext : DbContext
+internal sealed class PlanShareDbContext : DbContext
 {
     public PlanShareDbContext(DbContextOptions options) : base(options) { }
 

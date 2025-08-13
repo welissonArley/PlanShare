@@ -3,7 +3,7 @@ using Shouldly;
 using System.Net;
 using WebApi.Tests.Resources;
 
-namespace WebApi.Tests.User.Profile;
+namespace WebApi.Tests.User.ChangePassword;
 public class ChangeUserPasswordInvalidTokenTest : CustomClassFixture
 {
     private const string BaseUrl = "/users/change-password";

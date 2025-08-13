@@ -1,4 +1,4 @@
-﻿using PlanShare.Communication.Requests;
+﻿using CommonTestUtilities.Requests;
 using PlanShare.Domain.Extensions;
 using PlanShare.Exceptions;
 using Shouldly;
@@ -8,39 +8,47 @@ using System.Text.Json;
 using WebApi.Tests.InlineData;
 using WebApi.Tests.Resources;
 
-namespace WebApi.Tests.User.ChangePassword;
-public class ChangeUserPasswordErrorTest : CustomClassFixture
+namespace WebApi.Tests.User.Update;
+
+public class UpdateUserTest : CustomClassFixture
 {
-    private const string BaseUrl = "/users/change-password";
+    private const string BaseUrl = "/users";
 
     private readonly UserIdentityManager _user;
 
-    public ChangeUserPasswordErrorTest(CustomWebApplicationFactory factory) : base(factory)
+    public UpdateUserTest(CustomWebApplicationFactory factory) : base(factory)
     {
         _user = factory.User;
     }
 
+    [Fact]
+    public async Task Success()
+    {
+        var request = RequestUpdateUserBuilder.Build();
+
+        var response = await DoPut(BaseUrl, request, _user.GetAccessToken());
+
+        response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+    }
+
     [Theory]
     [ClassData(typeof(CultureInlineDataTest))]
-    public async Task Error_NewPassword_Empty(string culture)
+    public async Task Error_Empty_Name(string culture)
     {
-        var request = new RequestChangePasswordJson
-        {
-            NewPassword = string.Empty,
-            Password = _user.GetPassword()
-        };
+        var request = RequestUpdateUserBuilder.Build();
+        request.Name = string.Empty;
 
         var response = await DoPut(BaseUrl, request, _user.GetAccessToken(), culture);
 
         response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
 
-        using var responseBody = await response.Content.ReadAsStreamAsync();
+        await using var responseBody = await response.Content.ReadAsStreamAsync();
 
         var document = await JsonDocument.ParseAsync(responseBody);
 
         var errors = document.RootElement.GetProperty("errors").EnumerateArray();
 
-        var expectedMessage = ResourceMessagesException.ResourceManager.GetString("PASSWORD_EMPTY", new CultureInfo(culture));
+        var expectedMessage = ResourceMessagesException.ResourceManager.GetString("NAME_EMPTY", new CultureInfo(culture));
 
         errors.ShouldSatisfyAllConditions(erros =>
         {
