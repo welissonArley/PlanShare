@@ -11,7 +11,7 @@ using WebApi.Tests.Resources;
 namespace WebApi.Tests;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public UserIdentityManager User;
+    public UserIdentityManager User = default!;
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
