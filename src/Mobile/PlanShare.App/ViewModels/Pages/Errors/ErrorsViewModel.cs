@@ -17,7 +17,7 @@ public partial class ErrorsViewModel : ObservableObject, IQueryAttributable
     }
 
     [RelayCommand]
-    public async Task Close() => await _navigationService.GoToAsync("..");
+    public async Task Close() => await _navigationService.ClosePage();
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
