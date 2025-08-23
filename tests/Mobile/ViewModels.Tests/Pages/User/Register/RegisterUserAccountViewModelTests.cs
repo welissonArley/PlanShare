@@ -19,10 +19,7 @@ public class RegisterUserAccountViewModelTests
 
         await act.ShouldNotThrowAsync();
 
-        navigationService.Verify(service =>
-            service.GoToAsync(
-                It.Is<ShellNavigationState>(state =>
-                    state.Location.OriginalString.Equals($"../{RoutePages.LOGIN_PAGE}"))), Times.Once);
+        navigationService.Verify(service => service.GoToAsync(GetValidationForRoutePage($"../{RoutePages.LOGIN_PAGE}")), Times.Once);
     }
 
     [Fact]
@@ -42,11 +39,32 @@ public class RegisterUserAccountViewModelTests
     [Fact]
     public async Task RegisterAccount_Executed_With_Invalid_Result()
     {
-        /*var (viewModel, navigationService) = CreateViewModel();
+        var (viewModel, navigationService) = CreateViewModel(Result.Failure(["Error 1"]));
 
         var act = async () => await viewModel.RegisterAccountCommand.ExecuteAsync(null);
 
-        await act.ShouldNotThrowAsync();*/
+        await act.ShouldNotThrowAsync();
+
+        viewModel.StatusPage.ShouldBe(StatusPage.Default);
+        navigationService.Verify(service =>
+            service.GoToAsync(
+                GetValidationForRoutePage(RoutePages.ERROR_PAGE),
+                GetValidationForDictionaryErrors("Error 1")
+            ), Times.Once);
+    }
+
+    private ShellNavigationState GetValidationForRoutePage(string route)
+    {
+        return It.Is<ShellNavigationState>(state => state.Location.OriginalString.Equals(route));
+    }
+
+    private Dictionary<string, object> GetValidationForDictionaryErrors(string errorMessage)
+    {
+        return It.Is<Dictionary<string, object>>(dictionary =>
+            dictionary.ContainsKey("errors")
+            && dictionary["errors"] is IList<string>
+            && ((IList<string>)dictionary["errors"]).Count == 1
+            && ((IList<string>)dictionary["errors"]).Contains(errorMessage));
     }
 
     private (RegisterUserAccountViewModel viewModel, Mock<INavigationService> navigationService) CreateViewModel(Result result)
