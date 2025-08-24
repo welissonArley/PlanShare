@@ -12,8 +12,7 @@ public partial class DoLoginViewModel : ViewModelBase
 
     private readonly IDoLoginUseCase _loginUseCase;
 
-    public DoLoginViewModel(IDoLoginUseCase loginUseCase,
-        INavigationService navigationService) : base(navigationService)
+    public DoLoginViewModel(INavigationService navigationService, IDoLoginUseCase loginUseCase) : base(navigationService)
     {
         Model = new Models.Login();
 
