@@ -6,6 +6,7 @@ using PlanShare.App.Models.ValueObjects;
 using PlanShare.App.Navigation;
 using PlanShare.App.ViewModels.Pages.User.Register;
 using Shouldly;
+using ViewModels.Tests.Extensions;
 
 namespace ViewModels.Tests.Pages.User.Register;
 public class RegisterUserAccountViewModelTests
@@ -19,7 +20,7 @@ public class RegisterUserAccountViewModelTests
 
         await act.ShouldNotThrowAsync();
 
-        navigationService.Verify(service => service.GoToAsync(GetValidationForRoutePage($"../{RoutePages.LOGIN_PAGE}")), Times.Once);
+        navigationService.VerifyGoTo($"../{RoutePages.LOGIN_PAGE}", Times.Once);
     }
 
     [Fact]
@@ -46,25 +47,8 @@ public class RegisterUserAccountViewModelTests
         await act.ShouldNotThrowAsync();
 
         viewModel.StatusPage.ShouldBe(StatusPage.Default);
-        navigationService.Verify(service =>
-            service.GoToAsync(
-                GetValidationForRoutePage(RoutePages.ERROR_PAGE),
-                GetValidationForDictionaryErrors("Error 1")
-            ), Times.Once);
-    }
 
-    private ShellNavigationState GetValidationForRoutePage(string route)
-    {
-        return It.Is<ShellNavigationState>(state => state.Location.OriginalString.Equals(route));
-    }
-
-    private Dictionary<string, object> GetValidationForDictionaryErrors(string errorMessage)
-    {
-        return It.Is<Dictionary<string, object>>(dictionary =>
-            dictionary.ContainsKey("errors")
-            && dictionary["errors"] is IList<string>
-            && ((IList<string>)dictionary["errors"]).Count == 1
-            && ((IList<string>)dictionary["errors"]).Contains(errorMessage));
+        navigationService.VerifyGoTo(RoutePages.ERROR_PAGE, ["Error 1"], Times.Once);        
     }
 
     private (RegisterUserAccountViewModel viewModel, Mock<INavigationService> navigationService) CreateViewModel(Result result)

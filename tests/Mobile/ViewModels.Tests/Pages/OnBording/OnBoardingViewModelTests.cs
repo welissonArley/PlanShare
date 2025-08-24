@@ -3,6 +3,7 @@ using Moq;
 using PlanShare.App.Navigation;
 using PlanShare.App.ViewModels.Pages.OnBording;
 using Shouldly;
+using ViewModels.Tests.Extensions;
 
 namespace ViewModels.Tests.Pages.OnBording;
 public class OnBoardingViewModelTests
@@ -16,10 +17,7 @@ public class OnBoardingViewModelTests
 
         await act.ShouldNotThrowAsync();
 
-        navigationService.Verify(service =>
-            service.GoToAsync(
-                It.Is<ShellNavigationState>(state =>
-                    state.Location.OriginalString.Equals(RoutePages.LOGIN_PAGE))), Times.Once);
+        navigationService.VerifyGoTo(RoutePages.LOGIN_PAGE, Times.Once);
     }
 
     [Fact]
@@ -31,10 +29,7 @@ public class OnBoardingViewModelTests
 
         await act.ShouldNotThrowAsync();
 
-        navigationService.Verify(service =>
-            service.GoToAsync(
-                It.Is<ShellNavigationState>(state =>
-                    state.Location.OriginalString.Equals(RoutePages.USER_REGISTER_ACCOUNT_PAGE))), Times.Once);
+        navigationService.VerifyGoTo(RoutePages.USER_REGISTER_ACCOUNT_PAGE, Times.Once);
     }
 
     private (OnBoardingViewModel viewModel, Mock<INavigationService> navigationService) CreateViewModel()
