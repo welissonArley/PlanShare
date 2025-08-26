@@ -1,13 +1,17 @@
-﻿using CommonTestUtilities.Models;
+﻿using CommonTestUtilities.Maui;
+using CommonTestUtilities.Models;
 using CommonTestUtilities.Navigation;
+using CommonTestUtilities.UseCases.User.Photo;
 using CommonTestUtilities.UseCases.User.Profile;
 using CommonTestUtilities.UseCases.User.Update;
 using Moq;
 using PlanShare.App.Models;
+using PlanShare.App.Models.Enums;
 using PlanShare.App.Models.ValueObjects;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources;
 using PlanShare.App.ViewModels.Pages.User.Profile;
+using PlanShare.App.ViewModels.Popups.Files;
 using Shouldly;
 using ViewModels.Tests.Extensions;
 
@@ -86,18 +90,52 @@ public class UserProfileViewModelTests
         navigationService.VerifyGoTo(RoutePages.ERROR_PAGE, ["Error 1"], Times.Once);
     }
 
-    private (UserProfileViewModel viewModel, Mock<INavigationService> navigationService) CreateViewModel(Result<PlanShare.App.Models.User> result)
+    [Theory]
+    [InlineData(ChooseFileOption.TakePicture)]
+    [InlineData(ChooseFileOption.UploadFromGallery)]
+    public async Task ChangeProfilePhoto_Executed_With_Valid_Result(ChooseFileOption fileOption)
     {
-        var navigationService = NavigationServiceBuilder.Build();
+        var (viewModel, navigationService) = CreateViewModel(Result<PlanShare.App.Models.User>.Success(UserBuilder.Build()), fileOption);
+
+        var act = async () => await viewModel.ChangeProfilePhotoCommand.ExecuteAsync(null);
+
+        await act.ShouldNotThrowAsync();
+
+        viewModel.StatusPage.ShouldBe(StatusPage.Default);
+
+        navigationService.Verify(service => service.ShowSuccessFeedback(ResourceTexts.PROFILE_PHOTO_SUCCESSFULLY_UPDATED), Times.Once);
+    }
+
+    [Theory]
+    [InlineData(ChooseFileOption.TakePicture)]
+    [InlineData(ChooseFileOption.UploadFromGallery)]
+    public async Task ChangeProfilePhoto_Executed_With_Invalid_Result(ChooseFileOption fileOption)
+    {
+        var (viewModel, navigationService) = CreateViewModel(Result<PlanShare.App.Models.User>.Failure(["Error 1"]), fileOption);
+
+        var act = async () => await viewModel.ChangeProfilePhotoCommand.ExecuteAsync(null);
+
+        await act.ShouldNotThrowAsync();
+
+        viewModel.StatusPage.ShouldBe(StatusPage.Default);
+
+        navigationService.VerifyGoTo(RoutePages.ERROR_PAGE, ["Error 1"], Times.Once);
+    }
+
+    private (UserProfileViewModel viewModel, Mock<INavigationService> navigationService) CreateViewModel(Result<PlanShare.App.Models.User> result, ChooseFileOption? fileOption = null)
+    {
+        var navigationService = fileOption is null ? NavigationServiceBuilder.Build() : NavigationServiceBuilder.Build<OptionsForProfilePhotoViewModel, ChooseFileOption>(fileOption.Value);
         var updateUserUseCase = UpdateUserUseCaseBuilder.Build(result);
         var getProfileUseCase = GetUserProfileUseCaseBuilder.Build(result);
+        var changeUserPhotoUseCase = ChangeUserPhotoUseCaseBuilder.Build(result);
+        var mediaPicker = MediaPickerBuilder.Build();
 
         var viewModel = new UserProfileViewModel(
             navigationService.Object,
             getProfileUseCase,
             updateUserUseCase,
-            null,
-            null);
+            changeUserPhotoUseCase,
+            mediaPicker);
 
         return (viewModel, navigationService);
     }
