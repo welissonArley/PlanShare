@@ -7,6 +7,7 @@ using PlanShare.Domain.Enums;
 using PlanShare.Domain.Extensions;
 using PlanShare.Domain.Repositories;
 using PlanShare.Domain.Repositories.Association;
+using PlanShare.Domain.Repositories.RefreshToken;
 using PlanShare.Domain.Repositories.User;
 using PlanShare.Domain.Repositories.WorkItem;
 using PlanShare.Domain.Security.Cryptography;
@@ -69,6 +70,9 @@ public static class DependencyInjectionExtension
         services.AddScoped<IWorkItemUpdateOnlyRepository, WorkItemRepository>();
 
         services.AddScoped<IPersonAssociationReadOnlyRepository, PersonAssociationRepository>();
+
+        services.AddScoped<IRefreshTokenReadOnlyRepository, RefreshTokenRepository>();
+        services.AddScoped<IRefreshTokenWriteOnlyRepository, RefreshTokenRepository>();
     }
 
     private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
