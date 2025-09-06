@@ -19,6 +19,7 @@ using PlanShare.Infrastructure.Extensions;
 using PlanShare.Infrastructure.Security.Cryptography;
 using PlanShare.Infrastructure.Security.Tokens.Access.Generator;
 using PlanShare.Infrastructure.Security.Tokens.Access.Validator;
+using PlanShare.Infrastructure.Security.Tokens.Refresh;
 using PlanShare.Infrastructure.Services.LoggedUser;
 using System.Reflection;
 
@@ -86,6 +87,8 @@ public static class DependencyInjectionExtension
     {
         var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpiresMinutes");
         var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey")!;
+
+        services.AddScoped<IRefreshTokenGenerator, RefreshTokenGenerator>();
 
         services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey));
         services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey));
