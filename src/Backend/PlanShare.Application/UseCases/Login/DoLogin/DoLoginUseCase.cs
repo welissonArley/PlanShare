@@ -2,6 +2,8 @@
 using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
 using PlanShare.Domain.Extensions;
+using PlanShare.Domain.Repositories;
+using PlanShare.Domain.Repositories.RefreshToken;
 using PlanShare.Domain.Repositories.User;
 using PlanShare.Domain.Security.Cryptography;
 using PlanShare.Exceptions.ExceptionsBase;
@@ -12,15 +14,21 @@ public class DoLoginUseCase : IDoLoginUseCase
     private readonly IUserReadOnlyRepository _repository;
     private readonly IPasswordEncripter _passwordEncripter;
     private readonly ITokenService _tokenService;
+    private readonly IRefreshTokenWriteOnlyRepository _refreshTokenRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public DoLoginUseCase(
         IUserReadOnlyRepository repository,
         IPasswordEncripter passwordEncripter,
-        ITokenService tokenService)
+        ITokenService tokenService,
+        IRefreshTokenWriteOnlyRepository refreshTokenRepository,
+        IUnitOfWork unitOfWork)
     {
         _passwordEncripter = passwordEncripter;
         _repository = repository;
         _tokenService = tokenService;
+        _refreshTokenRepository = refreshTokenRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestLoginJson request)
@@ -34,7 +42,16 @@ public class DoLoginUseCase : IDoLoginUseCase
         if (passwordMatch.IsFalse())
             throw new InvalidLoginException();
 
-        var tokens = await _tokenService.GenerateTokens(user);
+        var tokens = _tokenService.GenerateTokens(user);
+
+        await _refreshTokenRepository.Add(new Domain.Entities.RefreshToken
+        {
+            UserId = user.Id,
+            Token = tokens.Refresh,
+            AccessTokenId = tokens.AccessTokenId
+        });
+
+        await _unitOfWork.Commit();
 
         return new ResponseRegisteredUserJson
         {
@@ -42,7 +59,8 @@ public class DoLoginUseCase : IDoLoginUseCase
             Name = user.Name,
             Tokens = new ResponseTokensJson
             {
-                AccessToken = tokens.Access
+                AccessToken = tokens.Access,
+                RefreshToken = tokens.Refresh
             }
         };
     }

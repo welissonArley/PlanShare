@@ -14,7 +14,7 @@ internal class RefreshTokenRepository : IRefreshTokenReadOnlyRepository, IRefres
     public async Task Add(RefreshToken refreshToken)
     {
         await _context.RefreshTokens
-            .Where(refreshToken => refreshToken.UserId == refreshToken.UserId)
+            .Where(token => token.UserId == refreshToken.UserId)
             .ExecuteDeleteAsync();
 
         await _context.RefreshTokens.AddAsync(refreshToken);

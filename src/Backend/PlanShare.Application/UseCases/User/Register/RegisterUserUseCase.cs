@@ -5,6 +5,7 @@ using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
 using PlanShare.Domain.Extensions;
 using PlanShare.Domain.Repositories;
+using PlanShare.Domain.Repositories.RefreshToken;
 using PlanShare.Domain.Repositories.User;
 using PlanShare.Domain.Security.Cryptography;
 using PlanShare.Exceptions;
@@ -18,19 +19,22 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     private readonly IUserWriteOnlyRepository _repository;
     private readonly IPasswordEncripter _passwordEncripter;
     private readonly ITokenService _tokenService;
+    private readonly IRefreshTokenWriteOnlyRepository _refreshTokenRepository;
 
     public RegisterUserUseCase(
         IUnitOfWork unitOfWork,
         IUserWriteOnlyRepository repository,
         IUserReadOnlyRepository userReadOnlyRepository,
         IPasswordEncripter passwordEncripter,
-        ITokenService tokenService)
+        ITokenService tokenService,
+        IRefreshTokenWriteOnlyRepository refreshTokenRepository)
     {
         _unitOfWork = unitOfWork;
         _userReadOnlyRepository = userReadOnlyRepository;
         _repository = repository;
         _passwordEncripter = passwordEncripter;
         _tokenService = tokenService;
+        _refreshTokenRepository = refreshTokenRepository;
     }
 
     public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
@@ -40,19 +44,27 @@ public class RegisterUserUseCase : IRegisterUserUseCase
         var user = request.Adapt<Domain.Entities.User>();
         user.Password = _passwordEncripter.Encrypt(request.Password);
 
+        var tokens = _tokenService.GenerateTokens(user);
+
         await _repository.Add(user);
 
-        await _unitOfWork.Commit();
+        await _refreshTokenRepository.Add(new Domain.Entities.RefreshToken
+        {
+            UserId = user.Id,
+            Token = tokens.Refresh,
+            AccessTokenId = tokens.AccessTokenId
+        });
 
-        var tokens = await _tokenService.GenerateTokens(user);
+        await _unitOfWork.Commit();
 
         return new()
         {
             Id = user.Id,
             Name = user.Name,
-            Tokens = new()
+            Tokens = new ResponseTokensJson
             {
-                AccessToken = tokens.Access
+                AccessToken = tokens.Access,
+                RefreshToken = tokens.Refresh
             }
         };
     }
