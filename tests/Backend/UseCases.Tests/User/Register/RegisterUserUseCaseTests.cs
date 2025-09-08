@@ -78,11 +78,12 @@ public class RegisterUserUseCaseTests
         var userWriteOnlyRepository = UserWriteOnlyRepositoryBuilder.Build();
         var passwordEncripter = PasswordEncripterBuilder.Build();
         var tokenService = TokenServiceBuilder.Build();
+        var refreshTokenRepository = RefreshTokenWriteOnlyRepositoryBuilder.Build();
 
         var userReadOnlyRepository = new UserReadOnlyRepositoryBuilder();
         if(emailAlreadyExist.NotEmpty())
             userReadOnlyRepository.ExistActiveUserWithEmail(emailAlreadyExist);
 
-        return new RegisterUserUseCase(unitOfWork, userWriteOnlyRepository, userReadOnlyRepository.Build(), passwordEncripter, tokenService);
+        return new RegisterUserUseCase(unitOfWork, userWriteOnlyRepository, userReadOnlyRepository.Build(), passwordEncripter, tokenService, refreshTokenRepository);
     }
 }

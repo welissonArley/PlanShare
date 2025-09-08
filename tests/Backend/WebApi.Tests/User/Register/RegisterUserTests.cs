@@ -32,6 +32,7 @@ public class RegisterUserTests : CustomClassFixture
         document.RootElement.GetProperty("id").GetGuid().ShouldNotBe(Guid.Empty);
         document.RootElement.GetProperty("name").GetString().ShouldBe(request.Name);
         document.RootElement.GetProperty("tokens").GetProperty("accessToken").GetString().ShouldNotBeNullOrEmpty();
+        document.RootElement.GetProperty("tokens").GetProperty("refreshToken").GetString().ShouldNotBeNullOrEmpty();
     }
 
     [Theory]

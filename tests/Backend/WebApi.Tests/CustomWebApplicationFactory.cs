@@ -1,9 +1,11 @@
 ﻿using CommonTestUtilities.Entities;
+using CommonTestUtilities.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PlanShare.Domain.Dtos;
+using PlanShare.Domain.Repositories.RefreshToken;
 using PlanShare.Domain.Security.Tokens;
 using PlanShare.Infrastructure.DataAccess;
 using WebApi.Tests.Resources;
@@ -25,6 +27,10 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                     options.UseInMemoryDatabase("InMemoryDbForTesting");
                     options.UseInternalServiceProvider(provider);
                 });
+
+                var mockRefreshTokenRepository = RefreshTokenWriteOnlyRepositoryBuilder.Build();
+
+                services.AddScoped<IRefreshTokenWriteOnlyRepository>(config => mockRefreshTokenRepository);
 
                 using var scope = services.BuildServiceProvider().CreateScope();
                 

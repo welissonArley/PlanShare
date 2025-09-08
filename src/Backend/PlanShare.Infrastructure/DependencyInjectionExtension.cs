@@ -31,7 +31,7 @@ public static class DependencyInjectionExtension
         IConfiguration configuration,
         IWebHostEnvironment environment)
     {
-        AddRepositories(services);
+        AddRepositories(services, environment);
         AddLoggedUser(services);
         AddTokenHandlers(services, configuration);
         AddPasswordEncripter(services);
@@ -58,7 +58,7 @@ public static class DependencyInjectionExtension
         });
     }
 
-    private static void AddRepositories(IServiceCollection services)
+    private static void AddRepositories(IServiceCollection services, IWebHostEnvironment environment)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -73,7 +73,9 @@ public static class DependencyInjectionExtension
         services.AddScoped<IPersonAssociationReadOnlyRepository, PersonAssociationRepository>();
 
         services.AddScoped<IRefreshTokenReadOnlyRepository, RefreshTokenRepository>();
-        services.AddScoped<IRefreshTokenWriteOnlyRepository, RefreshTokenRepository>();
+
+        if (environment.IsTests().IsFalse())
+            services.AddScoped<IRefreshTokenWriteOnlyRepository, RefreshTokenRepository>();
     }
 
     private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
