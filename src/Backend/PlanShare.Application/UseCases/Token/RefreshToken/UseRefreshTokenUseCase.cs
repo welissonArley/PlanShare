@@ -4,6 +4,7 @@ using PlanShare.Communication.Responses;
 using PlanShare.Domain.Repositories;
 using PlanShare.Domain.Repositories.RefreshToken;
 using PlanShare.Domain.Security.Tokens;
+using PlanShare.Exceptions.ExceptionsBase;
 
 namespace PlanShare.Application.UseCases.Token.RefreshToken;
 public class UseRefreshTokenUseCase : IUseRefreshTokenUseCase
@@ -30,6 +31,33 @@ public class UseRefreshTokenUseCase : IUseRefreshTokenUseCase
     
     public async Task<ResponseTokensJson> Execute(RequestNewTokenJson request)
     {
-        return new ResponseTokensJson();
+        var refreshToken = await _refreshTokenReadOnlyRepository.Get(request.RefreshToken);
+        if (refreshToken is null)
+            throw new RefreshTokenNotFoundException();
+
+        var accessTokenId = _accessTokenValidator.GetAccessTokenIdentifier(request.AccessToken);
+        if(refreshToken.AccessTokenId != accessTokenId)
+            throw new RefreshTokenNotFoundException();
+
+        var expireAt = refreshToken.CreatedAt.AddDays(7);
+        if(DateTime.UtcNow > expireAt)
+            throw new RefreshTokenExpiredException();
+
+        var tokens = _tokenService.GenerateTokens(refreshToken.User);
+
+        await _refreshTokenWriteOnlyRepository.Add(new Domain.Entities.RefreshToken
+        {
+            UserId = refreshToken.UserId,
+            Token = tokens.Refresh,
+            AccessTokenId = tokens.AccessTokenId
+        });
+
+        await _unitOfWork.Commit();
+
+        return new ResponseTokensJson
+        {
+            RefreshToken = tokens.Refresh,
+            AccessToken = tokens.Access
+        };
     }
 }
