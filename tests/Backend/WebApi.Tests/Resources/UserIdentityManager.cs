@@ -18,4 +18,5 @@ public class UserIdentityManager
     public string GetEmail() => _user.Email;
     public string GetName() => _user.Name;
     public string GetAccessToken() => _tokens.Access;
+    public string GetRefreshToken() => _tokens.Refresh;
 }

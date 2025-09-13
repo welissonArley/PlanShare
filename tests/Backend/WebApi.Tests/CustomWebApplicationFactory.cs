@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PlanShare.Domain.Dtos;
+using PlanShare.Application.Services.Authentication;
 using PlanShare.Domain.Repositories.RefreshToken;
-using PlanShare.Domain.Security.Tokens;
 using PlanShare.Infrastructure.DataAccess;
 using WebApi.Tests.Resources;
 
@@ -37,23 +36,28 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 var dbContext = scope.ServiceProvider.GetRequiredService<PlanShareDbContext>();
                 dbContext.Database.EnsureDeleted();
 
-                var accessTokenGenerator = scope.ServiceProvider.GetRequiredService<IAccessTokenGenerator>();
+                var tokenService = scope.ServiceProvider.GetRequiredService<ITokenService>();
 
-                StartDatabase(dbContext, accessTokenGenerator);
+                StartDatabase(dbContext, tokenService);
             });
     }
 
-    private void StartDatabase(PlanShareDbContext dbContext, IAccessTokenGenerator accessTokenGenerator)
+    private void StartDatabase(PlanShareDbContext dbContext, ITokenService tokenService)
     {
         (var user, var password) = UserBuilder.Build();
 
-        dbContext.Users.Add(user);
-        dbContext.SaveChanges();
+        var tokensDto = tokenService.GenerateTokens(user);
 
-        var tokensDto = new TokensDto()
+        dbContext.Users.Add(user);
+        
+        dbContext.RefreshTokens.Add(new PlanShare.Domain.Entities.RefreshToken
         {
-            Access = accessTokenGenerator.Generate(user).token
-        };
+            Token = tokensDto.Refresh,
+            AccessTokenId = tokensDto.AccessTokenId,
+            UserId = user.Id
+        });
+
+        dbContext.SaveChanges();
 
         User = new UserIdentityManager(user, password, tokensDto);
     }
