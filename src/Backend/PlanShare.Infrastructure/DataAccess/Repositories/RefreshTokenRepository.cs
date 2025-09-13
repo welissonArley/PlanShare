@@ -27,4 +27,11 @@ internal class RefreshTokenRepository : IRefreshTokenReadOnlyRepository, IRefres
             .Include(refreshToken => refreshToken.User)
             .FirstOrDefaultAsync(refreshToken => refreshToken.Token.Equals(token));
     }
+
+    public async Task<bool> HasRefreshTokenAssociated(User user, Guid accessTokenId)
+    {
+        return await _context
+            .RefreshTokens
+            .AnyAsync(refreshToken => refreshToken.UserId == user.Id && refreshToken.AccessTokenId == accessTokenId);
+    }
 }

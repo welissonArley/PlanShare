@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
 using PlanShare.Communication.Responses;
+using PlanShare.Domain.Extensions;
+using PlanShare.Domain.Repositories.RefreshToken;
 using PlanShare.Domain.Repositories.User;
 using PlanShare.Domain.Security.Tokens;
 using PlanShare.Exceptions;
@@ -13,11 +15,16 @@ public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
 {
     private readonly IAccessTokenValidator _accessTokenValidator;
     private readonly IUserReadOnlyRepository _repository;
+    private readonly IRefreshTokenReadOnlyRepository _refreshTokenRepository;
 
-    public AuthenticatedUserFilter(IAccessTokenValidator accessTokenValidator, IUserReadOnlyRepository repository)
+    public AuthenticatedUserFilter(
+        IAccessTokenValidator accessTokenValidator,
+        IUserReadOnlyRepository repository,
+        IRefreshTokenReadOnlyRepository refreshTokenRepository)
     {
         _accessTokenValidator = accessTokenValidator;
         _repository = repository;
+        _refreshTokenRepository = refreshTokenRepository;
     }
 
     public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
@@ -32,9 +39,12 @@ public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
 
             var user = await _repository.GetById(userIdentifier);
             if (user is null)
-            {
                 throw new UnauthorizedException(ResourceMessagesException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE);
-            }
+
+            var accessTokenId = _accessTokenValidator.GetAccessTokenIdentifier(token);
+            var existRefreshTokenAssociated = await _refreshTokenRepository.HasRefreshTokenAssociated(user, accessTokenId);
+            if (existRefreshTokenAssociated.IsFalse())
+                throw new UnauthorizedException(ResourceMessagesException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE);
         }
         catch (SecurityTokenExpiredException)
         {
