@@ -1,6 +1,8 @@
 ﻿using PlanShare.App.Data.Storage.SecureStorage.Tokens;
+using PlanShare.Communication.Responses;
 using System.Globalization;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 
 namespace PlanShare.App.Data.Network;
 public class PlanShareHandler : DelegatingHandler
@@ -21,7 +23,19 @@ public class PlanShareHandler : DelegatingHandler
         if(string.IsNullOrWhiteSpace(tokens.AccessToken) == false)
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", tokens.AccessToken);
 
-        return await base.SendAsync(request, cancellationToken);
+        var response = await base.SendAsync(request, cancellationToken);
+        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        {
+            await response.Content.LoadIntoBufferAsync(cancellationToken);
+
+            var error = await response.Content.ReadFromJsonAsync<ResponseErrorJson>(cancellationToken);
+            if (error.TokenIsExpired)
+            {
+
+            }
+        }
+
+        return response;
     }
 
     private static void ChangeRequestCulture(HttpRequestMessage request)
