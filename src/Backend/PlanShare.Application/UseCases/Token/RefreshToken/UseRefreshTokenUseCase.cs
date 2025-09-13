@@ -1,4 +1,5 @@
-﻿using PlanShare.Application.Services.Authentication;
+﻿using Microsoft.Extensions.Options;
+using PlanShare.Application.Services.Authentication;
 using PlanShare.Communication.Requests;
 using PlanShare.Communication.Responses;
 using PlanShare.Domain.Repositories;
@@ -14,19 +15,22 @@ public class UseRefreshTokenUseCase : IUseRefreshTokenUseCase
     private readonly IRefreshTokenReadOnlyRepository _refreshTokenReadOnlyRepository;
     private readonly IAccessTokenValidator _accessTokenValidator;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly TokenSettings _tokenSettings;
 
     public UseRefreshTokenUseCase(
         ITokenService tokenService,
         IRefreshTokenWriteOnlyRepository refreshTokenWriteOnlyRepository,
         IRefreshTokenReadOnlyRepository refreshTokenReadOnlyRepository,
         IAccessTokenValidator accessTokenValidator,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        IOptions<TokenSettings> tokenSettings)
     {
         _tokenService = tokenService;
         _refreshTokenWriteOnlyRepository = refreshTokenWriteOnlyRepository;
         _refreshTokenReadOnlyRepository = refreshTokenReadOnlyRepository;
         _unitOfWork = unitOfWork;
         _accessTokenValidator = accessTokenValidator;
+        _tokenSettings = tokenSettings.Value;
     }
     
     public async Task<ResponseTokensJson> Execute(RequestNewTokenJson request)
@@ -39,7 +43,7 @@ public class UseRefreshTokenUseCase : IUseRefreshTokenUseCase
         if(refreshToken.AccessTokenId != accessTokenId)
             throw new RefreshTokenNotFoundException();
 
-        var expireAt = refreshToken.CreatedAt.AddDays(7);
+        var expireAt = refreshToken.CreatedAt.AddDays(_tokenSettings.RefreshTokenValidityDays);
         if(DateTime.UtcNow > expireAt)
             throw new RefreshTokenExpiredException();
 

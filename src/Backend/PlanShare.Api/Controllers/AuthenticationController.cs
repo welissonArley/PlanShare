@@ -11,6 +11,8 @@ public class AuthenticationController : ControllerBase
 {
     [HttpPost("refresh")]
     [ProducesResponseType(typeof(ResponseTokensJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status403Forbidden)]
     public async Task<IActionResult> Refresh(
         [FromServices] IUseRefreshTokenUseCase useCase,
         [FromBody] RequestNewTokenJson request)

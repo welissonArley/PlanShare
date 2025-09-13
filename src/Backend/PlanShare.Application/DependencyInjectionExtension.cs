@@ -51,5 +51,10 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUseRefreshTokenUseCase, UseRefreshTokenUseCase>();
     }
 
-    private static void AddTokenService(IServiceCollection services) => services.AddScoped<ITokenService, TokenService>();
+    private static void AddTokenService(IServiceCollection services)
+    {
+        services.AddOptions<TokenSettings>().BindConfiguration("Settings:RefreshToken");
+
+        services.AddScoped<ITokenService, TokenService>();
+    }
 }
