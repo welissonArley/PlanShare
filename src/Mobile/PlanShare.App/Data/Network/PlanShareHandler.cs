@@ -1,4 +1,5 @@
 ﻿using PlanShare.App.Data.Storage.SecureStorage.Tokens;
+using PlanShare.App.UseCases.Authentication.Refresh;
 using PlanShare.Communication.Responses;
 using System.Globalization;
 using System.Net.Http.Headers;
@@ -8,10 +9,12 @@ namespace PlanShare.App.Data.Network;
 public class PlanShareHandler : DelegatingHandler
 {
     private readonly ITokensStorage _tokensStorage;
+    private readonly IUseRefreshTokenUseCase _useRefreshTokenUseCase;
 
-    public PlanShareHandler(ITokensStorage tokensStorage)
+    public PlanShareHandler(ITokensStorage tokensStorage, IUseRefreshTokenUseCase useRefreshTokenUseCase)
     {
         _tokensStorage = tokensStorage;
+        _useRefreshTokenUseCase = useRefreshTokenUseCase;
     }
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -29,9 +32,12 @@ public class PlanShareHandler : DelegatingHandler
             await response.Content.LoadIntoBufferAsync(cancellationToken);
 
             var error = await response.Content.ReadFromJsonAsync<ResponseErrorJson>(cancellationToken);
-            if (error.TokenIsExpired)
+            if (error!.TokenIsExpired)
             {
+                var result = await _useRefreshTokenUseCase.Execute();
 
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", result.Response.AccessToken);
+                response = await base.SendAsync(request, cancellationToken);
             }
         }
 
