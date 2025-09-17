@@ -42,6 +42,9 @@ public class UseRefreshTokenUseCase : IUseRefreshTokenUseCase
             return Result<Tokens>.Success(tokens);
         }
 
+        _userStorage.Clear();
+        _tokensStorage.Clear();
+
         return Result<Tokens>.Failure([]);
     }
 }

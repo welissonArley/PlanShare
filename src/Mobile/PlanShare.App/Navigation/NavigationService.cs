@@ -24,6 +24,7 @@ public class NavigationService : INavigationService
 
     public async Task ClosePage() => await GoToAsync("..");
     public async Task GoToDashboardPage() => await GoToAsync($"//{RoutePages.DASHBOARD_PAGE}");
+    public async Task GoToOnboardingPage() => await GoToAsync($"//{RoutePages.ONBOARDING_PAGE}");
 
     public async Task ShowSuccessFeedback(string message)
     {

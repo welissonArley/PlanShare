@@ -20,6 +20,9 @@ public abstract partial class ViewModelBase : ObservableObject
 
     protected async Task GoToPageWithErrors(Result result)
     {
+        if (result.ErrorMessages!.Contains("TokenExpired"))
+            return;
+
         var parameters = new Dictionary<string, object>
         {
             { "errors", result.ErrorMessages! }

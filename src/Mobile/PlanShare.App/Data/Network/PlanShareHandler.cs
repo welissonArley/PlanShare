@@ -1,4 +1,5 @@
 ﻿using PlanShare.App.Data.Storage.SecureStorage.Tokens;
+using PlanShare.App.Navigation;
 using PlanShare.App.UseCases.Authentication.Refresh;
 using PlanShare.Communication.Responses;
 using System.Globalization;
@@ -10,11 +11,16 @@ public class PlanShareHandler : DelegatingHandler
 {
     private readonly ITokensStorage _tokensStorage;
     private readonly IUseRefreshTokenUseCase _useRefreshTokenUseCase;
+    private readonly INavigationService _navigationService;
 
-    public PlanShareHandler(ITokensStorage tokensStorage, IUseRefreshTokenUseCase useRefreshTokenUseCase)
+    public PlanShareHandler(
+        ITokensStorage tokensStorage,
+        IUseRefreshTokenUseCase useRefreshTokenUseCase,
+        INavigationService navigationService)
     {
         _tokensStorage = tokensStorage;
         _useRefreshTokenUseCase = useRefreshTokenUseCase;
+        _navigationService = navigationService;
     }
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -35,9 +41,13 @@ public class PlanShareHandler : DelegatingHandler
             if (error!.TokenIsExpired)
             {
                 var result = await _useRefreshTokenUseCase.Execute();
-
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", result.Response.AccessToken);
-                response = await base.SendAsync(request, cancellationToken);
+                if (result.IsSuccess)
+                {
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", result.Response!.AccessToken);
+                    response = await base.SendAsync(request, cancellationToken);
+                }
+                else
+                    await _navigationService.GoToOnboardingPage();
             }
         }
 
