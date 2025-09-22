@@ -11,7 +11,7 @@ internal sealed class PersonAssociationRepository : IPersonAssociationReadOnlyRe
 
     public async Task<List<User>> GetPersonAssociationsForUser(User user)
     {
-        var associations = await _dbContext.PersonAssociations
+        /*var associations = await _dbContext.PersonAssociations
             .AsNoTracking()
             .Include(association => association.AssociatedPerson)
             .Include(association => association.Person)
@@ -28,6 +28,8 @@ internal sealed class PersonAssociationRepository : IPersonAssociationReadOnlyRe
                 response.Add(association.Person);
         }
 
-        return response;
+        return response;*/
+
+        return null;
     }
 }

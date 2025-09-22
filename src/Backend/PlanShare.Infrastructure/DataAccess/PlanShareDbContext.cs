@@ -11,7 +11,7 @@ internal sealed class PlanShareDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<WorkItem> WorkItems { get; set; }
-    public DbSet<PersonAssociation> PersonAssociations { get; set; }
+    public DbSet<UserConnection> UserConnections { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
