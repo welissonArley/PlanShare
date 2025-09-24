@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using PlanShare.Api.Converters;
 using PlanShare.Api.Filters;
+using PlanShare.Api.Hubs;
 using PlanShare.Api.Middleware;
 using PlanShare.Api.Token;
 using PlanShare.Application;
@@ -61,6 +62,8 @@ builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -83,6 +86,8 @@ if (builder.Environment.IsTests().IsFalse())
 {
     await MigrateDatabase();
 }
+
+app.MapHub<UserConnectionsHub>("/connection");
 
 app.Run();
 
