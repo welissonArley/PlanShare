@@ -10,4 +10,9 @@ public class UserConnectionsHub : Hub
 
         return code;
     }
+
+    public override Task OnConnectedAsync()
+    {
+        return base.OnConnectedAsync();
+    }
 }
