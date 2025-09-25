@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using PlanShare.Api.Handlers.Requirements;
+using PlanShare.Domain.Extensions;
 using PlanShare.Domain.Repositories.RefreshToken;
 using PlanShare.Domain.Repositories.User;
 using PlanShare.Domain.Security.Tokens;
-using PlanShare.Exceptions;
-using PlanShare.Exceptions.ExceptionsBase;
 
 namespace PlanShare.Api.Handlers;
 
@@ -28,7 +27,40 @@ public class AuthenticatedUserHandler : AuthorizationHandler<AuthenticatedUserRe
         AuthorizationHandlerContext context,
         AuthenticatedUserRequirement requirement)
     {
-        var token = TokenOnConnection(context);
+        try
+        {
+            var token = TokenOnConnection(context);
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                context.Fail();
+                return;
+            }
+
+            _accessTokenValidator.Validate(token);
+
+            var userIdentifier = _accessTokenValidator.GetUserIdentifier(token);
+
+            var user = await _repository.GetById(userIdentifier);
+            if (user is null)
+            {
+                context.Fail();
+                return;
+            }
+
+            var accessTokenId = _accessTokenValidator.GetAccessTokenIdentifier(token);
+            var existRefreshTokenAssociated = await _refreshTokenRepository.HasRefreshTokenAssociated(user, accessTokenId);
+            if (existRefreshTokenAssociated.IsFalse())
+            {
+                context.Fail();
+                return;
+            }
+
+            context.Succeed(requirement);
+        }
+        catch
+        {
+            context.Fail();
+        }
     }
 
     private static string TokenOnConnection(AuthorizationHandlerContext context)
@@ -37,9 +69,7 @@ public class AuthenticatedUserHandler : AuthorizationHandler<AuthenticatedUserRe
 
         var authentication = defaultHttpContext?.Request.Headers.Authorization.ToString();
         if (string.IsNullOrWhiteSpace(authentication))
-        {
-            throw new UnauthorizedException(ResourceMessagesException.NO_TOKEN);
-        }
+            return string.Empty;
 
         return authentication["Bearer ".Length..].Trim();
     }
