@@ -1,14 +1,22 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using PlanShare.Application.UseCases.User.Connection.GenerateCode;
 
 namespace PlanShare.Api.Hubs;
 
 public class UserConnectionsHub : Hub
 {
-    public string GenerateCode()
-    {
-        var code = "1234";
+    private readonly IGenerateCodeUserConnectionUseCase _generateCodeUserConnectionUseCase;
 
-        return code;
+    public UserConnectionsHub(IGenerateCodeUserConnectionUseCase generateCodeUserConnectionUseCase)
+    {
+        _generateCodeUserConnectionUseCase = generateCodeUserConnectionUseCase;
+    }
+
+    public async Task<string> GenerateCode()
+    {
+        var codeUserConnectionDto = await _generateCodeUserConnectionUseCase.Execute();
+
+        return codeUserConnectionDto.Code;
     }
 
     public override Task OnConnectedAsync()
