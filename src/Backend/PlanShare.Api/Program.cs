@@ -5,6 +5,7 @@ using PlanShare.Api.Filters;
 using PlanShare.Api.Handlers;
 using PlanShare.Api.Handlers.Requirements;
 using PlanShare.Api.Hubs;
+using PlanShare.Api.Hubs.Services;
 using PlanShare.Api.Middleware;
 using PlanShare.Api.Token;
 using PlanShare.Application;
@@ -66,6 +67,8 @@ builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IAuthorizationHandler, AuthenticatedUserHandler>();
+
+builder.Services.AddSingleton<CodeConnectionService>();
 
 builder.Services.AddAuthorization(options =>
 {
