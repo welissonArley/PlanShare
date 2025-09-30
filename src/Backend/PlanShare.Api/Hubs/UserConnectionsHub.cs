@@ -2,6 +2,7 @@
 using PlanShare.Api.Hubs.Services;
 using PlanShare.Application.UseCases.User.Connection.GenerateCode;
 using PlanShare.Application.UseCases.User.Connection.JoinWithCode;
+using PlanShare.Communication.Responses;
 
 namespace PlanShare.Api.Hubs;
 
@@ -38,5 +39,11 @@ public class UserConnectionsHub : Hub
 
         userConnections.ConnectingUserId = response.Id;
         userConnections.ConnectingUserConnectionId = Context.ConnectionId;
+
+        await Clients.Client(userConnections.UserConnectionId).SendAsync("OnUserJoined", new ResponseConnectingUserJson
+        {
+            Name = response.Name,
+            ProfilePhotoUrl = response.ProfilePhotoUrl
+        });
     }
 }
