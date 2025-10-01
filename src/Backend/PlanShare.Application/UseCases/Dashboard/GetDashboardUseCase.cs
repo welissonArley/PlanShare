@@ -1,6 +1,6 @@
 ﻿using Mapster;
 using PlanShare.Communication.Responses;
-using PlanShare.Domain.Repositories.Association;
+using PlanShare.Domain.Repositories.Connection;
 using PlanShare.Domain.Repositories.WorkItem;
 using PlanShare.Domain.Services.LoggedUser;
 
@@ -9,9 +9,9 @@ public class GetDashboardUseCase : IGetDashboardUseCase
 {
     private readonly ILoggedUser _loggedUser;
     private readonly IWorkItemReadOnlyRepository _workItemRepository;
-    private readonly IPersonAssociationReadOnlyRepository _personAssociationRepository;
+    private readonly IUserConnectionReadOnlyRepository _personAssociationRepository;
 
-    public GetDashboardUseCase(ILoggedUser loggedUser, IWorkItemReadOnlyRepository workItemRepository, IPersonAssociationReadOnlyRepository personAssociationRepository)
+    public GetDashboardUseCase(ILoggedUser loggedUser, IWorkItemReadOnlyRepository workItemRepository, IUserConnectionReadOnlyRepository personAssociationRepository)
     {
         _loggedUser = loggedUser;
         _workItemRepository = workItemRepository;
@@ -23,7 +23,7 @@ public class GetDashboardUseCase : IGetDashboardUseCase
         var loggedUser = await _loggedUser.Get();
 
         var workItems = await _workItemRepository.GetAll(loggedUser);
-        var associations = await _personAssociationRepository.GetPersonAssociationsForUser(loggedUser);
+        var associations = await _personAssociationRepository.GetConnectionsForUser(loggedUser);
 
         return new ResponseDashboardJson
         {
