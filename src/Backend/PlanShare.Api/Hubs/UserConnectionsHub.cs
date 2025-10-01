@@ -46,4 +46,12 @@ public class UserConnectionsHub : Hub
             ProfilePhotoUrl = response.ProfilePhotoUrl
         });
     }
+
+    public async Task Cancel(string code)
+    {
+        var connection = _codeConnectionService.RemoveConnection(code);
+
+        if(connection is not null && connection.ConnectingUserId.HasValue)
+            await Clients.Client(connection.ConnectingUserConnectionId!).SendAsync("OnCancelled");
+    }
 }

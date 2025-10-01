@@ -29,4 +29,11 @@ public class CodeConnectionService
 
         return userConnection;
     }
+
+    public UserConnectionsDto? RemoveConnection(string code)
+    {
+        _connections.TryRemove(code, out var userConnection);
+
+        return userConnection;
+    }
 }
