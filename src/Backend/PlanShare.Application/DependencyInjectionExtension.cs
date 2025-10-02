@@ -5,6 +5,7 @@ using PlanShare.Application.UseCases.Dashboard;
 using PlanShare.Application.UseCases.Login.DoLogin;
 using PlanShare.Application.UseCases.Token.RefreshToken;
 using PlanShare.Application.UseCases.User.ChangePassword;
+using PlanShare.Application.UseCases.User.Connection.ApproveCode;
 using PlanShare.Application.UseCases.User.Connection.GenerateCode;
 using PlanShare.Application.UseCases.User.Connection.JoinWithCode;
 using PlanShare.Application.UseCases.User.Photo;
@@ -54,6 +55,7 @@ public static class DependencyInjectionExtension
 
         services.AddScoped<IGenerateCodeUserConnectionUseCase, GenerateCodeUserConnectionUseCase>();
         services.AddScoped<IJoinWithCodeUseCase, JoinWithCodeUseCase>();
+        services.AddScoped<IApproveCodeUserConnectionUseCase, ApproveCodeUserConnectionUseCase>();
     }
 
     private static void AddTokenService(IServiceCollection services)
