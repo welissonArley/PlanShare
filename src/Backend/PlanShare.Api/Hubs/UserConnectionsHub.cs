@@ -26,13 +26,13 @@ public class UserConnectionsHub : Hub
         _approveCodeUserConnectionUseCase = approveCodeUserConnectionUseCase;
     }
 
-    public async Task<string> GenerateCode()
+    public async Task<HubOperationResult<string>> GenerateCode()
     {
         var codeUserConnectionDto = await _generateCodeUserConnectionUseCase.Execute();
 
         _codeConnectionService.Start(codeUserConnectionDto, Context.ConnectionId);
 
-        return codeUserConnectionDto.Code;
+        return HubOperationResult<string>.Success(codeUserConnectionDto.Code);
     }
 
     public async Task JoinWithCode(string code)
