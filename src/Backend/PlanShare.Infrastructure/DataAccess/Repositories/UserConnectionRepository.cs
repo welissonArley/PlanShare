@@ -11,6 +11,16 @@ internal sealed class UserConnectionRepository : IUserConnectionReadOnlyReposito
 
     public async Task Add(UserConnection userConnection) => await _dbContext.UserConnections.AddAsync(userConnection);
 
+    public async Task<bool> AreUsersConnected(User user1, User user2)
+    {
+        return await _dbContext
+            .UserConnections
+            .AsNoTracking()
+            .AnyAsync(connection =>
+                (connection.UserId == user1.Id && connection.ConnectedUserId == user2.Id) ||
+                (connection.UserId == user2.Id && connection.ConnectedUserId == user1.Id));
+    }
+
     public async Task<List<User>> GetConnectionsForUser(User user)
     {
         var connections = await _dbContext.UserConnections

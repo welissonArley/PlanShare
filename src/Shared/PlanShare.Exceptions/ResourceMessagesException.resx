@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="YOU_ARE_ALREADY_CONNECTED_WITH" xml:space="preserve">
+    <value>You’re already connected with {0}.</value>
+  </data>
   <data name="EMAIL_ALREADY_REGISTERED" xml:space="preserve">
     <value>The e-mail is already registered on the platform.</value>
   </data>
@@ -144,6 +147,9 @@
   <data name="NO_TOKEN" xml:space="preserve">
     <value>Request don't have token.</value>
   </data>
+  <data name="NO_USER_CONNECTED_WITH_CODE" xml:space="preserve">
+    <value>No user has connected with this code.</value>
+  </data>
   <data name="ONLY_IMAGES_ACCEPTED" xml:space="preserve">
     <value>Only images (PNG, JPG, JPEG) are accepted.</value>
   </data>
@@ -153,6 +159,12 @@
   <data name="PASSWORD_EMPTY" xml:space="preserve">
     <value>Password cannot be empty.</value>
   </data>
+  <data name="PROVIDED_CODE_DOES_NOT_EXIST" xml:space="preserve">
+    <value>The provided code does not exist.</value>
+  </data>
+  <data name="SAME_USER_CANNOT_CONNECT_THEMSELVE" xml:space="preserve">
+    <value>Connection not allowed: the same user cannot connect with themselves.</value>
+  </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown error.</value>
   </data>
@@ -161,5 +173,8 @@
   </data>
   <data name="WORK_ITEM_NOT_FOUND" xml:space="preserve">
     <value>The task was not found.</value>
+  </data>
+  <data name="USER_NOT_FOUND" xml:space="preserve">
+    <value>User not found.</value>
   </data>
 </root>

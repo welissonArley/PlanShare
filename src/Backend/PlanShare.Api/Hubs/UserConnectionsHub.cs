@@ -3,7 +3,10 @@ using PlanShare.Api.Hubs.Services;
 using PlanShare.Application.UseCases.User.Connection.ApproveCode;
 using PlanShare.Application.UseCases.User.Connection.GenerateCode;
 using PlanShare.Application.UseCases.User.Connection.JoinWithCode;
+using PlanShare.Communication.Enums;
 using PlanShare.Communication.Responses;
+using PlanShare.Domain.Extensions;
+using PlanShare.Exceptions;
 
 namespace PlanShare.Api.Hubs;
 
@@ -35,20 +38,26 @@ public class UserConnectionsHub : Hub
         return HubOperationResult<string>.Success(codeUserConnectionDto.Code);
     }
 
-    public async Task JoinWithCode(string code)
+    public async Task<HubOperationResult<string>> JoinWithCode(string code)
     {
         var userConnections = _codeConnectionService.GetConnectionByCode(code);
+        if(userConnections is null)
+            return HubOperationResult<string>.Failure(ResourceMessagesException.PROVIDED_CODE_DOES_NOT_EXIST, UserConnectionErrorCode.InvalidCode);
 
-        var response = await _joinWithCodeUseCase.Execute(userConnections.UserId);
+        var result = await _joinWithCodeUseCase.Execute(userConnections.UserId);
+        if (result.IsSuccess.IsFalse())
+            return HubOperationResult<string>.Failure(result.ErrorMessage, result.ErrorCode!.Value);
 
-        userConnections.ConnectingUserId = response.Id;
+        userConnections.ConnectingUserId = result.Response!.Connector.Id;
         userConnections.ConnectingUserConnectionId = Context.ConnectionId;
 
         await Clients.Client(userConnections.UserConnectionId).SendAsync("OnUserJoined", new ResponseConnectingUserJson
         {
-            Name = response.Name,
-            ProfilePhotoUrl = response.ProfilePhotoUrl
+            Name = result.Response.Connector.Name,
+            ProfilePhotoUrl = result.Response.Connector.ProfilePhotoUrl
         });
+
+        return HubOperationResult<string>.Success(result.Response.Generator.Name);
     }
 
     public async Task Cancel(string code)
