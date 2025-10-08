@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using PlanShare.Api.Hubs.Services;
 using PlanShare.Application.UseCases.User.Connection.ApproveCode;
+using PlanShare.Application.UseCases.User.Connection.CancelCode;
 using PlanShare.Application.UseCases.User.Connection.GenerateCode;
 using PlanShare.Application.UseCases.User.Connection.JoinWithCode;
 using PlanShare.Communication.Enums;
@@ -15,18 +16,21 @@ public class UserConnectionsHub : Hub
     private readonly IGenerateCodeUserConnectionUseCase _generateCodeUserConnectionUseCase;
     private readonly IJoinWithCodeUseCase _joinWithCodeUseCase;
     private readonly IApproveCodeUserConnectionUseCase _approveCodeUserConnectionUseCase;
+    private readonly ICancelCodeUserConnectionUseCase _cancelCodeUserConnectionUseCase;
     private readonly CodeConnectionService _codeConnectionService;
 
     public UserConnectionsHub(
         IGenerateCodeUserConnectionUseCase generateCodeUserConnectionUseCase,
         IJoinWithCodeUseCase joinWithCodeUseCase,
         IApproveCodeUserConnectionUseCase approveCodeUserConnectionUseCase,
+        ICancelCodeUserConnectionUseCase cancelCodeUserConnectionUseCase,
         CodeConnectionService codeConnectionService)
     {
         _generateCodeUserConnectionUseCase = generateCodeUserConnectionUseCase;
         _codeConnectionService = codeConnectionService;
         _joinWithCodeUseCase = joinWithCodeUseCase;
         _approveCodeUserConnectionUseCase = approveCodeUserConnectionUseCase;
+        _cancelCodeUserConnectionUseCase = cancelCodeUserConnectionUseCase;
     }
 
     public async Task<HubOperationResult<string>> GenerateCode()
@@ -60,20 +64,34 @@ public class UserConnectionsHub : Hub
         return HubOperationResult<string>.Success(result.Response.Generator.Name);
     }
 
-    public async Task Cancel(string code)
+    public async Task<HubOperationResult<string>> Cancel(string code)
     {
-        var connection = _codeConnectionService.RemoveConnection(code);
+        var userConnections = _codeConnectionService.RemoveConnection(code);
+        if (userConnections is null)
+            return HubOperationResult<string>.Failure(ResourceMessagesException.PROVIDED_CODE_DOES_NOT_EXIST, UserConnectionErrorCode.InvalidCode);
 
-        if(connection is not null && connection.ConnectingUserId.HasValue)
-            await Clients.Client(connection.ConnectingUserConnectionId!).SendAsync("OnCancelled");
+        var result = await _cancelCodeUserConnectionUseCase.Execute(userConnections);
+        if (result.IsSuccess.IsFalse())
+            return HubOperationResult<string>.Failure(result.ErrorMessage, result.ErrorCode!.Value);
+
+        if (userConnections.ConnectingUserId.HasValue)
+            await Clients.Client(userConnections.ConnectingUserConnectionId!).SendAsync("OnCancelled");
+
+        return HubOperationResult<string>.Success(code);
     }
 
-    public async Task ConfirmCodeJoin(string code)
+    public async Task<HubOperationResult<string>> ConfirmCodeJoin(string code)
     {
-        var connection = _codeConnectionService.RemoveConnection(code);
+        var userConnections = _codeConnectionService.RemoveConnection(code);
+        if (userConnections is null)
+            return HubOperationResult<string>.Failure(ResourceMessagesException.PROVIDED_CODE_DOES_NOT_EXIST, UserConnectionErrorCode.InvalidCode);
 
-        await _approveCodeUserConnectionUseCase.Execute(connection);
+        var result = await _approveCodeUserConnectionUseCase.Execute(userConnections);
+        if (result.IsSuccess.IsFalse())
+            return HubOperationResult<string>.Failure(result.ErrorMessage, result.ErrorCode!.Value);
 
-        await Clients.Client(connection.ConnectingUserConnectionId!).SendAsync("OnConnectionConfirmed");
+        await Clients.Client(userConnections.ConnectingUserConnectionId!).SendAsync("OnConnectionConfirmed");
+
+        return HubOperationResult<string>.Success(code);
     }
 }
