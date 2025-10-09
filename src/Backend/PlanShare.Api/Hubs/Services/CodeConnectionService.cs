@@ -5,11 +5,13 @@ namespace PlanShare.Api.Hubs.Services;
 
 public class CodeConnectionService
 {
-    private readonly ConcurrentDictionary<string, UserConnectionsDto> _connections;
+    private readonly ConcurrentDictionary<string, UserConnectionsDto> _connectionsByCode;
+    private readonly ConcurrentDictionary<string, string> _codeByConnectionId;
 
     public CodeConnectionService()
     {
-        _connections = [];
+        _connectionsByCode = [];
+        _codeByConnectionId = [];
     }
 
     public void Start(CodeUserConnectionDto codeUser, string connectionId)
@@ -20,20 +22,27 @@ public class CodeConnectionService
             UserConnectionId = connectionId
         };
 
-        _connections.TryAdd(codeUser.Code, userConnection);
+        _connectionsByCode.TryAdd(codeUser.Code, userConnection);
+        _codeByConnectionId.TryAdd(connectionId, codeUser.Code);
     }
 
     public UserConnectionsDto? GetConnectionByCode(string code)
     {
-        _connections.TryGetValue(code, out var userConnection);
+        _connectionsByCode.TryGetValue(code, out var userConnection);
 
         return userConnection;
     }
 
     public UserConnectionsDto? RemoveConnection(string code)
     {
-        _connections.TryRemove(code, out var userConnection);
+        _connectionsByCode.TryRemove(code, out var userConnection);
 
         return userConnection;
+    }
+
+    public string? GetCodeByConnectionId(string connectionId)
+    {
+        _codeByConnectionId.TryGetValue(connectionId, out var code);
+        return code;
     }
 }

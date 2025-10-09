@@ -76,7 +76,7 @@ public class UserConnectionsHub : Hub
 
         if (userConnections.ConnectingUserId.HasValue)
             await Clients.Client(userConnections.ConnectingUserConnectionId!).SendAsync("OnCancelled");
-
+        
         return HubOperationResult<string>.Success(code);
     }
 
@@ -93,5 +93,20 @@ public class UserConnectionsHub : Hub
         await Clients.Client(userConnections.ConnectingUserConnectionId!).SendAsync("OnConnectionConfirmed");
 
         return HubOperationResult<string>.Success(code);
+    }
+
+    public override Task OnDisconnectedAsync(Exception? exception)
+    {
+        var code = _codeConnectionService.GetCodeByConnectionId(Context.ConnectionId);
+        if (code.NotEmpty())
+        {
+            var connection = _codeConnectionService.RemoveConnection(code);
+            if(connection is not null && connection.ConnectingUserConnectionId.NotEmpty())
+            {
+                Clients.Client(connection.ConnectingUserConnectionId).SendAsync("OnUserDisconnected");
+            }
+        }
+
+        return base.OnDisconnectedAsync(exception);
     }
 }
