@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.OpenApi.Models;
 using PlanShare.Api.Converters;
 using PlanShare.Api.Filters;
@@ -75,7 +76,8 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("AuthenticatedUser", policy => policy.Requirements.Add(new AuthenticatedUserRequirement()));
 });
 
-builder.Services.AddSignalR();
+builder.Services.AddSignalR()
+    .AddHubOptions<UserConnectionsHub>(options => options.AddFilter<UserConnectionsExceptionHubFilter>());
 
 var app = builder.Build();
 
