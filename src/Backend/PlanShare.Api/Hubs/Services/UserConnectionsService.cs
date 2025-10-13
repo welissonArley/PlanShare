@@ -3,12 +3,12 @@ using System.Collections.Concurrent;
 
 namespace PlanShare.Api.Hubs.Services;
 
-public class CodeConnectionService
+public class UserConnectionsService
 {
     private readonly ConcurrentDictionary<string, UserConnectionsDto> _connectionsByCode;
     private readonly ConcurrentDictionary<string, string> _codeByConnectionId;
 
-    public CodeConnectionService()
+    public UserConnectionsService()
     {
         _connectionsByCode = [];
         _codeByConnectionId = [];
@@ -33,16 +33,16 @@ public class CodeConnectionService
         return userConnection;
     }
 
-    public UserConnectionsDto? RemoveConnection(string code)
+    public UserConnectionsDto? RemoveConnectionByCode(string code)
     {
         _connectionsByCode.TryRemove(code, out var userConnection);
 
         return userConnection;
     }
 
-    public string? GetCodeByConnectionId(string connectionId)
+    public string? RemoveCodeByConnectionId(string connectionId)
     {
-        _codeByConnectionId.TryGetValue(connectionId, out var code);
+        _codeByConnectionId.TryRemove(connectionId, out var code);
         return code;
     }
 }

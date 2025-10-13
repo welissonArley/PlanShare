@@ -61,6 +61,15 @@ namespace PlanShare.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This code is already linked to another connection. Please ask for a new one..
+        /// </summary>
+        public static string CODE_ALREADY_LINKED_ANOTHER_CONNECTION {
+            get {
+                return ResourceManager.GetString("CODE_ALREADY_LINKED_ANOTHER_CONNECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The e-mail is already registered on the platform..
         /// </summary>
         public static string EMAIL_ALREADY_REGISTERED {

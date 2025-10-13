@@ -177,4 +177,7 @@
   <data name="USER_NOT_FOUND" xml:space="preserve">
     <value>User not found.</value>
   </data>
+  <data name="CODE_ALREADY_LINKED_ANOTHER_CONNECTION" xml:space="preserve">
+    <value>This code is already linked to another connection. Please ask for a new one.</value>
+  </data>
 </root>

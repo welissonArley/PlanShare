@@ -69,7 +69,7 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IAuthorizationHandler, AuthenticatedUserHandler>();
 
-builder.Services.AddSingleton<CodeConnectionService>();
+builder.Services.AddSingleton<UserConnectionsService>();
 
 builder.Services.AddAuthorization(options =>
 {

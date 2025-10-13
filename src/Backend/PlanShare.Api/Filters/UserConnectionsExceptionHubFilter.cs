@@ -9,9 +9,9 @@ namespace PlanShare.Api.Filters;
 
 public class UserConnectionsExceptionHubFilter : IHubFilter
 {
-    private readonly CodeConnectionService _codeConnectionService;
+    private readonly UserConnectionsService _codeConnectionService;
 
-    public UserConnectionsExceptionHubFilter(CodeConnectionService codeConnectionService)
+    public UserConnectionsExceptionHubFilter(UserConnectionsService codeConnectionService)
     {
         _codeConnectionService = codeConnectionService;
     }
@@ -26,10 +26,10 @@ public class UserConnectionsExceptionHubFilter : IHubFilter
         {
             var connectionId = invocationContext.Hub.Context.ConnectionId;
 
-            var code = _codeConnectionService.GetCodeByConnectionId(connectionId);
+            var code = _codeConnectionService.RemoveCodeByConnectionId(connectionId);
             if (code.NotEmpty())
             {
-                var connection = _codeConnectionService.RemoveConnection(code);
+                var connection = _codeConnectionService.RemoveConnectionByCode(code);
                 if (connection is not null && connection.ConnectingUserConnectionId.NotEmpty())
                 {
                     await invocationContext.Hub.Clients.Client(connection.ConnectingUserConnectionId).SendAsync("ConnectionErrorOccurred");
