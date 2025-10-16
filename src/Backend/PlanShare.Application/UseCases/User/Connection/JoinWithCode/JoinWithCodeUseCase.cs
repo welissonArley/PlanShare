@@ -23,30 +23,23 @@ public class JoinWithCodeUseCase : IJoinWithCodeUseCase
         _userRepository = userRepository;
     }
 
-    public async Task<HubOperationResult<ConnectionUsers>> Execute(Guid generatedById)
+    public async Task<HubOperationResult<UserDto>> Execute(UserDto generator)
     {
         var joinerUser = await _loggedUser.Get();
-        if(joinerUser.Id == generatedById)
-        {
-            return HubOperationResult<ConnectionUsers>.Failure(ResourceMessagesException.SAME_USER_CANNOT_CONNECT_THEMSELVE, UserConnectionErrorCode.ConnectingToSelf);
-        }
+        if(joinerUser.Id == generator.Id)
+            return HubOperationResult<UserDto>.Failure(ResourceMessagesException.SAME_USER_CANNOT_CONNECT_THEMSELVE, UserConnectionErrorCode.ConnectingToSelf);
 
-        var codeOwner = await _userRepository.GetById(generatedById);
+        var codeOwner = await _userRepository.GetById(generator.Id);
         if(codeOwner is null)
-        {
-            return HubOperationResult<ConnectionUsers>.Failure(ResourceMessagesException.USER_NOT_FOUND, UserConnectionErrorCode.UserNotFound);
-        }
+            return HubOperationResult<UserDto>.Failure(ResourceMessagesException.USER_NOT_FOUND, UserConnectionErrorCode.UserNotFound);
 
         var existingConnection = await _userConnectionRepository.AreUsersConnected(joinerUser, codeOwner);
         if(existingConnection)
         {
             var message = string.Format(ResourceMessagesException.YOU_ARE_ALREADY_CONNECTED_WITH, codeOwner.Name);
-            return HubOperationResult<ConnectionUsers>.Failure(message, UserConnectionErrorCode.ConnectionAlreadyExists);
+            return HubOperationResult<UserDto>.Failure(message, UserConnectionErrorCode.ConnectionAlreadyExists);
         }
 
-        var generator = new UserDto(codeOwner.Id, codeOwner.Name, string.Empty);
-        var connector = new UserDto(joinerUser.Id, joinerUser.Name, string.Empty);
-
-        return HubOperationResult<ConnectionUsers>.Success(new ConnectionUsers(generator, connector));
+        return HubOperationResult<UserDto>.Success(new UserDto(joinerUser.Id, joinerUser.Name, string.Empty));
     }
 }

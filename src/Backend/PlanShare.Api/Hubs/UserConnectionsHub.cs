@@ -35,11 +35,11 @@ public class UserConnectionsHub : Hub
 
     public async Task<HubOperationResult<string>> GenerateCode()
     {
-        var codeUserConnectionDto = await _generateCodeUserConnectionUseCase.Execute();
+        var (code, generator) = await _generateCodeUserConnectionUseCase.Execute();
 
-        _codeConnectionService.Start(codeUserConnectionDto, Context.ConnectionId);
+        _codeConnectionService.Start(code, generator, Context.ConnectionId);
 
-        return HubOperationResult<string>.Success(codeUserConnectionDto.Code);
+        return HubOperationResult<string>.Success(code);
     }
 
     public async Task<HubOperationResult<string>> JoinWithCode(string code)
@@ -48,23 +48,23 @@ public class UserConnectionsHub : Hub
         if(userConnections is null)
             return HubOperationResult<string>.Failure(ResourceMessagesException.PROVIDED_CODE_DOES_NOT_EXIST, UserConnectionErrorCode.InvalidCode);
 
-        if(userConnections.ConnectingUserId.HasValue)
+        if(userConnections.Joiner is not null)
             return HubOperationResult<string>.Failure(ResourceMessagesException.CODE_ALREADY_LINKED_ANOTHER_CONNECTION, UserConnectionErrorCode.InvalidCode);
 
-        var result = await _joinWithCodeUseCase.Execute(userConnections.UserId);
+        var result = await _joinWithCodeUseCase.Execute(userConnections.Generator);
         if (result.IsSuccess.IsFalse())
             return HubOperationResult<string>.Failure(result.ErrorMessage, result.ErrorCode!.Value);
 
-        userConnections.ConnectingUserId = result.Response!.Connector.Id;
-        userConnections.ConnectingUserConnectionId = Context.ConnectionId;
+        userConnections.Joiner = result.Response;
+        userConnections.JoinerConnectionId = Context.ConnectionId;
 
-        await Clients.Client(userConnections.UserConnectionId).SendAsync("OnUserJoined", new ResponseConnectingUserJson
+        await Clients.Client(userConnections.GeneratorConnectionId).SendAsync("OnUserJoined", new ResponseConnectingUserJson
         {
-            Name = result.Response.Connector.Name,
-            ProfilePhotoUrl = result.Response.Connector.ProfilePhotoUrl
+            Name = result.Response!.Name,
+            ProfilePhotoUrl = result.Response.ProfilePhotoUrl
         });
 
-        return HubOperationResult<string>.Success(result.Response.Generator.Name);
+        return HubOperationResult<string>.Success(userConnections.Generator.Name);
     }
 
     public async Task<HubOperationResult<string>> Cancel(string code)
@@ -77,8 +77,8 @@ public class UserConnectionsHub : Hub
         if (result.IsSuccess.IsFalse())
             return HubOperationResult<string>.Failure(result.ErrorMessage, result.ErrorCode!.Value);
 
-        if (userConnections.ConnectingUserId.HasValue)
-            await Clients.Client(userConnections.ConnectingUserConnectionId!).SendAsync("OnCancelled");
+        if (userConnections.JoinerConnectionId.NotEmpty())
+            await Clients.Client(userConnections.JoinerConnectionId).SendAsync("OnCancelled");
 
         _codeConnectionService.RemoveCodeByConnectionId(Context.ConnectionId);
 
@@ -95,7 +95,7 @@ public class UserConnectionsHub : Hub
         if (result.IsSuccess.IsFalse())
             return HubOperationResult<string>.Failure(result.ErrorMessage, result.ErrorCode!.Value);
 
-        await Clients.Client(userConnections.ConnectingUserConnectionId!).SendAsync("OnConnectionConfirmed");
+        await Clients.Client(userConnections.JoinerConnectionId!).SendAsync("OnConnectionConfirmed");
 
         _codeConnectionService.RemoveCodeByConnectionId(Context.ConnectionId);
 
@@ -108,10 +108,8 @@ public class UserConnectionsHub : Hub
         if (code.NotEmpty())
         {
             var connection = _codeConnectionService.RemoveConnectionByCode(code);
-            if(connection is not null && connection.ConnectingUserConnectionId.NotEmpty())
-            {
-                Clients.Client(connection.ConnectingUserConnectionId).SendAsync("OnUserDisconnected");
-            }
+            if(connection is not null && connection.JoinerConnectionId.NotEmpty())
+                Clients.Client(connection.JoinerConnectionId).SendAsync("OnUserDisconnected");
         }
 
         return base.OnDisconnectedAsync(exception);

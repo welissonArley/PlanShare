@@ -12,12 +12,12 @@ public class GenerateCodeUserConnectionUseCase : IGenerateCodeUserConnectionUseC
         _loggedUser = loggedUser;
     }
 
-    public async Task<CodeUserConnectionDto> Execute()
+    public async Task<(string code, UserDto generator)> Execute()
     {
         var loggedUser = await _loggedUser.Get();
 
         var code = RandomNumberGenerator.GetInt32(fromInclusive: 1, toExclusive: 1_000_000).ToString("D6");
 
-        return new CodeUserConnectionDto(code, loggedUser.Id);
+        return (code, new UserDto(loggedUser.Id, loggedUser.Name, string.Empty));
     }
 }

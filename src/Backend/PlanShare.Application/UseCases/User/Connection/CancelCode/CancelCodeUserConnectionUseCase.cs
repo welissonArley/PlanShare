@@ -14,10 +14,10 @@ public class CancelCodeUserConnectionUseCase : ICancelCodeUserConnectionUseCase
         _loggedUser = loggedUser;
     }
 
-    public async Task<HubOperationResult<string>> Execute(UserConnectionsDto userConnections)
+    public async Task<HubOperationResult<string>> Execute(ConnectionByCode connectionByCode)
     {
         var loggedUser = await _loggedUser.Get();
-        if (loggedUser.Id != userConnections.UserId)
+        if (loggedUser.Id != connectionByCode.Generator.Id)
             return HubOperationResult<string>.Failure(ResourceMessagesException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE, UserConnectionErrorCode.NotAuthorized);
 
         return HubOperationResult<string>.Success(string.Empty);

@@ -30,13 +30,13 @@ public class ApproveCodeUserConnectionUseCase : IApproveCodeUserConnectionUseCas
         _userRepository = userRepository;
     }
 
-    public async Task<HubOperationResult<string>> Execute(UserConnectionsDto userConnections)
+    public async Task<HubOperationResult<string>> Execute(ConnectionByCode connectionByCode)
     {
         var codeOwner = await _loggedUser.Get();
-        if (codeOwner.Id != userConnections.UserId)
+        if (codeOwner.Id != connectionByCode.Generator.Id)
             return HubOperationResult<string>.Failure(ResourceMessagesException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE, UserConnectionErrorCode.NotAuthorized);
 
-        var joinerUser = userConnections.ConnectingUserId.HasValue ? await _userRepository.GetById(userConnections.ConnectingUserId.Value) : null;
+        var joinerUser = connectionByCode.Joiner is not null ? await _userRepository.GetById(connectionByCode.Joiner.Id) : null;
         if (joinerUser is null)
             return HubOperationResult<string>.Failure(ResourceMessagesException.NO_USER_CONNECTED_WITH_CODE, UserConnectionErrorCode.UserNotFound);
 
@@ -52,8 +52,8 @@ public class ApproveCodeUserConnectionUseCase : IApproveCodeUserConnectionUseCas
 
         var connection = new Domain.Entities.UserConnection
         {
-            UserId = userConnections.UserId,
-            ConnectedUserId = userConnections.ConnectingUserId!.Value,
+            UserId = connectionByCode.Generator.Id,
+            ConnectedUserId = connectionByCode.Joiner!.Id,
         };
 
         await _userConnectionWriteOnlyRepository.Add(connection);
