@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    x:Class="PlanShare.App.Views.Popups.Connection.OptionsForConnectionByCodePopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:connectionOptions="clr-namespace:PlanShare.App.Models.Enums"
+    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Popups.Connection"
+    Padding="0"
+    x:DataType="viewModel:OptionsForConnectionByCodeViewModel"
+    BackgroundColor="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT},
+                                      Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}"
+    VerticalOptions="End">
+    <VerticalStackLayout>
+        <VerticalStackLayout Padding="0,10,0,0" Spacing="15">
+            <VerticalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OptionSelectedCommand}" CommandParameter="{Static connectionOptions:ChooseCodeConnectionOption.UseCode}" />
+            </VerticalStackLayout.GestureRecognizers>
+            <Label HorizontalOptions="Center" Text="{Static resourceFile:ResourceTexts.TITLE_USE_CONNECTION_CODE}" />
+            <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource LINES_COLOR_LIGHT}, Dark={StaticResource LINES_COLOR_DARK}}" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Padding="0,10,0,10">
+            <VerticalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OptionSelectedCommand}" CommandParameter="{Static connectionOptions:ChooseCodeConnectionOption.GenerateCode}" />
+            </VerticalStackLayout.GestureRecognizers>
+            <Label HorizontalOptions="Center" Text="{Static resourceFile:ResourceTexts.TITLE_GENERATE_CONNECTION_CODE}" />
+        </VerticalStackLayout>
+
+        <Button
+            Margin="0,20,0,0"
+            Command="{Binding OptionSelectedCommand}"
+            CommandParameter="{Static connectionOptions:ChooseCodeConnectionOption.None}"
+            Text="{Static resourceFile:ResourceTexts.TITLE_CANCEL}" />
+    </VerticalStackLayout>
+</toolkit:Popup>

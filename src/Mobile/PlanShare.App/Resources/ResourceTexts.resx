@@ -189,6 +189,12 @@
   <data name="TITLE_EMAIL" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="TITLE_GENERATE_CONNECTION_CODE" xml:space="preserve">
+    <value>Generate connection code</value>
+  </data>
+  <data name="TITLE_USE_CONNECTION_CODE" xml:space="preserve">
+    <value>Use a connection code</value>
+  </data>
   <data name="TITLE_NAME" xml:space="preserve">
     <value>Name</value>
   </data>

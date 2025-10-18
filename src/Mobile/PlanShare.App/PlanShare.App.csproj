@@ -92,6 +92,9 @@
 	  <Compile Update="Views\Components\Skeletons\EntryAndLabelComponent.xaml.cs">
 	    <DependentUpon>EntryAndLabelComponent.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Popups\Connection\OptionsForConnectionByCodePopup.xaml.cs">
+	    <DependentUpon>OptionsForConnectionByCodePopup.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -148,6 +151,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Pages\User\Register\RegisterUserAccountPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Popups\Connection\OptionsForConnectionByCodePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Popups\Files\OptionsForProfilePhotoPopup.xaml">

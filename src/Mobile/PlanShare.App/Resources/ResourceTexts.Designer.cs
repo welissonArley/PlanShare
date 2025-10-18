@@ -277,6 +277,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate connection code.
+        /// </summary>
+        public static string TITLE_GENERATE_CONNECTION_CODE {
+            get {
+                return ResourceManager.GetString("TITLE_GENERATE_CONNECTION_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string TITLE_NAME {
@@ -309,6 +318,15 @@ namespace PlanShare.App.Resources {
         public static string TITLE_REGISTER_MY_ACCOUNT {
             get {
                 return ResourceManager.GetString("TITLE_REGISTER_MY_ACCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use a connection code.
+        /// </summary>
+        public static string TITLE_USE_CONNECTION_CODE {
+            get {
+                return ResourceManager.GetString("TITLE_USE_CONNECTION_CODE", resourceCulture);
             }
         }
         

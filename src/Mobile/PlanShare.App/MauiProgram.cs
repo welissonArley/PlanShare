@@ -21,12 +21,14 @@ using PlanShare.App.ViewModels.Pages.OnBording;
 using PlanShare.App.ViewModels.Pages.User.ChangePassword;
 using PlanShare.App.ViewModels.Pages.User.Profile;
 using PlanShare.App.ViewModels.Pages.User.Register;
+using PlanShare.App.ViewModels.Popups.Connection;
 using PlanShare.App.ViewModels.Popups.Files;
 using PlanShare.App.Views.Pages.Errors;
 using PlanShare.App.Views.Pages.Login.DoLogin;
 using PlanShare.App.Views.Pages.User.ChangePassword;
 using PlanShare.App.Views.Pages.User.Profile;
 using PlanShare.App.Views.Pages.User.Register;
+using PlanShare.App.Views.Popups.Connection;
 using PlanShare.App.Views.Popups.Files;
 using Refit;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -85,6 +87,7 @@ public static class MauiProgram
     private static MauiAppBuilder AddPopups(this MauiAppBuilder appBuilder)
     {
         appBuilder.Services.AddTransientPopup<OptionsForProfilePhotoPopup, OptionsForProfilePhotoViewModel>();
+        appBuilder.Services.AddTransientPopup<OptionsForConnectionByCodePopup, OptionsForConnectionByCodeViewModel>();
 
         return appBuilder;
     }
