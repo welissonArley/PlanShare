@@ -219,4 +219,13 @@
   <data name="UPLOAD_PHOTO" xml:space="preserve">
     <value>Fazer upload de uma foto</value>
   </data>
+  <data name="TITLE_SHARE_TASK" xml:space="preserve">
+    <value>Compartilhar tarefa</value>
+  </data>
+  <data name="TITLE_CANCEL_OPERATION" xml:space="preserve">
+    <value>Cancelar operação</value>
+  </data>
+  <data name="SUBTITLE_CONNECTION_BY_CODE" xml:space="preserve">
+    <value>Agora a outra pessoa precisa digitar o código que está sendo exibido abaixo na tela para continuar. 😊</value>
+  </data>
 </root>

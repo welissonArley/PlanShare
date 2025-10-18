@@ -223,6 +223,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Now the other person needs to enter the code displayed below on the screen to continue. 😊.
+        /// </summary>
+        public static string SUBTITLE_CONNECTION_BY_CODE {
+            get {
+                return ResourceManager.GetString("SUBTITLE_CONNECTION_BY_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Control your routine with ease - because you deserve more time for what you love!.
         /// </summary>
         public static string SUBTITLE_REGISTER_ACCOUNT {
@@ -246,6 +255,15 @@ namespace PlanShare.App.Resources {
         public static string TITLE_CANCEL {
             get {
                 return ResourceManager.GetString("TITLE_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel operation.
+        /// </summary>
+        public static string TITLE_CANCEL_OPERATION {
+            get {
+                return ResourceManager.GetString("TITLE_CANCEL_OPERATION", resourceCulture);
             }
         }
         
@@ -318,6 +336,15 @@ namespace PlanShare.App.Resources {
         public static string TITLE_REGISTER_MY_ACCOUNT {
             get {
                 return ResourceManager.GetString("TITLE_REGISTER_MY_ACCOUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share task.
+        /// </summary>
+        public static string TITLE_SHARE_TASK {
+            get {
+                return ResourceManager.GetString("TITLE_SHARE_TASK", resourceCulture);
             }
         }
         
