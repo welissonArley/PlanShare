@@ -3,10 +3,18 @@
     x:Class="PlanShare.App.Views.Pages.User.Connection.UserConnectionGeneratorPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:enums="clr-namespace:PlanShare.App.Models.Enums"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
     xmlns:resourceTexts="clr-namespace:PlanShare.App.Resources"
+    xmlns:skeletonLoading="clr-namespace:PlanShare.App.Views.Components.Skeletons"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Connection"
+    x:Name="PageUserConnectionGenerator"
     x:DataType="viewModel:UserConnectionGeneratorViewModel">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding Path=BindingContext.InitializeCommand, Source={Reference PageUserConnectionGenerator}}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+
     <VerticalStackLayout>
         <Image HorizontalOptions="Center" Source="sweetcat.png" />
 
@@ -22,7 +30,7 @@
             FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
             FontSize="60"
             HorizontalOptions="Center"
-            Text="123456" />
+            Text="{Binding ConnectionCode}" />
 
         <BoxView HeightRequest="1" Color="{AppThemeBinding Light={StaticResource LINES_COLOR_LIGHT}, Dark={StaticResource LINES_COLOR_DARK}}" />
 
