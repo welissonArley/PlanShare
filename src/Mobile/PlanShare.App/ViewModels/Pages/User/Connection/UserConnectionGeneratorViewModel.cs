@@ -44,7 +44,7 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
 
         var result = await _connection.InvokeAsync<HubOperationResult<string>>("GenerateCode");
 
-        ConnectionCode = result.Response!;
+        ConnectionCode = string.Join(' ', result.Response!.ToCharArray());
 
         StatusPage = ConnectionByCodeStatusPage.WaitingForJoiner;
     }
