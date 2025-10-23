@@ -17,4 +17,5 @@ public class RoutePages
     public const string USER_CHANGE_PASSWORD_PAGE = "ChangePasswordPage";
 
     public const string USER_CONNECTION_GENERATOR_PAGE = "UserConnectionGeneratorPage";
+    public const string USER_CODE_CONNECTION_PAGE = "UserCodeConnectionPage";
 }

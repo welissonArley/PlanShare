@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using PlanShare.App.Constants;
 using PlanShare.App.Data.Network;
 using PlanShare.App.Data.Network.Api;
@@ -86,6 +85,7 @@ public static class MauiProgram
 		appBuilder.Services.AddTransientWithShellRoute<ChangeUserPasswordPage, ChangeUserPasswordViewModel>(RoutePages.USER_CHANGE_PASSWORD_PAGE);
 		
 		appBuilder.Services.AddTransientWithShellRoute<UserConnectionGeneratorPage, UserConnectionGeneratorViewModel>(RoutePages.USER_CONNECTION_GENERATOR_PAGE);
+		appBuilder.Services.AddTransientWithShellRoute<UserCodeConnectionPage, UserCodeConnectionViewModel>(RoutePages.USER_CODE_CONNECTION_PAGE);
 
         return appBuilder;
 	}

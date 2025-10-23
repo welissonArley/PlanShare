@@ -27,6 +27,11 @@ public partial class DashboardViewModel : ViewModelBase
                     await _navigationService.GoToAsync(RoutePages.USER_CONNECTION_GENERATOR_PAGE);
                 }
                 break;
+            case ChooseCodeConnectionOption.UseCode:
+                {
+                    await _navigationService.GoToAsync(RoutePages.USER_CODE_CONNECTION_PAGE);
+                }
+                break;
         }
     }
 

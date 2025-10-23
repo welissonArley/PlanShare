@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pinCodeAuthorization:CodePage
+    x:Class="PlanShare.App.Views.Pages.User.Connection.UserCodeConnectionPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
+    xmlns:pinCodeAuthorization="clr-namespace:PinCodes.Authorization.Views.Pages;assembly=PinCodes.Authorization.Maui"
+    xmlns:resourceTexts="clr-namespace:PlanShare.App.Resources"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Connection"
+    x:Name="PageUserCodeConnection"
+    x:DataType="viewModel:UserCodeConnectionViewModel"
+    CallbackCodeFinished="{Binding BindingContext.UserCompletedCodeCommand, Source={x:Reference PageUserCodeConnection}}">
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" />
+    </VerticalStackLayout>
+</pinCodeAuthorization:CodePage>
