@@ -232,6 +232,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the access code displayed on the screen of the app belonging to the person who is inviting you..
+        /// </summary>
+        public static string SUBTITLE_CONNECTION_CODE {
+            get {
+                return ResourceManager.GetString("SUBTITLE_CONNECTION_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Control your routine with ease - because you deserve more time for what you love!.
         /// </summary>
         public static string SUBTITLE_REGISTER_ACCOUNT {
@@ -273,6 +282,15 @@ namespace PlanShare.App.Resources {
         public static string TITLE_CLOSE {
             get {
                 return ResourceManager.GetString("TITLE_CLOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection code.
+        /// </summary>
+        public static string TITLE_CONNECTION_CODE {
+            get {
+                return ResourceManager.GetString("TITLE_CONNECTION_CODE", resourceCulture);
             }
         }
         

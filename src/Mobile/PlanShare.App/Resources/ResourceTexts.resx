@@ -228,4 +228,10 @@
   <data name="SUBTITLE_CONNECTION_BY_CODE" xml:space="preserve">
     <value>Now the other person needs to enter the code displayed below on the screen to continue. 😊</value>
   </data>
+  <data name="TITLE_CONNECTION_CODE" xml:space="preserve">
+    <value>Connection code</value>
+  </data>
+  <data name="SUBTITLE_CONNECTION_CODE" xml:space="preserve">
+    <value>Enter the access code displayed on the screen of the app belonging to the person who is inviting you.</value>
+  </data>
 </root>

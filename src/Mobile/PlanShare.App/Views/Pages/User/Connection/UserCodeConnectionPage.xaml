@@ -3,6 +3,7 @@
     x:Class="PlanShare.App.Views.Pages.User.Connection.UserCodeConnectionPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:codeViewer="clr-namespace:PinCodes.Authorization.Views.Components.CodeViewers;assembly=PinCodes.Authorization.Maui"
     xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
     xmlns:pinCodeAuthorization="clr-namespace:PinCodes.Authorization.Views.Pages;assembly=PinCodes.Authorization.Maui"
     xmlns:resourceTexts="clr-namespace:PlanShare.App.Resources"
@@ -11,10 +12,48 @@
     x:Name="PageUserCodeConnection"
     x:DataType="viewModel:UserCodeConnectionViewModel"
     CallbackCodeFinished="{Binding BindingContext.UserCompletedCodeCommand, Source={x:Reference PageUserCodeConnection}}">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    <pinCodeAuthorization:CodePage.Header>
+        <VerticalStackLayout Margin="0,0,0,40" Spacing="20">
+            <Label
+                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                FontSize="28"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Static resourceTexts:ResourceTexts.TITLE_CONNECTION_CODE}" />
+
+            <Label
+                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
+                FontSize="18"
+                Text="{Static resourceTexts:ResourceTexts.SUBTITLE_CONNECTION_CODE}" />
+        </VerticalStackLayout>
+    </pinCodeAuthorization:CodePage.Header>
+
+    <pinCodeAuthorization:CodePage.CodeViewer>
+        <codeViewer:ShowCodeViewer
+            CodeColor="Transparent"
+            CodeLength="6"
+            CodeStrokeColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
+                                              Dark={StaticResource PRIMARY_COLOR_DARK}}">
+
+            <codeViewer:ShowCodeViewer.ShapeViewer>
+                <RoundRectangle
+                    CornerRadius="10"
+                    Fill="Transparent"
+                    HeightRequest="50"
+                    Stroke="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
+                                             Dark={StaticResource PRIMARY_COLOR_DARK}}"
+                    StrokeThickness="2"
+                    WidthRequest="50" />
+            </codeViewer:ShowCodeViewer.ShapeViewer>
+
+            <codeViewer:ShowCodeViewer.PinCharacterLabel>
+                <Label
+                    FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_BLACK}"
+                    FontSize="25"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </codeViewer:ShowCodeViewer.PinCharacterLabel>
+
+        </codeViewer:ShowCodeViewer>
+    </pinCodeAuthorization:CodePage.CodeViewer>
 </pinCodeAuthorization:CodePage>
