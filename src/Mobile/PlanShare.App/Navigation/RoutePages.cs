@@ -18,4 +18,5 @@ public class RoutePages
 
     public const string USER_CONNECTION_GENERATOR_PAGE = "UserConnectionGeneratorPage";
     public const string USER_CODE_CONNECTION_PAGE = "UserCodeConnectionPage";
+    public const string USER_CONNECTION_JOINER_PAGE = "UserConnectionJoinerPage";
 }

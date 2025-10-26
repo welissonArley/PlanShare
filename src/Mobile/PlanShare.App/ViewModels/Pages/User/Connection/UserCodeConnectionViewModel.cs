@@ -11,6 +11,6 @@ public partial class UserCodeConnectionViewModel : ViewModelBase
     [RelayCommand]
     public async Task UserCompletedCode(string code)
     {
-        //do something with the code response
+        await _navigationService.GoToAsync($"{RoutePages.USER_CONNECTION_JOINER_PAGE}?Code={code}");
     }
 }

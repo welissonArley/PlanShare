@@ -86,6 +86,7 @@ public static class MauiProgram
 		
 		appBuilder.Services.AddTransientWithShellRoute<UserConnectionGeneratorPage, UserConnectionGeneratorViewModel>(RoutePages.USER_CONNECTION_GENERATOR_PAGE);
 		appBuilder.Services.AddTransientWithShellRoute<UserCodeConnectionPage, UserCodeConnectionViewModel>(RoutePages.USER_CODE_CONNECTION_PAGE);
+		appBuilder.Services.AddTransientWithShellRoute<UserConnectionJoinerPage, UserConnectionJoinerViewModel>(RoutePages.USER_CONNECTION_JOINER_PAGE);
 
         return appBuilder;
 	}
