@@ -124,6 +124,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please wait a moment, connecting to the server….
+        /// </summary>
+        public static string PHRASE_CONNECTING_TO_THE_SERVER {
+            get {
+                return ResourceManager.GetString("PHRASE_CONNECTING_TO_THE_SERVER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue with Google.
         /// </summary>
         public static string PHRASE_CONTINUE_WITH_GOOGLE {
@@ -192,6 +201,15 @@ namespace PlanShare.App.Resources {
         public static string PHRASE_SMALL_TASKS_BIG_RESULTS {
             get {
                 return ResourceManager.GetString("PHRASE_SMALL_TASKS_BIG_RESULTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for approval from {0}….
+        /// </summary>
+        public static string PHRASE_WAITING_APPROVAL_FROM {
+            get {
+                return ResourceManager.GetString("PHRASE_WAITING_APPROVAL_FROM", resourceCulture);
             }
         }
         

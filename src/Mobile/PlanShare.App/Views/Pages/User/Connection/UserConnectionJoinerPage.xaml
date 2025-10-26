@@ -10,10 +10,31 @@
     xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.User.Connection"
     x:Name="PageUserConnectionJoiner"
     x:DataType="viewModel:UserConnectionJoinerViewModel">
-    <VerticalStackLayout>
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding Path=BindingContext.InitializeCommand, Source={Reference PageUserConnectionJoiner}}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+    <VerticalStackLayout Spacing="20">
         <Label
+            Margin="0,40,0,0"
+            FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+            FontSize="20"
             HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
+            HorizontalTextAlignment="Center"
+            Text="{Static resourceTexts:ResourceTexts.PHRASE_CONNECTING_TO_THE_SERVER}">
+            <Label.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="Label"
+                    Value="{Static models:ConnectionByCodeStatusPage.JoinerConnectedPendingApproval}">
+                    <Setter Property="Text" Value="{Binding GeneratedBy, StringFormat={Static resourceTexts:ResourceTexts.PHRASE_WAITING_APPROVAL_FROM}}" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+
+        <ActivityIndicator
+            HeightRequest="40"
+            IsRunning="True"
+            Color="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                    Dark={StaticResource HIGHLIGHT_COLOR_DARK}}" />
     </VerticalStackLayout>
 </ContentPage>

@@ -234,4 +234,10 @@
   <data name="SUBTITLE_CONNECTION_CODE" xml:space="preserve">
     <value>Digite o código de acesso exibido na tela do aplicativo da pessoa que está te convidando.</value>
   </data>
+  <data name="PHRASE_CONNECTING_TO_THE_SERVER" xml:space="preserve">
+    <value>Aguarde um instante, estamos conectando ao servidor…</value>
+  </data>
+  <data name="PHRASE_WAITING_APPROVAL_FROM" xml:space="preserve">
+    <value>Estamos esperando a aprovação de {0}…</value>
+  </data>
 </root>

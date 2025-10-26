@@ -31,6 +31,8 @@ public partial class UserConnectionJoinerViewModel : ViewModelBase
         IUserConnectionByCodeClient userConnectionByCodeClient,
         INavigationService navigationService) : base(navigationService)
     {
+        _useRefreshTokenUseCase = useRefreshTokenUseCase;
+        _connection = userConnectionByCodeClient.CreateClient();
     }
 
     [RelayCommand]
