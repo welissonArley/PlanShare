@@ -17,6 +17,9 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
     [ObservableProperty]
     public string connectionCode;
 
+    [ObservableProperty]
+    public JoinerUser joinerUser;
+
     private readonly HubConnection _connection;
 
     // Codigo temporario

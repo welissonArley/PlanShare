@@ -277,6 +277,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        public static string TITLE_ACCEPT {
+            get {
+                return ResourceManager.GetString("TITLE_ACCEPT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string TITLE_CANCEL {

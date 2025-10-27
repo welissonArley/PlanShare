@@ -240,4 +240,7 @@
   <data name="PHRASE_WAITING_APPROVAL_FROM" xml:space="preserve">
     <value>Estamos esperando a aprovação de {0}…</value>
   </data>
+  <data name="TITLE_ACCEPT" xml:space="preserve">
+    <value>Aceitar</value>
+  </data>
 </root>
