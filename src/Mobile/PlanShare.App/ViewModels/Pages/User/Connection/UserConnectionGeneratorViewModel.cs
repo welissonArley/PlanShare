@@ -33,6 +33,8 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
     {
         _connection = userConnectionByCodeClient.CreateClient();
         _useRefreshTokenUseCase = useRefreshTokenUseCase;
+
+        _connection.On<ResponseConnectingUserJson>("OnUserJoined", OnUserJoined);
     }
 
     [RelayCommand]
@@ -50,5 +52,15 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
         ConnectionCode = string.Join(' ', result.Response!.ToCharArray());
 
         StatusPage = ConnectionByCodeStatusPage.WaitingForJoiner;
+    }
+
+    private void OnUserJoined(ResponseConnectingUserJson response)
+    {
+        JoinerUser = new JoinerUser
+        {
+            Name = response.Name
+        };
+
+        StatusPage = ConnectionByCodeStatusPage.JoinerConnectedPendingApproval;
     }
 }

@@ -80,7 +80,7 @@
                 Text="{Static resourceTexts:ResourceTexts.TITLE_CANCEL_OPERATION}" />
         </VerticalStackLayout>
 
-        <VerticalStackLayout IsVisible="False">
+        <VerticalStackLayout Margin="0,40,0,0" IsVisible="False">
             <VerticalStackLayout.Triggers>
                 <DataTrigger
                     Binding="{Binding StatusPage}"
