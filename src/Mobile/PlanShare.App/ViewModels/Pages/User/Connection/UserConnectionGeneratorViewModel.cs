@@ -54,6 +54,26 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
         StatusPage = ConnectionByCodeStatusPage.WaitingForJoiner;
     }
 
+    [RelayCommand]
+    public async Task Cancel()
+    {
+        await _connection.InvokeAsync("Cancel", ConnectionCode.Replace(" ", string.Empty));
+
+        await _connection.StopAsync();
+
+        await _navigationService.ClosePage();
+    }
+
+    [RelayCommand]
+    public async Task Approve()
+    {
+        await _connection.InvokeAsync("ConfirmCodeJoin", ConnectionCode.Replace(" ", string.Empty));
+
+        await _connection.StopAsync();
+
+        await _navigationService.ClosePage();
+    }
+
     private void OnUserJoined(ResponseConnectingUserJson response)
     {
         JoinerUser = new JoinerUser

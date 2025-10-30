@@ -76,8 +76,19 @@
 
             <Button
                 Margin="0,70,0,0"
+                Command="{Binding CancelCommand}"
+                IsVisible="False"
                 Style="{StaticResource DangerousButtonStyle}"
-                Text="{Static resourceTexts:ResourceTexts.TITLE_CANCEL_OPERATION}" />
+                Text="{Static resourceTexts:ResourceTexts.TITLE_CANCEL_OPERATION}">
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding StatusPage}"
+                        TargetType="Button"
+                        Value="{Static models:ConnectionByCodeStatusPage.WaitingForJoiner}">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
         </VerticalStackLayout>
 
         <VerticalStackLayout Margin="0,40,0,0" IsVisible="False">
@@ -115,12 +126,14 @@
                 Margin="0,70,0,0"
                 BackgroundColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
                                                   Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
+                Command="{Binding ApproveCommand}"
                 HeightRequest="60"
                 Text="{Static resourceTexts:ResourceTexts.TITLE_ACCEPT}"
                 TextTransform="Uppercase" />
 
             <Button
                 Margin="0,40,0,0"
+                Command="{Binding CancelCommand}"
                 Style="{StaticResource DangerousButtonStyle}"
                 Text="{Static resourceTexts:ResourceTexts.TITLE_CANCEL_OPERATION}" />
 
