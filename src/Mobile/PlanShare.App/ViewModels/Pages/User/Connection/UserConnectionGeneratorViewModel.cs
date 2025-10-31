@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Models;
 using PlanShare.App.Navigation;
+using PlanShare.App.Resources;
 using PlanShare.App.UseCases.Authentication.Refresh;
 using PlanShare.Communication.Responses;
 
@@ -48,10 +49,20 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
         await _connection.StartAsync();
 
         var result = await _connection.InvokeAsync<HubOperationResult<string>>("GenerateCode");
+        if (result.IsSuccess)
+        {
+            ConnectionCode = string.Join(' ', result.Response!.ToCharArray());
 
-        ConnectionCode = string.Join(' ', result.Response!.ToCharArray());
+            StatusPage = ConnectionByCodeStatusPage.WaitingForJoiner;
+        }
+        else
+        {
+            await _connection.StopAsync();
 
-        StatusPage = ConnectionByCodeStatusPage.WaitingForJoiner;
+            await _navigationService.ClosePage();
+
+            await _navigationService.ShowFailureFeedback(result.ErrorMessage);
+        }
     }
 
     [RelayCommand]
@@ -67,7 +78,11 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
     [RelayCommand]
     public async Task Approve()
     {
-        await _connection.InvokeAsync("ConfirmCodeJoin", ConnectionCode.Replace(" ", string.Empty));
+        var result = await _connection.InvokeAsync<HubOperationResult<string>>("ConfirmCodeJoin", ConnectionCode.Replace(" ", string.Empty));
+        if (result.IsSuccess)
+            await _navigationService.ShowSuccessFeedback(string.Format(ResourceTexts.USER_JOINED_SUCCESSFULLY, JoinerUser.Name));
+        else
+            await _navigationService.ShowFailureFeedback(result.ErrorMessage);
 
         await _connection.StopAsync();
 

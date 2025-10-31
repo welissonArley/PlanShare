@@ -1,4 +1,4 @@
-﻿ using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.AspNetCore.SignalR.Client;
 using PlanShare.App.Data.Network.Api;
@@ -46,9 +46,19 @@ public partial class UserConnectionJoinerViewModel : ViewModelBase
         await _connection.StartAsync();
 
         var result = await _connection.InvokeAsync<HubOperationResult<string>>("JoinWithCode", Code);
+        if (result.IsSuccess)
+        {
+            GeneratedBy = result.Response!;
 
-        GeneratedBy = result.Response!;
+            StatusPage = ConnectionByCodeStatusPage.JoinerConnectedPendingApproval;
+        }
+        else
+        {
+            await _connection.StopAsync();
 
-        StatusPage = ConnectionByCodeStatusPage.JoinerConnectedPendingApproval;
+            await _navigationService.ClosePage();
+
+            await _navigationService.ShowFailureFeedback(result.ErrorMessage);
+        }
     }
 }

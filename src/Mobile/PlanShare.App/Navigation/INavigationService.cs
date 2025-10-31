@@ -10,6 +10,7 @@ public interface INavigationService
     Task GoToDashboardPage();
     Task GoToOnboardingPage();
     Task ShowSuccessFeedback(string message);
+    Task ShowFailureFeedback(string message);
     Task<TResult> ShowPopup<TViewModel, TResult>()
         where TViewModel : ViewModelBaseForPopups
         where TResult : notnull;

@@ -88,6 +88,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while connecting. Please try again..
+        /// </summary>
+        public static string ERROR_OCCURRED_WHILE_CONNECTING {
+            get {
+                return ResourceManager.GetString("ERROR_OCCURRED_WHILE_CONNECTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following errors were found.
         /// </summary>
         public static string FOLLOWING_ERRORS_WERE_FOUND {
@@ -277,6 +286,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} lost the connection.
+        /// </summary>
+        public static string THE_USER_WHO_GENERATED_CODE_LOST_CONNECTION {
+            get {
+                return ResourceManager.GetString("THE_USER_WHO_GENERATED_CODE_LOST_CONNECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         public static string TITLE_ACCEPT {
@@ -435,6 +453,33 @@ namespace PlanShare.App.Resources {
         public static string UPLOAD_PHOTO {
             get {
                 return ResourceManager.GetString("UPLOAD_PHOTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🎉 {0} joined successfully. You’re both connected!.
+        /// </summary>
+        public static string USER_JOINED_SUCCESSFULLY {
+            get {
+                return ResourceManager.GetString("USER_JOINED_SUCCESSFULLY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🎉 {0} approved your connection — you’re now linked!.
+        /// </summary>
+        public static string USER_WHO_GENERATED_CODE_APPROVED_CONNECTION {
+            get {
+                return ResourceManager.GetString("USER_WHO_GENERATED_CODE_APPROVED_CONNECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} canceled the connection request. Maybe next time!.
+        /// </summary>
+        public static string USER_WHO_GENERATED_CODE_CANCELED_CONNECTION {
+            get {
+                return ResourceManager.GetString("USER_WHO_GENERATED_CODE_CANCELED_CONNECTION", resourceCulture);
             }
         }
     }

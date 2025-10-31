@@ -243,4 +243,19 @@
   <data name="TITLE_ACCEPT" xml:space="preserve">
     <value>Aceitar</value>
   </data>
+  <data name="THE_USER_WHO_GENERATED_CODE_LOST_CONNECTION" xml:space="preserve">
+    <value>{0} perdeu a conexão.</value>
+  </data>
+  <data name="ERROR_OCCURRED_WHILE_CONNECTING" xml:space="preserve">
+    <value>Ocorreu um erro ao conectar. Por favor, tente novamente.</value>
+  </data>
+  <data name="USER_WHO_GENERATED_CODE_APPROVED_CONNECTION" xml:space="preserve">
+    <value>🎉 {0} aprovou sua conexão — agora vocês estão conectados!</value>
+  </data>
+  <data name="USER_WHO_GENERATED_CODE_CANCELED_CONNECTION" xml:space="preserve">
+    <value>{0} cancelou a conexão. Quem sabe na próxima!</value>
+  </data>
+  <data name="USER_JOINED_SUCCESSFULLY" xml:space="preserve">
+    <value>🎉 Você agora está conectado com {0}!</value>
+  </data>
 </root>
