@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR.Client;
 using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Models;
 using PlanShare.App.Navigation;
+using PlanShare.App.Resources;
 using PlanShare.App.UseCases.Authentication.Refresh;
 using PlanShare.Communication.Responses;
 
@@ -33,6 +34,11 @@ public partial class UserConnectionJoinerViewModel : ViewModelBase
     {
         _useRefreshTokenUseCase = useRefreshTokenUseCase;
         _connection = userConnectionByCodeClient.CreateClient();
+
+        _connection.On("OnCancelled", OnCancelled);
+        _connection.On("OnConnectionConfirmed", OnConnectionConfirmed);
+        _connection.On("OnUserDisconnected", OnUserDisconnected);
+        _connection.On("ConnectionErrorOccurred", ConnectionErrorOccurred);
     }
 
     [RelayCommand]
@@ -60,5 +66,41 @@ public partial class UserConnectionJoinerViewModel : ViewModelBase
 
             await _navigationService.ShowFailureFeedback(result.ErrorMessage);
         }
+    }
+
+    private async Task OnCancelled()
+    {
+        await _connection.StopAsync();
+
+        await _navigationService.ClosePage();
+
+        await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.USER_WHO_GENERATED_CODE_CANCELED_CONNECTION, GeneratedBy));
+    }
+
+    private async Task OnConnectionConfirmed()
+    {
+        await _connection.StopAsync();
+
+        await _navigationService.ClosePage();
+
+        await _navigationService.ShowSuccessFeedback(string.Format(ResourceTexts.USER_WHO_GENERATED_CODE_APPROVED_CONNECTION, GeneratedBy));
+    }
+
+    private async Task OnUserDisconnected()
+    {
+        await _connection.StopAsync();
+
+        await _navigationService.ClosePage();
+
+        await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.THE_USER_WHO_GENERATED_CODE_LOST_CONNECTION, GeneratedBy));
+    }
+
+    private async Task ConnectionErrorOccurred()
+    {
+        await _connection.StopAsync();
+
+        await _navigationService.ClosePage();
+
+        await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.CONNECTION_UNEXPECTED_ERROR_WITH_USER, GeneratedBy));
     }
 }

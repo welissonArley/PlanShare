@@ -70,6 +70,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected error occurred while trying to connect with {0}..
+        /// </summary>
+        public static string CONNECTION_UNEXPECTED_ERROR_WITH_USER {
+            get {
+                return ResourceManager.GetString("CONNECTION_UNEXPECTED_ERROR_WITH_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete my account.
         /// </summary>
         public static string DELETE_ACCOUNT {

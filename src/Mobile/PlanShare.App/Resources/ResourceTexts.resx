@@ -258,4 +258,7 @@
   <data name="USER_JOINED_SUCCESSFULLY" xml:space="preserve">
     <value>🎉 {0} joined successfully. You’re both connected!</value>
   </data>
+  <data name="CONNECTION_UNEXPECTED_ERROR_WITH_USER" xml:space="preserve">
+    <value>An unexpected error occurred while trying to connect with {0}.</value>
+  </data>
 </root>
