@@ -91,11 +91,14 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
 
     private void OnUserJoined(ResponseConnectingUserJson response)
     {
-        JoinerUser = new JoinerUser
+        MainThread.BeginInvokeOnMainThread(() =>
         {
-            Name = response.Name
-        };
+            JoinerUser = new JoinerUser
+            {
+                Name = response.Name
+            };
 
-        StatusPage = ConnectionByCodeStatusPage.JoinerConnectedPendingApproval;
+            StatusPage = ConnectionByCodeStatusPage.JoinerConnectedPendingApproval;
+        });
     }
 }

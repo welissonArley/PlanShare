@@ -57,50 +57,65 @@ public partial class UserConnectionJoinerViewModel : ViewModelBase
             GeneratedBy = result.Response!;
 
             StatusPage = ConnectionByCodeStatusPage.JoinerConnectedPendingApproval;
+
+            return;
         }
+
+        await _connection.StopAsync();
+
+        await _navigationService.ShowFailureFeedback(result.ErrorMessage);
+
+        if (result.ErrorCode == Communication.Enums.UserConnectionErrorCode.InvalidCode)
+            await _navigationService.GoToAsync($"../{RoutePages.USER_CODE_CONNECTION_PAGE}");
         else
+            await _navigationService.ClosePage();
+    }
+
+    private void OnCancelled()
+    {
+        MainThread.BeginInvokeOnMainThread(async () =>
         {
             await _connection.StopAsync();
 
             await _navigationService.ClosePage();
 
-            await _navigationService.ShowFailureFeedback(result.ErrorMessage);
-        }
+            await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.USER_WHO_GENERATED_CODE_CANCELED_CONNECTION, GeneratedBy));
+        });
     }
 
-    private async Task OnCancelled()
+    private void OnConnectionConfirmed()
     {
-        await _connection.StopAsync();
+        MainThread.BeginInvokeOnMainThread(async () =>
+        {
+            await _connection.StopAsync();
 
-        await _navigationService.ClosePage();
+            await _navigationService.ClosePage();
 
-        await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.USER_WHO_GENERATED_CODE_CANCELED_CONNECTION, GeneratedBy));
+            await _navigationService.ShowSuccessFeedback(string.Format(ResourceTexts.USER_WHO_GENERATED_CODE_APPROVED_CONNECTION, GeneratedBy));
+        });
     }
 
-    private async Task OnConnectionConfirmed()
+    private void OnUserDisconnected()
     {
-        await _connection.StopAsync();
+        MainThread.BeginInvokeOnMainThread(async () =>
+        {
+            await _connection.StopAsync();
 
-        await _navigationService.ClosePage();
+            await _navigationService.ClosePage();
 
-        await _navigationService.ShowSuccessFeedback(string.Format(ResourceTexts.USER_WHO_GENERATED_CODE_APPROVED_CONNECTION, GeneratedBy));
+            await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.THE_USER_WHO_GENERATED_CODE_LOST_CONNECTION, GeneratedBy));
+        });
     }
 
-    private async Task OnUserDisconnected()
+    private void ConnectionErrorOccurred()
     {
-        await _connection.StopAsync();
+        MainThread.BeginInvokeOnMainThread(async () =>
+        {
+            await _connection.StopAsync();
 
-        await _navigationService.ClosePage();
+            await _navigationService.ClosePage();
 
-        await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.THE_USER_WHO_GENERATED_CODE_LOST_CONNECTION, GeneratedBy));
-    }
-
-    private async Task ConnectionErrorOccurred()
-    {
-        await _connection.StopAsync();
-
-        await _navigationService.ClosePage();
-
-        await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.CONNECTION_UNEXPECTED_ERROR_WITH_USER, GeneratedBy));
+            await _navigationService.ShowFailureFeedback(string.Format(ResourceTexts.CONNECTION_UNEXPECTED_ERROR_WITH_USER, GeneratedBy));
+        });
     }
 }

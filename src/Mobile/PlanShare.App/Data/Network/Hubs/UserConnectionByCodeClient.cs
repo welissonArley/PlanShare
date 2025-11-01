@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Data.Storage.SecureStorage.Tokens;
+using System.Globalization;
 
 namespace PlanShare.App.Data.Network.Hubs;
 
@@ -20,6 +21,8 @@ public class UserConnectionByCodeClient : IUserConnectionByCodeClient
         return new HubConnectionBuilder()
             .WithUrl($"{_urlBase}/connection", options =>
             {
+                options.Headers.Add("Accept-Language", CultureInfo.CurrentCulture.Name);
+
                 options.AccessTokenProvider = async () =>
                 {
                     var tokens = await _tokensStorage.Get();
