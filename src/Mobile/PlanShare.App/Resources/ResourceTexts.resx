@@ -261,4 +261,7 @@
   <data name="CONNECTION_UNEXPECTED_ERROR_WITH_USER" xml:space="preserve">
     <value>An unexpected error occurred while trying to connect with {0}.</value>
   </data>
+  <data name="TASKS_SHARED_WITH" xml:space="preserve">
+    <value>Tasks shared with</value>
+  </data>
 </root>

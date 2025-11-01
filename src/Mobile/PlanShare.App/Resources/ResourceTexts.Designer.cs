@@ -295,6 +295,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tasks shared with.
+        /// </summary>
+        public static string TASKS_SHARED_WITH {
+            get {
+                return ResourceManager.GetString("TASKS_SHARED_WITH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} lost the connection.
         /// </summary>
         public static string THE_USER_WHO_GENERATED_CODE_LOST_CONNECTION {
