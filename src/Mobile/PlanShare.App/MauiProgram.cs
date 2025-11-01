@@ -9,6 +9,7 @@ using PlanShare.App.Data.Storage.SecureStorage.Tokens;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources.Styles.Handlers;
 using PlanShare.App.UseCases.Authentication.Refresh;
+using PlanShare.App.UseCases.Dashboard;
 using PlanShare.App.UseCases.Login.DoLogin;
 using PlanShare.App.UseCases.User.ChangePassword;
 using PlanShare.App.UseCases.User.Photo;
@@ -134,7 +135,11 @@ public static class MauiProgram
 		appBuilder.Services.AddRefitClient<IAuthenticationApi>()
 			.ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl));
 
-		appBuilder.Services.AddTransient<IUserConnectionByCodeClient>(config =>
+        appBuilder.Services.AddRefitClient<IDashboardApi>()
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl))
+            .AddHttpMessageHandler<PlanShareHandler>();
+
+        appBuilder.Services.AddTransient<IUserConnectionByCodeClient>(config =>
 		{
 			return new UserConnectionByCodeClient(apiUrl, config.GetRequiredService<ITokensStorage>());
         });
@@ -151,6 +156,7 @@ public static class MauiProgram
 		appBuilder.Services.AddTransient<IChangeUserPasswordUseCase, ChangeUserPasswordUseCase>();
 		appBuilder.Services.AddTransient<IChangeUserPhotoUseCase, ChangeUserPhotoUseCase>();
 		appBuilder.Services.AddTransient<IUseRefreshTokenUseCase, UseRefreshTokenUseCase>();
+		appBuilder.Services.AddTransient<IGetDashboardUseCase, GetDashboardUseCase>();
 
         return appBuilder;
     }

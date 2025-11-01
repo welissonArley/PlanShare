@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using PlanShare.App.Models.Enums;
 using PlanShare.App.Navigation;
+using PlanShare.App.UseCases.Dashboard;
 using PlanShare.App.ViewModels.Popups.Connection;
 
 namespace PlanShare.App.ViewModels.Pages.Dashboard;
@@ -10,51 +11,11 @@ public partial class DashboardViewModel : ViewModelBase
     [ObservableProperty]
     public Models.Dashboard dashboard;
 
-    public DashboardViewModel(INavigationService navigationService) : base(navigationService)
+    private readonly IGetDashboardUseCase _dashboardUseCase;
+
+    public DashboardViewModel(INavigationService navigationService, IGetDashboardUseCase dashboardUseCase) : base(navigationService)
     {
-        Dashboard = new Models.Dashboard
-        {
-            UserName = "Welisson Arley",
-            ConnectedUsers = new System.Collections.ObjectModel.ObservableCollection<Models.ConnectedUser>
-            {
-                new Models.ConnectedUser
-                {
-                    Name = "Alice Johnson",
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Bob Smith",
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Charlie Brown"
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Alice Johnson",
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Bob Smith",
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Charlie Brown"
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Alice Johnson",
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Bob Smith",
-                },
-                new Models.ConnectedUser
-                {
-                    Name = "Charlie Brown"
-                }
-            }
-        };
+        _dashboardUseCase = dashboardUseCase;
     }
 
     [RelayCommand]
@@ -78,4 +39,18 @@ public partial class DashboardViewModel : ViewModelBase
 
     [RelayCommand]
     public async Task SeeProfile() => await _navigationService.GoToAsync(RoutePages.USER_UPDATE_PROFILE_PAGE);
+
+    [RelayCommand]
+    public async Task Initialize()
+    {
+        StatusPage = Models.StatusPage.Loading;
+
+        var result = await _dashboardUseCase.Execute();
+        if (result.IsSuccess)
+            Dashboard = result.Response!;
+        else
+            await GoToPageWithErrors(result);
+
+        StatusPage = Models.StatusPage.Default;
+    }
 }

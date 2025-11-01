@@ -1,6 +1,7 @@
 ﻿namespace PlanShare.Communication.Responses;
 public class ResponseDashboardJson
 {
-    public List<ResponseAssigneeJson> Friends { get; set; } = [];
+    public string UserName { get; set; } = string.Empty;
+    public List<ResponseAssigneeJson> ConnectedUsers { get; set; } = [];
     public List<ResponseShortWorkItemJson> WorkItems { get; set; } = [];
 }

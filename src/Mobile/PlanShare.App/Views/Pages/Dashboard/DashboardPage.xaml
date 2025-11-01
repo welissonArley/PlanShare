@@ -14,6 +14,7 @@
     Shell.NavBarIsVisible="False">
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT}, Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}" StatusBarStyle="{AppThemeBinding Light=DarkContent, Dark=LightContent}" />
+        <toolkit:EventToCommandBehavior Command="{Binding Path=BindingContext.InitializeCommand, Source={Reference PageDashboard}}" EventName="Appearing" />
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
