@@ -5,7 +5,6 @@ using PlanShare.App.Data.Network.Api;
 using PlanShare.App.Models;
 using PlanShare.App.Navigation;
 using PlanShare.App.Resources;
-using PlanShare.App.UseCases.Authentication.Refresh;
 using PlanShare.Communication.Responses;
 
 namespace PlanShare.App.ViewModels.Pages.User.Connection;
@@ -23,17 +22,11 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
 
     private readonly HubConnection _connection;
 
-    // Codigo temporario
-    private readonly IUseRefreshTokenUseCase _useRefreshTokenUseCase;
-
     public UserConnectionGeneratorViewModel(
-        IUseRefreshTokenUseCase useRefreshTokenUseCase,
-
         IUserConnectionByCodeClient userConnectionByCodeClient,
         INavigationService navigationService) : base(navigationService)
     {
         _connection = userConnectionByCodeClient.CreateClient();
-        _useRefreshTokenUseCase = useRefreshTokenUseCase;
 
         _connection.On<ResponseConnectingUserJson>("OnUserJoined", OnUserJoined);
     }
@@ -42,9 +35,6 @@ public partial class UserConnectionGeneratorViewModel : ViewModelBase
     public async Task Initialize()
     {
         StatusPage = ConnectionByCodeStatusPage.GeneratingCode;
-
-        // Codigo Temporario
-        await _useRefreshTokenUseCase.Execute();
 
         await _connection.StartAsync();
 
