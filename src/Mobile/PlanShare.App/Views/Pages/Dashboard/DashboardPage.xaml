@@ -22,7 +22,7 @@
         <converters:NameToAvatarNameConverter x:Key="nameToAvatarName" />
     </ContentPage.Resources>
 
-    <VerticalStackLayout>
+    <Grid>
         <VerticalStackLayout IsVisible="False">
             <VerticalStackLayout.Triggers>
                 <DataTrigger
@@ -149,6 +149,80 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <Grid Margin="0,40,0,10" ColumnDefinitions="*,*">
+                <Label
+                    FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                    Text="{Static resourceFile:ResourceTexts.TITLE_TASKS}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                    HorizontalOptions="End"
+                    Text="{Static resourceFile:ResourceTexts.SEE_ALL}"
+                    TextColor="{AppThemeBinding Light={StaticResource HIGHLIGHT_COLOR_LIGHT},
+                                                Dark={StaticResource HIGHLIGHT_COLOR_DARK}}"
+                    TextDecorations="Underline"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Dashboard.WorkItems}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:ShortWorkItem">
+                        <Grid
+                            Padding="0,12,0,0"
+                            ColumnDefinitions="*,Auto"
+                            RowDefinitions="Auto,1"
+                            RowSpacing="12">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.SeeWorkItemDetailCommand, Source={Reference PageDashboard}}" CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
+                            <VerticalStackLayout Spacing="4">
+                                <Label
+                                    FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                                    FontSize="14"
+                                    Text="{Binding Title}" />
+                                <HorizontalStackLayout Spacing="6">
+                                    <Image
+                                        HeightRequest="10"
+                                        Source="calendar.png"
+                                        VerticalOptions="Center"
+                                        WidthRequest="10">
+                                        <Image.Behaviors>
+                                            <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+                                        </Image.Behaviors>
+                                    </Image>
+                                    <Label
+                                        FontFamily="{Static fontFamily:FontFamily.SECONDARY_FONT_REGULAR}"
+                                        FontSize="10"
+                                        Text="{Binding DueDate, StringFormat='{}{0:dddd, dd MMMM yyyy}'}"
+                                        VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <Image
+                                Grid.Column="1"
+                                HeightRequest="16"
+                                Source="icon_arrow.png"
+                                VerticalOptions="Center"
+                                WidthRequest="10">
+                                <Image.Behaviors>
+                                    <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+                                </Image.Behaviors>
+                            </Image>
+
+                            <BoxView
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                HeightRequest="1"
+                                Color="{AppThemeBinding Light={StaticResource LINES_COLOR_LIGHT},
+                                                        Dark={StaticResource LINES_COLOR_DARK}}" />
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
         </VerticalStackLayout>
 
         <VerticalStackLayout IsVisible="False">
@@ -263,6 +337,45 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
+            <Label
+                Margin="0,40,0,10"
+                FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                Text="{Static resourceFile:ResourceTexts.TITLE_TASKS}" />
+
+            <skeleton:SkeletonView
+                Margin="0,12,0,0"
+                CornerRadius="4"
+                HeightRequest="40" />
+            <skeleton:SkeletonView
+                Margin="0,12,0,0"
+                CornerRadius="4"
+                HeightRequest="40" />
+            <skeleton:SkeletonView
+                Margin="0,12,0,0"
+                CornerRadius="4"
+                HeightRequest="40" />
         </VerticalStackLayout>
-    </VerticalStackLayout>
+
+        <ImageButton
+            Command="{Binding CreateWorkItemCommand}"
+            HeightRequest="50"
+            HorizontalOptions="End"
+            IsVisible="False"
+            Source="circle_plus.png"
+            VerticalOptions="End"
+            WidthRequest="50">
+            <ImageButton.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+            </ImageButton.Behaviors>
+            <ImageButton.Triggers>
+                <DataTrigger
+                    Binding="{Binding StatusPage}"
+                    TargetType="ImageButton"
+                    Value="{Static models:StatusPage.Default}">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </ImageButton.Triggers>
+        </ImageButton>
+    </Grid>
 </ContentPage>

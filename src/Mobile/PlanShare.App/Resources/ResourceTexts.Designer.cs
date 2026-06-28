@@ -19,7 +19,7 @@ namespace PlanShare.App.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ResourceTexts {
@@ -61,6 +61,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PDF, JPG JPEG, PNG.
+        /// </summary>
+        public static string ALLOWED_FILE_TYPES {
+            get {
+                return ResourceManager.GetString("ALLOWED_FILE_TYPES", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string CHANGE_PASSWORD {
@@ -70,11 +79,29 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean the kitchen.
+        /// </summary>
+        public static string CLEAN_THE_KITCHEN {
+            get {
+                return ResourceManager.GetString("CLEAN_THE_KITCHEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An unexpected error occurred while trying to connect with {0}..
         /// </summary>
         public static string CONNECTION_UNEXPECTED_ERROR_WITH_USER {
             get {
                 return ResourceManager.GetString("CONNECTION_UNEXPECTED_ERROR_WITH_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deadline.
+        /// </summary>
+        public static string DEADLINE {
+            get {
+                return ResourceManager.GetString("DEADLINE", resourceCulture);
             }
         }
         
@@ -96,6 +123,42 @@ namespace PlanShare.App.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Delete task.
+        /// </summary>
+        public static string DELETE_TASK {
+            get {
+                return ResourceManager.GetString("DELETE_TASK", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this task?.
+        /// </summary>
+        public static string DELETE_TASK_CONFIRMATION {
+            get {
+                return ResourceManager.GetString("DELETE_TASK_CONFIRMATION", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string DESCRIPTION {
+            get {
+                return ResourceManager.GetString("DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit task.
+        /// </summary>
+        public static string EDIT_TASK {
+            get {
+                return ResourceManager.GetString("EDIT_TASK", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to An error occurred while connecting. Please try again..
         /// </summary>
@@ -232,6 +295,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notes ....
+        /// </summary>
+        public static string PLACEHOLDER_NOTES {
+            get {
+                return ResourceManager.GetString("PLACEHOLDER_NOTES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your profile information has been successfully updated..
         /// </summary>
         public static string PROFILE_INFORMATION_SUCCESSFULLY_UPDATED {
@@ -249,6 +321,33 @@ namespace PlanShare.App.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Save changes.
+        /// </summary>
+        public static string SAVE_CHANGES {
+            get {
+                return ResourceManager.GetString("SAVE_CHANGES", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Save new task.
+        /// </summary>
+        public static string SAVE_NEW_TASK {
+            get {
+                return ResourceManager.GetString("SAVE_NEW_TASK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See All.
+        /// </summary>
+        public static string SEE_ALL {
+            get {
+                return ResourceManager.GetString("SEE_ALL", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to An error occurred while communicating with the server. Please try again later..
         /// </summary>
@@ -313,6 +412,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string TITLE {
+            get {
+                return ResourceManager.GetString("TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         public static string TITLE_ACCEPT {
@@ -321,6 +429,24 @@ namespace PlanShare.App.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Assignees.
+        /// </summary>
+        public static string TITLE_ASSIGNEES {
+            get {
+                return ResourceManager.GetString("TITLE_ASSIGNEES", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Attachments.
+        /// </summary>
+        public static string TITLE_ATTACHMENTS {
+            get {
+                return ResourceManager.GetString("TITLE_ATTACHMENTS", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
@@ -358,6 +484,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new task.
+        /// </summary>
+        public static string TITLE_CREATE_NEW_TASK {
+            get {
+                return ResourceManager.GetString("TITLE_CREATE_NEW_TASK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current password.
         /// </summary>
         public static string TITLE_CURRENT_PASSWORD {
@@ -366,6 +501,15 @@ namespace PlanShare.App.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string TITLE_DATE {
+            get {
+                return ResourceManager.GetString("TITLE_DATE", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
@@ -430,6 +574,15 @@ namespace PlanShare.App.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tasks.
+        /// </summary>
+        public static string TITLE_TASKS {
+            get {
+                return ResourceManager.GetString("TITLE_TASKS", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Use a connection code.
         /// </summary>
         public static string TITLE_USE_CONNECTION_CODE {
@@ -447,6 +600,15 @@ namespace PlanShare.App.Resources {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Tap to upload.
+        /// </summary>
+        public static string TOUCH_TO_UPLOAD {
+            get {
+                return ResourceManager.GetString("TOUCH_TO_UPLOAD", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Try it again.
         /// </summary>
@@ -498,6 +660,42 @@ namespace PlanShare.App.Resources {
         public static string USER_WHO_GENERATED_CODE_CANCELED_CONNECTION {
             get {
                 return ResourceManager.GetString("USER_WHO_GENERATED_CODE_CANCELED_CONNECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Who is or are the people responsible for this task?.
+        /// </summary>
+        public static string WHO_IS_OR_ARE_THE_PEOPLE_RESPONSIBLE_FOR_THIS_TASK {
+            get {
+                return ResourceManager.GetString("WHO_IS_OR_ARE_THE_PEOPLE_RESPONSIBLE_FOR_THIS_TASK", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Task created successfully..
+        /// </summary>
+        public static string WORK_ITEM_SUCCESSFULLY_CREATED {
+            get {
+                return ResourceManager.GetString("WORK_ITEM_SUCCESSFULLY_CREATED", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Task deleted successfully..
+        /// </summary>
+        public static string WORK_ITEM_SUCCESSFULLY_DELETED {
+            get {
+                return ResourceManager.GetString("WORK_ITEM_SUCCESSFULLY_DELETED", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Task updated successfully..
+        /// </summary>
+        public static string WORK_ITEM_SUCCESSFULLY_UPDATED {
+            get {
+                return ResourceManager.GetString("WORK_ITEM_SUCCESSFULLY_UPDATED", resourceCulture);
             }
         }
     }

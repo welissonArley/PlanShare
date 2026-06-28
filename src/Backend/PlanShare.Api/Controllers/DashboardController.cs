@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlanShare.Api.Attributes;
 using PlanShare.Application.UseCases.Dashboard;
 using PlanShare.Communication.Responses;
 
@@ -6,6 +7,7 @@ namespace PlanShare.Api.Controllers;
 
 [Route("[controller]")]
 [ApiController]
+[AuthenticatedUser]
 public class DashboardController : ControllerBase
 {
     [HttpGet]

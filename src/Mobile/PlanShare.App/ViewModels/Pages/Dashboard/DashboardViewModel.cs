@@ -41,6 +41,28 @@ public partial class DashboardViewModel : ViewModelBase
     public async Task SeeProfile() => await _navigationService.GoToAsync(RoutePages.USER_UPDATE_PROFILE_PAGE);
 
     [RelayCommand]
+    public async Task CreateWorkItem()
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "connectedUsers", Dashboard?.ConnectedUsers.ToList() ?? [] }
+        };
+
+        await _navigationService.GoToAsync(RoutePages.CREATE_WORK_ITEM_PAGE, parameters);
+    }
+
+    [RelayCommand]
+    public async Task SeeWorkItemDetail(Models.ShortWorkItem workItem)
+    {
+        var parameters = new Dictionary<string, object>
+        {
+            { "id", workItem.Id }
+        };
+
+        await _navigationService.GoToAsync(RoutePages.WORK_ITEM_DETAIL_PAGE, parameters);
+    }
+
+    [RelayCommand]
     public async Task Initialize()
     {
         StatusPage = Models.StatusPage.Loading;

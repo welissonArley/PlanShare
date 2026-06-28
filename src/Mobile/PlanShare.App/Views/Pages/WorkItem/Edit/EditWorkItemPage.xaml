@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PlanShare.App.Views.Pages.WorkItem.Edit.EditWorkItemPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:animationComponent="clr-namespace:PlanShare.App.Views.Components.StatusPage"
+    xmlns:fontFamily="clr-namespace:PlanShare.App.Constants"
+    xmlns:inputsComponent="clr-namespace:PlanShare.App.Views.Components.Inputs"
+    xmlns:models="clr-namespace:PlanShare.App.Models"
+    xmlns:resourceFile="clr-namespace:PlanShare.App.Resources"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModel="clr-namespace:PlanShare.App.ViewModels.Pages.WorkItem.Edit"
+    x:DataType="viewModel:EditWorkItemViewModel"
+    Style="{StaticResource PageWithScrollView}">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT}, Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}" StatusBarStyle="{AppThemeBinding Light=DarkContent, Dark=LightContent}" />
+    </ContentPage.Behaviors>
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <VerticalStackLayout
+                IsVisible="False"
+                Padding="0,0,30,0"
+                Spacing="25">
+                <VerticalStackLayout.Triggers>
+                    <DataTrigger
+                        Binding="{Binding StatusPage}"
+                        TargetType="VerticalStackLayout"
+                        Value="{Static models:StatusPage.Default}">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </VerticalStackLayout.Triggers>
+
+                <Label Style="{StaticResource PageTitle}" Text="{Static resourceFile:ResourceTexts.EDIT_TASK}" />
+
+                <!--  Title  -->
+                <inputsComponent:EntryAndLabelComponent
+                    Title="{Static resourceFile:ResourceTexts.TITLE}"
+                    Placeholder="{Static resourceFile:ResourceTexts.CLEAN_THE_KITCHEN}"
+                    TextValue="{Binding Model.Title}" />
+
+                <!--  Due date  -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Style="{StaticResource TitleForEntry}" Text="{Static resourceFile:ResourceTexts.DEADLINE}" />
+                    <HorizontalStackLayout Spacing="12">
+                        <Image
+                            HeightRequest="18"
+                            Source="calendar.png"
+                            VerticalOptions="Center"
+                            WidthRequest="18">
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT}, Dark={StaticResource PRIMARY_COLOR_DARK}}" />
+                            </Image.Behaviors>
+                        </Image>
+                        <DatePicker
+                            Date="{Binding Model.DueDate}"
+                            FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
+                            FontSize="15"
+                            Format="dddd, dd MMMM yyyy"
+                            TextColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
+                                                        Dark={StaticResource PRIMARY_COLOR_DARK}}"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <!--  Description  -->
+                <VerticalStackLayout Spacing="6">
+                    <Label Style="{StaticResource TitleForEntry}" Text="{Static resourceFile:ResourceTexts.DESCRIPTION}" />
+                    <Border
+                        Padding="6,2"
+                        HeightRequest="100"
+                        Stroke="{AppThemeBinding Light={StaticResource LINES_COLOR_LIGHT},
+                                                 Dark={StaticResource LINES_COLOR_DARK}}"
+                        StrokeShape="Rectangle"
+                        StrokeThickness="1">
+                        <Editor
+                            FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
+                            FontSize="14"
+                            MaxLength="200"
+                            Placeholder="{Static resourceFile:ResourceTexts.PLACEHOLDER_NOTES}"
+                            PlaceholderColor="{AppThemeBinding Light={StaticResource PLACEHOLDER_COLOR_LIGHT},
+                                                               Dark={StaticResource PLACEHOLDER_COLOR_DARK}}"
+                            Text="{Binding Model.Description}"
+                            TextColor="{AppThemeBinding Light={StaticResource PRIMARY_COLOR_LIGHT},
+                                                        Dark={StaticResource PRIMARY_COLOR_DARK}}"
+                            VerticalOptions="Fill" />
+                    </Border>
+                    <Label
+                        FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
+                        FontSize="12"
+                        HorizontalOptions="End"
+                        Text="{Binding Model.DescriptionCharacterCount}" />
+                </VerticalStackLayout>
+
+                <!--  Assignees (read-only)  -->
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_BLACK}"
+                        FontSize="14"
+                        Text="{Static resourceFile:ResourceTexts.TITLE_ASSIGNEES}" />
+
+                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Model.Assignees}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:AssigneeSelection">
+                                <Grid
+                                    Padding="0,12,0,0"
+                                    RowDefinitions="Auto,1"
+                                    RowSpacing="12">
+                                    <Label
+                                        FontFamily="{Static fontFamily:FontFamily.MAIN_FONT_REGULAR}"
+                                        FontSize="18"
+                                        Text="{Binding Name}" />
+                                    <BoxView
+                                        Grid.Row="1"
+                                        HeightRequest="1"
+                                        Color="{AppThemeBinding Light={StaticResource LINES_COLOR_LIGHT},
+                                                                Dark={StaticResource LINES_COLOR_DARK}}" />
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+
+                <!--  Save  -->
+                <Button
+                    Margin="0,15,0,0"
+                    Command="{Binding SaveCommand}"
+                    Text="{Static resourceFile:ResourceTexts.SAVE_CHANGES}" />
+            </VerticalStackLayout>
+
+            <animationComponent:AnimationSendingInformationComponent IsVisible="False">
+                <animationComponent:AnimationSendingInformationComponent.Triggers>
+                    <DataTrigger
+                        Binding="{Binding StatusPage}"
+                        TargetType="animationComponent:AnimationSendingInformationComponent"
+                        Value="{Static models:StatusPage.Sending}">
+                        <Setter Property="IsVisible" Value="True" />
+                    </DataTrigger>
+                </animationComponent:AnimationSendingInformationComponent.Triggers>
+            </animationComponent:AnimationSendingInformationComponent>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

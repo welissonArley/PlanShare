@@ -4,4 +4,12 @@
         <Setter Property="Padding" Value="30,10,30,40" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT}, Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}" />
     </Style>
+
+    <Style
+        x:Key="PageWithScrollView"
+        ApplyToDerivedTypes="True"
+        TargetType="ContentPage">
+        <Setter Property="Padding" Value="30,10,0,40" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource PAGE_BACKGROUND_COLOR_LIGHT}, Dark={StaticResource PAGE_BACKGROUND_COLOR_DARK}}" />
+    </Style>
 </ResourceDictionary>

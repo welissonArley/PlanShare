@@ -264,4 +264,70 @@
   <data name="TASKS_SHARED_WITH" xml:space="preserve">
     <value>Tarefas compartilhadas com</value>
   </data>
+  <data name="TITLE_CREATE_NEW_TASK" xml:space="preserve">
+    <value>Criar nova tarefa</value>
+  </data>
+  <data name="TITLE" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="CLEAN_THE_KITCHEN" xml:space="preserve">
+    <value>Limpar a cozinha</value>
+  </data>
+  <data name="DEADLINE" xml:space="preserve">
+    <value>Data limite</value>
+  </data>
+  <data name="DESCRIPTION" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="PLACEHOLDER_NOTES" xml:space="preserve">
+    <value>Notas ...</value>
+  </data>
+  <data name="WHO_IS_OR_ARE_THE_PEOPLE_RESPONSIBLE_FOR_THIS_TASK" xml:space="preserve">
+    <value>Quem é ou são os responsáveis pela tarefa?</value>
+  </data>
+  <data name="SAVE_NEW_TASK" xml:space="preserve">
+    <value>Salvar nova tarefa</value>
+  </data>
+  <data name="TITLE_ATTACHMENTS" xml:space="preserve">
+    <value>Anexos</value>
+  </data>
+  <data name="TOUCH_TO_UPLOAD" xml:space="preserve">
+    <value>Toque para fazer upload</value>
+  </data>
+  <data name="ALLOWED_FILE_TYPES" xml:space="preserve">
+    <value>PDF, JPG JPEG, PNG</value>
+  </data>
+  <data name="WORK_ITEM_SUCCESSFULLY_CREATED" xml:space="preserve">
+    <value>Tarefa criada com sucesso.</value>
+  </data>
+  <data name="TITLE_TASKS" xml:space="preserve">
+    <value>Tarefas</value>
+  </data>
+  <data name="SEE_ALL" xml:space="preserve">
+    <value>Ver Todas</value>
+  </data>
+  <data name="TITLE_DATE" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="TITLE_ASSIGNEES" xml:space="preserve">
+    <value>Responsáveis</value>
+  </data>
+  <data name="EDIT_TASK" xml:space="preserve">
+    <value>Editar Tarefa</value>
+  </data>
+  <data name="DELETE_TASK" xml:space="preserve">
+    <value>Excluir tarefa</value>
+  </data>
+  <data name="DELETE_TASK_CONFIRMATION" xml:space="preserve">
+    <value>Tem certeza que deseja excluir esta tarefa?</value>
+  </data>
+  <data name="WORK_ITEM_SUCCESSFULLY_DELETED" xml:space="preserve">
+    <value>Tarefa excluída com sucesso.</value>
+  </data>
+  <data name="SAVE_CHANGES" xml:space="preserve">
+    <value>Salvar alterações</value>
+  </data>
+  <data name="WORK_ITEM_SUCCESSFULLY_UPDATED" xml:space="preserve">
+    <value>Tarefa atualizada com sucesso.</value>
+  </data>
 </root>

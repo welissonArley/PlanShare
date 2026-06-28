@@ -1,6 +1,7 @@
 ﻿using Mapster;
 using PlanShare.Communication.Responses;
 using PlanShare.Domain.Repositories.Connection;
+using PlanShare.Domain.Repositories.WorkItem;
 using PlanShare.Domain.Services.LoggedUser;
 
 namespace PlanShare.Application.UseCases.Dashboard;
@@ -8,11 +9,16 @@ public class GetDashboardUseCase : IGetDashboardUseCase
 {
     private readonly ILoggedUser _loggedUser;
     private readonly IUserConnectionReadOnlyRepository _userConnectionRepository;
+    private readonly IWorkItemReadOnlyRepository _workItemRepository;
 
-    public GetDashboardUseCase(ILoggedUser loggedUser, IUserConnectionReadOnlyRepository userConnectionRepository)
+    public GetDashboardUseCase(
+        ILoggedUser loggedUser,
+        IUserConnectionReadOnlyRepository userConnectionRepository,
+        IWorkItemReadOnlyRepository workItemRepository)
     {
         _loggedUser = loggedUser;
         _userConnectionRepository = userConnectionRepository;
+        _workItemRepository = workItemRepository;
     }
 
     public async Task<ResponseDashboardJson> Execute()
@@ -21,10 +27,13 @@ public class GetDashboardUseCase : IGetDashboardUseCase
 
         var associations = await _userConnectionRepository.GetConnectionsForUser(loggedUser);
 
+        var workItems = await _workItemRepository.GetAll(loggedUser);
+
         return new ResponseDashboardJson
         {
             UserName = loggedUser.Name,
-            ConnectedUsers = associations.Adapt<List<ResponseAssigneeJson>>()
+            ConnectedUsers = associations.Adapt<List<ResponseAssigneeJson>>(),
+            WorkItems = workItems.Adapt<List<ResponseShortWorkItemJson>>()
         };
     }
 }

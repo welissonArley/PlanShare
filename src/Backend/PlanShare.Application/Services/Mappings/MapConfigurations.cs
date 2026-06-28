@@ -1,5 +1,6 @@
 ﻿using Mapster;
 using PlanShare.Communication.Requests;
+using PlanShare.Communication.Responses;
 
 namespace PlanShare.Application.Services.Mappings;
 public static class MapConfigurations
@@ -22,5 +23,9 @@ public static class MapConfigurations
         TypeAdapterConfig<RequestUpdateWorkItemJson, Domain.Entities.WorkItem>
             .NewConfig()
             .Map(dest => dest.DueDate, source => source.DueDate.Date);
+
+        TypeAdapterConfig<Domain.Entities.Assignee, ResponseAssigneeJson>
+            .NewConfig()
+            .Map(dest => dest.Name, source => source.User.Name);
     }
 }

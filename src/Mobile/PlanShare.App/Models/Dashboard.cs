@@ -5,4 +5,5 @@ public class Dashboard
 {
     public string UserName { get; set; } = string.Empty;
     public ObservableCollection<ConnectedUser> ConnectedUsers { get; set; } = [];
+    public ObservableCollection<ShortWorkItem> WorkItems { get; set; } = [];
 }

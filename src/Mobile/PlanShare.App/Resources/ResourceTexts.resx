@@ -264,4 +264,70 @@
   <data name="TASKS_SHARED_WITH" xml:space="preserve">
     <value>Tasks shared with</value>
   </data>
+  <data name="TITLE_CREATE_NEW_TASK" xml:space="preserve">
+    <value>Create new task</value>
+  </data>
+  <data name="TITLE" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="CLEAN_THE_KITCHEN" xml:space="preserve">
+    <value>Clean the kitchen</value>
+  </data>
+  <data name="DEADLINE" xml:space="preserve">
+    <value>Deadline</value>
+  </data>
+  <data name="DESCRIPTION" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="PLACEHOLDER_NOTES" xml:space="preserve">
+    <value>Notes ...</value>
+  </data>
+  <data name="WHO_IS_OR_ARE_THE_PEOPLE_RESPONSIBLE_FOR_THIS_TASK" xml:space="preserve">
+    <value>Who is or are the people responsible for this task?</value>
+  </data>
+  <data name="SAVE_NEW_TASK" xml:space="preserve">
+    <value>Save new task</value>
+  </data>
+  <data name="TITLE_ATTACHMENTS" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="TOUCH_TO_UPLOAD" xml:space="preserve">
+    <value>Tap to upload</value>
+  </data>
+  <data name="ALLOWED_FILE_TYPES" xml:space="preserve">
+    <value>PDF, JPG JPEG, PNG</value>
+  </data>
+  <data name="WORK_ITEM_SUCCESSFULLY_CREATED" xml:space="preserve">
+    <value>Task created successfully.</value>
+  </data>
+  <data name="TITLE_TASKS" xml:space="preserve">
+    <value>Tasks</value>
+  </data>
+  <data name="SEE_ALL" xml:space="preserve">
+    <value>See All</value>
+  </data>
+  <data name="TITLE_DATE" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="TITLE_ASSIGNEES" xml:space="preserve">
+    <value>Assignees</value>
+  </data>
+  <data name="EDIT_TASK" xml:space="preserve">
+    <value>Edit task</value>
+  </data>
+  <data name="DELETE_TASK" xml:space="preserve">
+    <value>Delete task</value>
+  </data>
+  <data name="DELETE_TASK_CONFIRMATION" xml:space="preserve">
+    <value>Are you sure you want to delete this task?</value>
+  </data>
+  <data name="WORK_ITEM_SUCCESSFULLY_DELETED" xml:space="preserve">
+    <value>Task deleted successfully.</value>
+  </data>
+  <data name="SAVE_CHANGES" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="WORK_ITEM_SUCCESSFULLY_UPDATED" xml:space="preserve">
+    <value>Task updated successfully.</value>
+  </data>
 </root>

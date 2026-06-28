@@ -23,6 +23,9 @@ public class NavigationService : INavigationService
         => await Shell.Current.GoToAsync(route, parameters);
 
     public async Task ClosePage() => await GoToAsync("..");
+
+    public async Task<bool> ShowConfirmation(string title, string message, string accept, string cancel)
+        => await Shell.Current.DisplayAlert(title, message, accept, cancel);
     public async Task GoToDashboardPage() => await GoToAsync($"//{RoutePages.DASHBOARD_PAGE}");
     public async Task GoToOnboardingPage() => await GoToAsync($"//{RoutePages.ONBOARDING_PAGE}");
 

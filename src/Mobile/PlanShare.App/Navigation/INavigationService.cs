@@ -11,6 +11,7 @@ public interface INavigationService
     Task GoToOnboardingPage();
     Task ShowSuccessFeedback(string message);
     Task ShowFailureFeedback(string message);
+    Task<bool> ShowConfirmation(string title, string message, string accept, string cancel);
     Task<TResult> ShowPopup<TViewModel, TResult>()
         where TViewModel : ViewModelBaseForPopups
         where TResult : notnull;

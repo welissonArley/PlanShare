@@ -29,6 +29,7 @@ internal sealed class WorkItemRepository : IWorkItemWriteOnlyRepository, IWorkIt
     {
         return await _dbContext
             .WorkItems
+            .Include(workItem => workItem.Assignees).ThenInclude(assignee => assignee.User)
             .AsNoTracking()
             .SingleOrDefaultAsync(workItem => workItem.Id == id && workItem.Assignees.Any(assignee => assignee.UserId == user.Id));
     }

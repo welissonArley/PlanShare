@@ -6,4 +6,5 @@ internal sealed class DatabaseVersions
     internal const long TABLE_REFRESH_TOKEN = 2;
     internal const long FIX_CREATEDON_USER_TABLE = 3;
     internal const long USER_CONNECTION_TABLE = 4;
+    internal const long WORK_ITEM_TABLE = 5;
 }

@@ -30,6 +30,12 @@ public class GetDashboardUseCase : IGetDashboardUseCase
                     Id = user.Id,
                     Name = user.Name,
                     ProfilePhotoUrl = user.ProfilePhotoUrl,
+                })),
+                WorkItems = new ObservableCollection<Models.ShortWorkItem>(response.Content.WorkItems.Select(workItem => new Models.ShortWorkItem
+                {
+                    Id = workItem.Id,
+                    Title = workItem.Title,
+                    DueDate = workItem.DueDate,
                 }))
             };
 

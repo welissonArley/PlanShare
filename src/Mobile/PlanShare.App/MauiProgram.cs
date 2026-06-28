@@ -16,6 +16,10 @@ using PlanShare.App.UseCases.User.Photo;
 using PlanShare.App.UseCases.User.Profile;
 using PlanShare.App.UseCases.User.Register;
 using PlanShare.App.UseCases.User.Update;
+using PlanShare.App.UseCases.WorkItem.Delete;
+using PlanShare.App.UseCases.WorkItem.GetById;
+using PlanShare.App.UseCases.WorkItem.Register;
+using PlanShare.App.UseCases.WorkItem.Update;
 using PlanShare.App.ViewModels.Pages.Dashboard;
 using PlanShare.App.ViewModels.Pages.Errors;
 using PlanShare.App.ViewModels.Pages.Login.DoLogin;
@@ -24,6 +28,9 @@ using PlanShare.App.ViewModels.Pages.User.ChangePassword;
 using PlanShare.App.ViewModels.Pages.User.Connection;
 using PlanShare.App.ViewModels.Pages.User.Profile;
 using PlanShare.App.ViewModels.Pages.User.Register;
+using PlanShare.App.ViewModels.Pages.WorkItem.Create;
+using PlanShare.App.ViewModels.Pages.WorkItem.Detail;
+using PlanShare.App.ViewModels.Pages.WorkItem.Edit;
 using PlanShare.App.ViewModels.Popups.Connection;
 using PlanShare.App.ViewModels.Popups.Files;
 using PlanShare.App.Views.Pages.Errors;
@@ -32,6 +39,9 @@ using PlanShare.App.Views.Pages.User.ChangePassword;
 using PlanShare.App.Views.Pages.User.Connection;
 using PlanShare.App.Views.Pages.User.Profile;
 using PlanShare.App.Views.Pages.User.Register;
+using PlanShare.App.Views.Pages.WorkItem.Create;
+using PlanShare.App.Views.Pages.WorkItem.Detail;
+using PlanShare.App.Views.Pages.WorkItem.Edit;
 using PlanShare.App.Views.Popups.Connection;
 using PlanShare.App.Views.Popups.Files;
 using Refit;
@@ -89,6 +99,10 @@ public static class MauiProgram
 		appBuilder.Services.AddTransientWithShellRoute<UserCodeConnectionPage, UserCodeConnectionViewModel>(RoutePages.USER_CODE_CONNECTION_PAGE);
 		appBuilder.Services.AddTransientWithShellRoute<UserConnectionJoinerPage, UserConnectionJoinerViewModel>(RoutePages.USER_CONNECTION_JOINER_PAGE);
 
+		appBuilder.Services.AddTransientWithShellRoute<CreateWorkItemPage, CreateWorkItemViewModel>(RoutePages.CREATE_WORK_ITEM_PAGE);
+		appBuilder.Services.AddTransientWithShellRoute<WorkItemDetailPage, WorkItemDetailViewModel>(RoutePages.WORK_ITEM_DETAIL_PAGE);
+		appBuilder.Services.AddTransientWithShellRoute<EditWorkItemPage, EditWorkItemViewModel>(RoutePages.EDIT_WORK_ITEM_PAGE);
+
         return appBuilder;
 	}
 
@@ -139,6 +153,10 @@ public static class MauiProgram
             .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl))
             .AddHttpMessageHandler<PlanShareHandler>();
 
+        appBuilder.Services.AddRefitClient<IWorkItemApi>()
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiUrl))
+            .AddHttpMessageHandler<PlanShareHandler>();
+
         appBuilder.Services.AddTransient<IUserConnectionByCodeClient>(config =>
 		{
 			return new UserConnectionByCodeClient(apiUrl, config.GetRequiredService<ITokensStorage>());
@@ -157,6 +175,10 @@ public static class MauiProgram
 		appBuilder.Services.AddTransient<IChangeUserPhotoUseCase, ChangeUserPhotoUseCase>();
 		appBuilder.Services.AddTransient<IUseRefreshTokenUseCase, UseRefreshTokenUseCase>();
 		appBuilder.Services.AddTransient<IGetDashboardUseCase, GetDashboardUseCase>();
+		appBuilder.Services.AddTransient<IRegisterWorkItemUseCase, RegisterWorkItemUseCase>();
+		appBuilder.Services.AddTransient<IGetWorkItemByIdUseCase, GetWorkItemByIdUseCase>();
+		appBuilder.Services.AddTransient<IDeleteWorkItemUseCase, DeleteWorkItemUseCase>();
+		appBuilder.Services.AddTransient<IUpdateWorkItemUseCase, UpdateWorkItemUseCase>();
 
         return appBuilder;
     }
