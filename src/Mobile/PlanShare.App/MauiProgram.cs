@@ -11,6 +11,7 @@ using PlanShare.App.Resources.Styles.Handlers;
 using PlanShare.App.UseCases.Authentication.Refresh;
 using PlanShare.App.UseCases.Dashboard;
 using PlanShare.App.UseCases.Login.DoLogin;
+using PlanShare.App.UseCases.Login.WithGoogle;
 using PlanShare.App.UseCases.User.ChangePassword;
 using PlanShare.App.UseCases.User.Photo;
 using PlanShare.App.UseCases.User.Profile;
@@ -179,6 +180,16 @@ public static class MauiProgram
 		appBuilder.Services.AddTransient<IGetWorkItemByIdUseCase, GetWorkItemByIdUseCase>();
 		appBuilder.Services.AddTransient<IDeleteWorkItemUseCase, DeleteWorkItemUseCase>();
 		appBuilder.Services.AddTransient<IUpdateWorkItemUseCase, UpdateWorkItemUseCase>();
+		appBuilder.Services.AddTransient<ILoginWithGoogleUseCase>(config =>
+		{
+			var tokensStorage = config.GetRequiredService<ITokensStorage>();
+			var userStorage = config.GetRequiredService<IUserStorage>();
+			var webAuthenticator = config.GetRequiredService<IWebAuthenticator>();
+
+            var apiUrl = appBuilder.Configuration.GetValue<string>("ApiUrl")!;
+
+            return new LoginWithGoogleUseCase(webAuthenticator, tokensStorage, userStorage, $"{apiUrl}/login/google");
+        });
 
         return appBuilder;
     }
@@ -199,6 +210,7 @@ public static class MauiProgram
 	{
 		appBuilder.Services.AddSingleton(DeviceDisplay.Current);
 		appBuilder.Services.AddSingleton(MediaPicker.Default);
+		appBuilder.Services.AddSingleton(WebAuthenticator.Default);
 
 		return appBuilder;
     }

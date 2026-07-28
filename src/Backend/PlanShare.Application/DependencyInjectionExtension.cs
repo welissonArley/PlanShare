@@ -3,6 +3,7 @@ using PlanShare.Application.Services.Authentication;
 using PlanShare.Application.Services.Mappings;
 using PlanShare.Application.UseCases.Dashboard;
 using PlanShare.Application.UseCases.Login.DoLogin;
+using PlanShare.Application.UseCases.Login.WithGoogle;
 using PlanShare.Application.UseCases.Token.RefreshToken;
 using PlanShare.Application.UseCases.User.ChangePassword;
 using PlanShare.Application.UseCases.User.Connection.ApproveCode;
@@ -43,6 +44,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IChangeUserPhotoUseCase, ChangeUserPhotoUseCase>();
 
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
+        services.AddScoped<ILoginWithGoogleUseCase, LoginWithGoogleUseCase>();
 
         services.AddScoped<IRegisterWorkItemUseCase, RegisterWorkItemUseCase>();
         services.AddScoped<IDeleteWorkItemUseCase, DeleteWorkItemUseCase>();

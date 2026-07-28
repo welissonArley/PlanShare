@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.OpenApi.Models;
@@ -79,6 +80,8 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddSignalR()
     .AddHubOptions<UserConnectionsHub>(options => options.AddFilter<UserConnectionsExceptionHubFilter>());
 
+AddGoogleAuthentication();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -114,6 +117,31 @@ async Task MigrateDatabase()
     var stringConnection = builder.Configuration.ConnectionString();
 
     DataBaseMigration.Migrate(databaseType, stringConnection, scope.ServiceProvider);
+}
+
+void AddGoogleAuthentication()
+{
+    var clientId = builder.Configuration.GetValue<string>("Google:ClientId")!;
+    var clientSecret = builder.Configuration.GetValue<string>("Google:ClientSecret")!;
+
+    builder
+        .Services
+        .AddAuthentication(options =>
+        {
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        })
+        .AddGoogleOpenIdConnect(googleOptions =>
+        {
+            googleOptions.ClientId = clientId;
+            googleOptions.ClientSecret = clientSecret;
+            googleOptions.CallbackPath = "/signin-google";
+            googleOptions.Events.OnRedirectToIdentityProvider = context =>
+            {
+                context.ProtocolMessage.RedirectUri = "";
+
+                return Task.CompletedTask;
+            };
+        }).AddCookie();
 }
 
 public partial class Program
